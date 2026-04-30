@@ -35,6 +35,7 @@ const contactLimiter = rateLimit({
   message: { ok: false, error: 'too_many_requests' }
 });
 
+// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -68,7 +69,6 @@ async function hubspotFetch(path, init = {}) {
 }
 
 async function findOrCreateContact({ email, firstname, lastname, company, phone, source, producto }) {
-  // Search existing contact by email
   const search = await hubspotFetch('/crm/v3/objects/contacts/search', {
     method: 'POST',
     body: JSON.stringify({
@@ -92,7 +92,6 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
 
   if (search.total > 0 && search.results[0]) {
     const id = search.results[0].id;
-    // Update with latest info
     await hubspotFetch(`/crm/v3/objects/contacts/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({ properties })
@@ -100,7 +99,6 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
     return { id, created: false };
   }
 
-  // Create new
   const created = await hubspotFetch('/crm/v3/objects/contacts', {
     method: 'POST',
     body: JSON.stringify({ properties })
@@ -125,7 +123,7 @@ async function createDeal({ contactId, companyName, producto, mensaje }) {
       properties,
       associations: [{
         to: { id: contactId },
-        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }] // contact-to-deal
+        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }]
       }]
     })
   });
@@ -143,7 +141,7 @@ async function addNoteToContact({ contactId, body }) {
       },
       associations: [{
         to: { id: contactId },
-        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] // note-to-contact
+        types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }]
       }]
     })
   });
@@ -176,12 +174,10 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       return res.status(503).json({ ok: false, error: 'hubspot_not_configured' });
     }
 
-    // Split name
     const parts = nombre.trim().split(/\s+/);
     const firstname = parts.shift() || '';
     const lastname = parts.join(' ') || '';
 
-    // 1. Contact (find or create)
     const contact = await findOrCreateContact({
       email: email.trim().toLowerCase(),
       firstname, lastname,
@@ -191,7 +187,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       producto
     });
 
-    // 2. Deal
     const deal = await createDeal({
       contactId: contact.id,
       companyName: empresa.trim(),
@@ -199,7 +194,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       mensaje
     });
 
-    // 3. Note with full message
     if (mensaje.trim()) {
       await addNoteToContact({
         contactId: contact.id,
@@ -217,6 +211,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       dealId: deal.id,
       created: contact.created
     });
+
   } catch (err) {
     console.error('[/api/contact] error:', err.message, err.body || '');
     res.status(500).json({ ok: false, error: err.message || 'server_error' });
