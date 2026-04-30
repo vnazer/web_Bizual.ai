@@ -16,10 +16,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public'), {
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime() });
+});
+
+app.use(express.static(__dirname, {
+  index: 'index.html',
   maxAge: '1h',
   etag: true,
   lastModified: true,
+  dotfiles: 'ignore',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
@@ -27,12 +33,8 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', uptime: process.uptime() });
-});
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {

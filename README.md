@@ -1,6 +1,17 @@
 # bizual.ai
 
-Landing page de Bizual.ai — servida con Express (Node.js 18+).
+Landing page de Bizual.ai. Diseñado para servir tanto en **modo estático** (Apache/LiteSpeed sirve `index.html` directo) como en **modo Node.js** (Express via `server.js`). Despliega en cualquier hosting compartido o cloud sin cambios.
+
+## Estructura
+```
+.
+├── index.html              # landing principal (root para Apache static serving)
+├── bizual-landing-v6.html  # versión completa
+├── .htaccess               # Apache/LiteSpeed config (HTTPS, cache, security)
+├── server.js               # Express server (modo Node.js opcional)
+├── package.json
+└── .gitignore
+```
 
 ## Local
 ```bash
@@ -9,42 +20,21 @@ npm start
 # http://localhost:3000
 ```
 
-## Estructura
-```
-.
-├── public/
-│   ├── index.html          # landing principal
-│   └── bizual-landing-v6.html
-├── server.js               # Express + compression + cache headers
-├── package.json
-└── .gitignore
-```
+## Deploy en Hostinger
 
-## Deploy en Hostinger (Git auto-deploy)
+### Opción A — Estático (cualquier plan, lo más simple)
+El `index.html` está en la raíz, el `.htaccess` maneja routing. Apache/LiteSpeed lo sirve directo.
 
 1. **hPanel → Sitios web → bizual.ai → Avanzado → GIT**
-2. Clic en **Crear nuevo repositorio**:
-   - Repositorio: `https://github.com/vnazer/web_Bizual.ai.git`
-   - Rama: `main`
-   - Ruta: `/` (raíz del dominio) o `public_html`
-3. Clic en **Crear**. Hostinger clona el repo.
+2. Repo: `https://github.com/vnazer/web_Bizual.ai.git`, rama `main`, directorio en blanco
+3. Crear
 
-### Activar Node.js (plan Cloud / Business / VPS)
-4. **hPanel → Avanzado → Node.js**
-5. Crea aplicación:
-   - Versión: 18.x o superior
-   - Application root: `/` (donde está `server.js`)
-   - Application URL: `bizual.ai`
-   - Startup file: `server.js`
-6. **Run NPM Install** → **Start App**.
+### Opción B — Node.js (plan Cloud / Business / VPS)
+1. Mismo paso 1-3 que arriba
+2. **hPanel → Avanzado → Node.js**
+3. Crear app: Node 18+, root `/`, URL `bizual.ai`, startup `server.js`
+4. **Run NPM Install** → **Start App**
 
 ### Auto-deploy en cada push
-7. En el panel Git de Hostinger, copia la **Webhook URL**.
-8. GitHub → repo → **Settings → Webhooks → Add webhook**:
-   - Payload URL: la webhook URL de Hostinger
-   - Content type: `application/json`
-   - Eventos: `Just the push event`
-9. Save. Cada `git push` a `main` redeploya automático.
-
-## Deploy estático (plan compartido sin Node.js)
-Si tu plan no soporta Node.js, basta con que la ruta del repo apunte a `public_html` y Hostinger servirá `index.html` directamente. Ignora los pasos 4-6.
+- Copia la webhook URL del panel Git de Hostinger
+- GitHub repo → Settings → Webhooks → Add webhook → pega URL, content type `application/json`, evento `push`
