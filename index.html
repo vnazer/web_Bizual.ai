@@ -590,6 +590,13 @@ body {
 .form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 32px -8px rgba(43, 119, 255, 0.5); }
 .form-submit .arrow { transition: transform 0.2s; }
 .form-submit:hover .arrow { transform: translateX(4px); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: 0 8px 24px -4px rgba(43, 119, 255, 0.2); }
+.form-submit.is-loading .arrow { animation: bz-spin 0.8s linear infinite; transform-origin: center; }
+@keyframes bz-spin { to { transform: rotate(360deg); } }
+.form-status { font-family: var(--font-sub); margin-top: 16px; padding: 14px 18px; border-radius: 12px; font-size: 14px; line-height: 1.5; display: none; letter-spacing: -0.005em; }
+.form-status.is-success { display: block; background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+.form-status.is-error { display: block; background: rgba(239, 68, 68, 0.12); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.form-status.is-info { display: block; background: rgba(43, 119, 255, 0.12); color: var(--blue); border: 1px solid rgba(43, 119, 255, 0.3); }
 
 /* FOOTER */
 .footer { padding: 60px var(--gutter) 32px; background: var(--navy-deep); color: var(--gray-300); }
@@ -1355,11 +1362,12 @@ body {
                 </div>
             </div>
         </div>
-        <form class="contact-form reveal reveal-delay-1" action="mailto:contacto@bizual.ai?subject=%5BLead%20Bizual%5D%20Solicitud%20de%20demo" method="post" enctype="text/plain">
+        <form id="bizual-contact-form" class="contact-form reveal reveal-delay-1" novalidate>
             <div class="form-row">
                 <div class="form-group"><label for="nombre">Nombre</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required></div>
                 <div class="form-group"><label for="empresa">Empresa</label><input type="text" id="empresa" name="empresa" placeholder="Constructora / Inmobiliaria" required></div>
             </div>
+            <input type="text" name="hp_field" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
             <div class="form-row">
                 <div class="form-group"><label for="email">Email corporativo</label><input type="email" id="email" name="email" placeholder="tu@empresa.cl" required></div>
                 <div class="form-group"><label for="telefono">Teléfono (opcional)</label><input type="tel" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX"></div>
@@ -1376,7 +1384,8 @@ body {
             </div>
             <div class="form-group"><label for="mensaje">Cuéntanos sobre tu proyecto</label><textarea id="mensaje" name="mensaje" placeholder="Número de proyectos, tipologías, m², stack actual..." required></textarea></div>
             <label class="form-consent"><input type="checkbox" name="consentimiento" required><span>Acepto que Bizual me contacte sobre mi consulta. Datos tratados según <a href="#privacidad">Política de Privacidad</a> y Ley 19.628.</span></label>
-            <button type="submit" class="form-submit">Enviar solicitud<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <button type="submit" class="form-submit" id="bizual-form-submit">Enviar solicitud<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <div id="bizual-form-status" class="form-status" role="status" aria-live="polite"></div>
         </form>
     </div>
 </section>
@@ -1462,6 +1471,114 @@ const counterObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+</script>
+
+<!-- Contact form handler — posts to /api/contact (HubSpot integration) with mailto fallback -->
+<script>
+(function () {
+  const form = document.getElementById('bizual-contact-form');
+  if (!form) return;
+  const btn = document.getElementById('bizual-form-submit');
+  const status = document.getElementById('bizual-form-status');
+  const FALLBACK_EMAIL = 'contacto@bizual.ai';
+
+  const setStatus = (kind, html) => {
+    status.className = 'form-status is-' + kind;
+    status.innerHTML = html;
+  };
+  const setLoading = (on) => {
+    btn.disabled = on;
+    btn.classList.toggle('is-loading', on);
+    btn.firstChild.nodeValue = on ? 'Enviando…' : 'Enviar solicitud';
+  };
+
+  const validate = (data) => {
+    const errors = [];
+    if (!data.nombre.trim()) errors.push('nombre');
+    if (!data.empresa.trim()) errors.push('empresa');
+    if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push('email');
+    if (!data.producto) errors.push('producto');
+    if (!data.mensaje.trim()) errors.push('mensaje');
+    if (!data.consentimiento) errors.push('consentimiento');
+    return errors;
+  };
+
+  const buildMailto = (data) => {
+    const subject = `[Lead Bizual] ${data.empresa} — ${data.producto}`;
+    const body =
+      `Nombre: ${data.nombre}\n` +
+      `Empresa: ${data.empresa}\n` +
+      `Email: ${data.email}\n` +
+      `Teléfono: ${data.telefono || '—'}\n` +
+      `Producto: ${data.producto}\n\n` +
+      `Mensaje:\n${data.mensaje}\n`;
+    return `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const data = {
+      nombre: fd.get('nombre') || '',
+      empresa: fd.get('empresa') || '',
+      email: fd.get('email') || '',
+      telefono: fd.get('telefono') || '',
+      producto: fd.get('producto') || '',
+      mensaje: fd.get('mensaje') || '',
+      consentimiento: !!fd.get('consentimiento'),
+      hp_field: fd.get('hp_field') || ''
+    };
+    if (data.hp_field) return; // honeypot triggered
+
+    const errors = validate(data);
+    if (errors.length) {
+      setStatus('error', `Faltan campos por completar: <b>${errors.join(', ')}</b>`);
+      return;
+    }
+
+    setLoading(true);
+    setStatus('info', 'Enviando tu solicitud…');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const ctype = res.headers.get('content-type') || '';
+      const json = ctype.includes('application/json') ? await res.json() : null;
+
+      if (res.ok && json && json.ok) {
+        form.reset();
+        setStatus('success',
+          `<b>¡Recibido!</b> Te contactaremos en menos de 24h hábiles a <b>${data.email}</b>. ` +
+          `Mientras tanto, revisa tu inbox por si llega antes.`);
+        if (window.gtag) window.gtag('event', 'generate_lead', { value: 1, currency: 'CLP' });
+        if (window.dataLayer) window.dataLayer.push({ event: 'lead_generated', producto: data.producto });
+      } else if (res.status === 429) {
+        setStatus('error', 'Has enviado demasiadas solicitudes. Intenta en unos minutos.');
+      } else if (res.status === 503 || res.status === 404 || res.status >= 500) {
+        // API not configured / not running → mailto fallback
+        setStatus('info',
+          `Abriendo tu cliente de email como respaldo. ` +
+          `Si no se abre, escríbenos a <a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a>.`);
+        window.location.href = buildMailto(data);
+      } else {
+        setStatus('error',
+          `No pudimos procesar tu solicitud. Escríbenos directo a ` +
+          `<a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a>.`);
+      }
+    } catch (err) {
+      // Network error → mailto fallback
+      setStatus('info',
+        `Sin conexión al servidor. Abriendo email como respaldo. ` +
+        `Si no se abre, escríbenos a <a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a>.`);
+      window.location.href = buildMailto(data);
+    } finally {
+      setLoading(false);
+    }
+  });
+})();
 </script>
 
 </body>
