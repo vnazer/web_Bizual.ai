@@ -2,16 +2,23 @@ const express = require('express');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+const { Resend } = require('resend');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-// HubSpot config — set HUBSPOT_TOKEN as env var on Hostinger
+// HubSpot config
 const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;
-const HUBSPOT_OWNER_ID = process.env.HUBSPOT_OWNER_ID || '1198267650'; // Victor Nazer
+const HUBSPOT_OWNER_ID = process.env.HUBSPOT_OWNER_ID || '1198267650';
 const HUBSPOT_PIPELINE = process.env.HUBSPOT_PIPELINE || 'default';
 const HUBSPOT_DEALSTAGE = process.env.HUBSPOT_DEALSTAGE || 'appointmentscheduled';
+
+// Resend config
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const FROM_EMAIL = 'Bizual <contacto@bizual.ai>';
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'vnazer@magama.cl';
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 app.set('trust proxy', 1);
 app.use(compression());
@@ -40,7 +47,8 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     uptime: process.uptime(),
-    hubspot: HUBSPOT_TOKEN ? 'configured' : 'missing_token'
+    hubspot: HUBSPOT_TOKEN ? 'configured' : 'missing_token',
+    resend: RESEND_API_KEY ? 'configured' : 'missing_key'
   });
 });
 
@@ -50,11 +58,9 @@ function mapProductoToHubspot(producto) {
   if (!producto) return null;
   const p = producto.toLowerCase().trim();
 
-  // Direct matches (matching exact HubSpot internal values)
   if (p === 'bizual sales') return 'Bizual Sales';
   if (p === 'bizual assets' || p === 'bizual asset') return 'Bizual Assets';
 
-  // Heuristic matching for other form values
   if (p.includes('sales') || p.includes('venta') || p.includes('vender')) {
     return 'Bizual Sales';
   }
@@ -62,7 +68,6 @@ function mapProductoToHubspot(producto) {
     return 'Bizual Assets';
   }
 
-  // "Ambos productos" or "Estoy evaluando" → default to Sales (más común)
   return 'Bizual Sales';
 }
 
@@ -110,7 +115,6 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
     hs_lead_status: 'NEW'
   };
   if (source) properties.hs_analytics_source = 'OFFLINE';
-  // bizual_tipo_plan no longer set on Contact (now lives on Deal)
 
   if (search.total > 0 && search.results[0]) {
     const id = search.results[0].id;
@@ -131,7 +135,6 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
 async function createDeal({ contactId, companyName, producto, mensaje }) {
   const dealName = `Demo Bizual — ${companyName || 'Lead web'}`;
 
-  // Build description with original producto value (form label, not HubSpot value)
   const descriptionParts = [];
   if (producto) descriptionParts.push(`Producto solicitado: ${producto}`);
   if (mensaje) descriptionParts.push(mensaje);
@@ -145,7 +148,6 @@ async function createDeal({ contactId, companyName, producto, mensaje }) {
     description
   };
 
-  // Map form value to valid HubSpot dropdown option
   const mappedProducto = mapProductoToHubspot(producto);
   if (mappedProducto) {
     properties.bizual_tipo_plan = mappedProducto;
@@ -181,6 +183,119 @@ async function addNoteToContact({ contactId, body }) {
   });
 }
 
+// --- Email helpers (Resend) -----------------------------------------------
+
+async function sendLeadConfirmationEmail({ to, nombre, empresa, producto }) {
+  if (!resend) {
+    console.warn('[email] Resend not configured, skipping lead email');
+    return null;
+  }
+  try {
+    const result = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [to],
+      replyTo: NOTIFY_EMAIL,
+      subject: `${nombre}, recibimos tu solicitud de demo de Bizual`,
+      html: `
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:560px;margin:0 auto;padding:32px 24px;color:#1a1a1a;line-height:1.6;">
+          <div style="text-align:center;margin-bottom:32px;">
+            <h1 style="font-size:24px;font-weight:700;margin:0;color:#0F172A;">Bizual</h1>
+          </div>
+
+          <h2 style="font-size:20px;font-weight:600;margin:0 0 16px;">Hola ${nombre},</h2>
+
+          <p style="margin:0 0 16px;">
+            Recibimos tu solicitud de demo${empresa ? ` para <b>${empresa}</b>` : ''}.
+            En menos de 24 horas hábiles te vamos a contactar para coordinar una sesión de 30 minutos.
+          </p>
+
+          <p style="margin:0 0 16px;">
+            Producto de interés: <b>${producto || 'Por definir'}</b>
+          </p>
+
+          <div style="background:#F1F5F9;border-radius:8px;padding:20px;margin:24px 0;">
+            <p style="margin:0 0 8px;font-weight:600;">Mientras tanto, ¿qué podés ir preparando?</p>
+            <ul style="margin:0;padding-left:20px;">
+              <li>Cuántos proyectos o unidades manejás actualmente</li>
+              <li>Qué CRM o sistema usás hoy (si tenés)</li>
+              <li>Cualquier mockup, render o foto del proyecto que quieras compartir</li>
+            </ul>
+          </div>
+
+          <p style="margin:0 0 16px;">
+            Si tenés algún tema urgente, podés responder este correo directamente.
+          </p>
+
+          <p style="margin:24px 0 0;">
+            — Víctor Nazer<br>
+            <span style="color:#64748B;">CEO · Bizual</span>
+          </p>
+
+          <hr style="border:none;border-top:1px solid #E2E8F0;margin:32px 0 16px;">
+
+          <p style="font-size:12px;color:#94A3B8;margin:0;text-align:center;">
+            Bizual · Av. Manquehue Sur 520, Las Condes · Santiago, Chile<br>
+            <a href="https://bizual.ai" style="color:#94A3B8;">bizual.ai</a>
+          </p>
+        </div>
+      `
+    });
+    return result;
+  } catch (err) {
+    console.error('[email] sendLeadConfirmationEmail error:', err.message);
+    return null;
+  }
+}
+
+async function sendInternalNotificationEmail({ nombre, empresa, email, telefono, producto, mensaje, contactId, dealId }) {
+  if (!resend) {
+    console.warn('[email] Resend not configured, skipping internal email');
+    return null;
+  }
+  try {
+    const hubspotContactUrl = `https://app.hubspot.com/contacts/47233106/contact/${contactId}`;
+    const hubspotDealUrl = `https://app.hubspot.com/contacts/47233106/deal/${dealId}`;
+
+    const result = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [NOTIFY_EMAIL],
+      replyTo: email,
+      subject: `🚀 Nuevo lead Bizual: ${nombre} (${empresa})`,
+      html: `
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a1a;line-height:1.5;">
+          <h2 style="font-size:20px;margin:0 0 16px;">Nuevo lead desde bizual.ai</h2>
+
+          <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+            <tr><td style="padding:8px 0;color:#64748B;width:140px;">Nombre:</td><td style="padding:8px 0;font-weight:600;">${nombre}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748B;">Empresa:</td><td style="padding:8px 0;font-weight:600;">${empresa}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748B;">Email:</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
+            <tr><td style="padding:8px 0;color:#64748B;">Teléfono:</td><td style="padding:8px 0;">${telefono || '—'}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748B;">Producto:</td><td style="padding:8px 0;font-weight:600;">${producto}</td></tr>
+          </table>
+
+          <div style="background:#F1F5F9;border-radius:8px;padding:16px;margin-bottom:20px;">
+            <p style="margin:0 0 8px;color:#64748B;font-size:13px;font-weight:600;">MENSAJE:</p>
+            <p style="margin:0;white-space:pre-wrap;">${mensaje || '(sin mensaje)'}</p>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:24px;">
+            <a href="${hubspotContactUrl}" style="display:inline-block;background:#0F172A;color:white;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;margin-right:8px;">Ver contacto en HubSpot</a>
+            <a href="${hubspotDealUrl}" style="display:inline-block;background:#3B82F6;color:white;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;">Ver deal en HubSpot</a>
+          </div>
+
+          <p style="font-size:12px;color:#94A3B8;margin:32px 0 0;">
+            Recibido vía formulario web bizual.ai · ${new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' })}
+          </p>
+        </div>
+      `
+    });
+    return result;
+  } catch (err) {
+    console.error('[email] sendInternalNotificationEmail error:', err.message);
+    return null;
+  }
+}
+
 // --- POST /api/contact ----------------------------------------------------
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
@@ -190,10 +305,8 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       producto = '', mensaje = '', consentimiento, hp_field
     } = req.body || {};
 
-    // Honeypot anti-spam
     if (hp_field) return res.json({ ok: true, queued: true });
 
-    // Validation
     const errors = [];
     if (!nombre.trim()) errors.push('nombre');
     if (!empresa.trim()) errors.push('empresa');
@@ -212,19 +325,23 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     const firstname = parts.shift() || '';
     const lastname = parts.join(' ') || '';
 
-    // 1. Find or create Contact (without bizual_tipo_plan)
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanEmpresa = empresa.trim();
+    const cleanTelefono = telefono.trim();
+
+    // 1. Find or create Contact
     const contact = await findOrCreateContact({
-      email: email.trim().toLowerCase(),
+      email: cleanEmail,
       firstname, lastname,
-      company: empresa.trim(),
-      phone: telefono.trim(),
+      company: cleanEmpresa,
+      phone: cleanTelefono,
       source: 'website_form'
     });
 
-    // 2. Create Deal (with mapped bizual_tipo_plan)
+    // 2. Create Deal
     const deal = await createDeal({
       contactId: contact.id,
-      companyName: empresa.trim(),
+      companyName: cleanEmpresa,
       producto,
       mensaje
     });
@@ -235,11 +352,40 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
         contactId: contact.id,
         body: `<b>Mensaje desde formulario web bizual.ai</b><br><br>` +
               `<b>Producto:</b> ${producto}<br>` +
-              `<b>Empresa:</b> ${empresa}<br>` +
-              `<b>Teléfono:</b> ${telefono || '—'}<br><br>` +
+              `<b>Empresa:</b> ${cleanEmpresa}<br>` +
+              `<b>Teléfono:</b> ${cleanTelefono || '—'}<br><br>` +
               `<b>Mensaje:</b><br>${mensaje.replace(/\n/g, '<br>')}`
       });
     }
+
+    // 4. Send emails (parallel, don't block response on failure)
+    Promise.allSettled([
+      sendLeadConfirmationEmail({
+        to: cleanEmail,
+        nombre: firstname || nombre,
+        empresa: cleanEmpresa,
+        producto
+      }),
+      sendInternalNotificationEmail({
+        nombre,
+        empresa: cleanEmpresa,
+        email: cleanEmail,
+        telefono: cleanTelefono,
+        producto,
+        mensaje,
+        contactId: contact.id,
+        dealId: deal.id
+      })
+    ]).then(results => {
+      results.forEach((r, i) => {
+        const label = i === 0 ? 'lead_email' : 'internal_email';
+        if (r.status === 'rejected') {
+          console.error(`[email] ${label} failed:`, r.reason);
+        } else if (r.value) {
+          console.log(`[email] ${label} sent:`, r.value.data?.id || 'ok');
+        }
+      });
+    });
 
     res.json({
       ok: true,
@@ -281,5 +427,6 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, HOST, () => {
   console.log(`bizual.ai listening on http://${HOST}:${PORT}`);
-  console.log(`HubSpot: ${HUBSPOT_TOKEN ? 'configured' : 'NOT configured (set HUBSPOT_TOKEN)'}`);
+  console.log(`HubSpot: ${HUBSPOT_TOKEN ? 'configured' : 'NOT configured'}`);
+  console.log(`Resend: ${RESEND_API_KEY ? 'configured' : 'NOT configured'}`);
 });
