@@ -1551,7 +1551,8 @@ document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observ
       if (res.ok && json && json.ok) {
         form.reset();
         setStatus('success',
-          `<b>¡Recibido!</b> ¡Recibido! Gracias por tu solicitud, te contactaremos a la brevedad.;
+          `<b>¡Recibido!</b> Te contactaremos en menos de 24 horas hábiles. Revisa tu inbox, te enviamos un correo de confirmación.`
+        );
         if (window.gtag) window.gtag('event', 'generate_lead', { value: 1, currency: 'CLP' });
         if (window.dataLayer) window.dataLayer.push({ event: 'lead_generated', producto: data.producto });
       } else if (res.status === 429) {
