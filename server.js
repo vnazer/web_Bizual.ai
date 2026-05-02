@@ -50,20 +50,19 @@ function mapProductoToHubspot(producto) {
   if (!producto) return null;
   const p = producto.toLowerCase().trim();
 
-  // Direct matches
+  // Direct matches (matching exact HubSpot internal values)
   if (p === 'bizual sales') return 'Bizual Sales';
-  if (p === 'bizual assets' || p === 'bizual asset') return 'Bizual Asset';
+  if (p === 'bizual assets' || p === 'bizual asset') return 'Bizual Assets';
 
   // Heuristic matching for other form values
   if (p.includes('sales') || p.includes('venta') || p.includes('vender')) {
     return 'Bizual Sales';
   }
   if (p.includes('asset') || p.includes('arriendo') || p.includes('gesti') || p.includes('activo')) {
-    return 'Bizual Asset';
+    return 'Bizual Assets';
   }
 
   // "Ambos productos" or "Estoy evaluando" → default to Sales (más común)
-  // El producto real va en la descripción del deal
   return 'Bizual Sales';
 }
 
