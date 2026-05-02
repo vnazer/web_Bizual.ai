@@ -213,9 +213,14 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     });
 
   } catch (err) {
-    console.error('[/api/contact] error:', err.message, err.body || '');
-    res.status(500).json({ ok: false, error: err.message || 'server_error' });
-  }
+  console.error('[/api/contact] error:', err.message);
+  console.error('[/api/contact] hubspot body:', JSON.stringify(err.body, null, 2));
+  res.status(500).json({ 
+    ok: false, 
+    error: err.message || 'server_error',
+    details: err.body || null
+  });
+}
 });
 
 // --- Static + SPA fallback ------------------------------------------------
