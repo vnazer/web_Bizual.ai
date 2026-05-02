@@ -71,6 +71,25 @@ function mapProductoToHubspot(producto) {
   return 'Bizual Sales';
 }
 
+// --- Map form values to user-facing label for emails ----------------------
+
+function mapProductoToEmailLabel(producto) {
+  if (!producto) return 'Bizual';
+  const p = producto.toLowerCase().trim();
+
+  if (p === 'bizual sales' || (p.includes('sales') && !p.includes('asset'))) {
+    return 'Bizual Sales';
+  }
+  if (p === 'bizual assets' || p === 'bizual asset' || (p.includes('asset') && !p.includes('sales'))) {
+    return 'Bizual Assets';
+  }
+  if (p.includes('ambos') || p.includes('evaluando') || p.includes('ayuda')) {
+    return 'Bizual Sales y Assets';
+  }
+
+  return 'Bizual';
+}
+
 // --- HubSpot helpers -------------------------------------------------------
 
 async function hubspotFetch(path, init = {}) {
@@ -191,52 +210,60 @@ async function sendLeadConfirmationEmail({ to, nombre, empresa, producto }) {
     return null;
   }
   try {
+    const productoLabel = mapProductoToEmailLabel(producto);
+
     const result = await resend.emails.send({
       from: FROM_EMAIL,
       to: [to],
       replyTo: NOTIFY_EMAIL,
-      subject: `${nombre}, recibimos tu solicitud de demo de Bizual`,
+      subject: `${nombre}, listo — coordinamos tu demo de Bizual`,
       html: `
-        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:560px;margin:0 auto;padding:32px 24px;color:#1a1a1a;line-height:1.6;">
-          <div style="text-align:center;margin-bottom:32px;">
-            <h1 style="font-size:24px;font-weight:700;margin:0;color:#0F172A;">Bizual</h1>
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:560px;margin:0 auto;padding:24px 20px;color:#1a1a1a;line-height:1.6;font-size:15px;">
+
+          <div style="text-align:center;margin-bottom:24px;">
+            <img src="https://bizual.ai/Logotipo_Bizual_Color.png" alt="Bizual" style="height:40px;width:auto;">
           </div>
 
           <h2 style="font-size:20px;font-weight:600;margin:0 0 16px;">Hola ${nombre},</h2>
 
-          <p style="margin:0 0 16px;">
-            Recibimos tu solicitud de demo${empresa ? ` para <b>${empresa}</b>` : ''}.
-            En menos de 24 horas hábiles te vamos a contactar para coordinar una sesión de 30 minutos.
+          <p style="margin:0 0 14px;">
+            Tu solicitud llegó perfecta. Te vamos a contactar en menos de 24 horas hábiles para agendar una sesión de 30 minutos donde te mostramos cómo Bizual puede acelerar el ciclo comercial de <b>${empresa}</b>.
           </p>
 
-          <p style="margin:0 0 16px;">
-            Producto de interés: <b>${producto || 'Por definir'}</b>
+          <p style="margin:0 0 14px;">
+            Producto que te interesa: <b>${productoLabel}</b>.
           </p>
 
-          <div style="background:#F1F5F9;border-radius:8px;padding:20px;margin:24px 0;">
-            <p style="margin:0 0 8px;font-weight:600;">Mientras tanto, ¿qué podés ir preparando?</p>
+          <div style="background:#F1F5F9;border-radius:8px;padding:16px 18px;margin:20px 0;">
+            <p style="margin:0 0 8px;font-weight:600;">Mientras tanto, ¿qué te sirve ir preparando?</p>
             <ul style="margin:0;padding-left:20px;">
-              <li>Cuántos proyectos o unidades manejás actualmente</li>
-              <li>Qué CRM o sistema usás hoy (si tenés)</li>
-              <li>Cualquier mockup, render o foto del proyecto que quieras compartir</li>
+              <li style="margin:4px 0;">Cuántos proyectos y unidades estás manejando hoy</li>
+              <li style="margin:4px 0;">Qué CRM o sistema usas actualmente (si tienes uno)</li>
             </ul>
           </div>
 
-          <p style="margin:0 0 16px;">
-            Si tenés algún tema urgente, podés responder este correo directamente.
+          <p style="margin:0 0 14px;">
+            No vamos con presentaciones aburridas — la demo la corremos con un proyecto de muestra y salimos con cotización clara y próximos pasos.
           </p>
 
-          <p style="margin:24px 0 0;">
-            — Víctor Nazer<br>
-            <span style="color:#64748B;">CEO · Bizual</span>
+          <p style="margin:0 0 14px;">
+            Si tienes algo urgente, responde este correo y te contesto directo.
           </p>
 
-          <hr style="border:none;border-top:1px solid #E2E8F0;margin:32px 0 16px;">
+          <div style="margin-top:24px;">
+            <p style="margin:0;">
+              Un abrazo,<br>
+              <b>Víctor Nazer</b> · Bizual
+            </p>
+          </div>
 
-          <p style="font-size:12px;color:#94A3B8;margin:0;text-align:center;">
+          <hr style="border:none;border-top:1px solid #E2E8F0;margin:28px 0 14px;">
+
+          <p style="font-size:11px;color:#94A3B8;text-align:center;margin:0;">
             Bizual · Av. Manquehue Sur 520, Las Condes · Santiago, Chile<br>
             <a href="https://bizual.ai" style="color:#94A3B8;">bizual.ai</a>
           </p>
+
         </div>
       `
     });
@@ -255,6 +282,7 @@ async function sendInternalNotificationEmail({ nombre, empresa, email, telefono,
   try {
     const hubspotContactUrl = `https://app.hubspot.com/contacts/47233106/contact/${contactId}`;
     const hubspotDealUrl = `https://app.hubspot.com/contacts/47233106/deal/${dealId}`;
+    const productoLabel = mapProductoToEmailLabel(producto);
 
     const result = await resend.emails.send({
       from: FROM_EMAIL,
@@ -270,7 +298,7 @@ async function sendInternalNotificationEmail({ nombre, empresa, email, telefono,
             <tr><td style="padding:8px 0;color:#64748B;">Empresa:</td><td style="padding:8px 0;font-weight:600;">${empresa}</td></tr>
             <tr><td style="padding:8px 0;color:#64748B;">Email:</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
             <tr><td style="padding:8px 0;color:#64748B;">Teléfono:</td><td style="padding:8px 0;">${telefono || '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#64748B;">Producto:</td><td style="padding:8px 0;font-weight:600;">${producto}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748B;">Producto:</td><td style="padding:8px 0;font-weight:600;">${productoLabel}</td></tr>
           </table>
 
           <div style="background:#F1F5F9;border-radius:8px;padding:16px;margin-bottom:20px;">
