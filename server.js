@@ -44,6 +44,29 @@ app.get('/health', (req, res) => {
   });
 });
 
+// --- Map form values to HubSpot dropdown internal values ------------------
+
+function mapProductoToHubspot(producto) {
+  if (!producto) return null;
+  const p = producto.toLowerCase().trim();
+
+  // Direct matches
+  if (p === 'bizual sales') return 'Bizual Sales';
+  if (p === 'bizual assets' || p === 'bizual asset') return 'Bizual Asset';
+
+  // Heuristic matching for other form values
+  if (p.includes('sales') || p.includes('venta') || p.includes('vender')) {
+    return 'Bizual Sales';
+  }
+  if (p.includes('asset') || p.includes('arriendo') || p.includes('gesti') || p.includes('activo')) {
+    return 'Bizual Asset';
+  }
+
+  // "Ambos productos" or "Estoy evaluando" → default to Sales (más común)
+  // El producto real va en la descripción del deal
+  return 'Bizual Sales';
+}
+
 // --- HubSpot helpers -------------------------------------------------------
 
 async function hubspotFetch(path, init = {}) {
@@ -68,7 +91,7 @@ async function hubspotFetch(path, init = {}) {
   return json;
 }
 
-async function findOrCreateContact({ email, firstname, lastname, company, phone, source, producto }) {
+async function findOrCreateContact({ email, firstname, lastname, company, phone, source }) {
   const search = await hubspotFetch('/crm/v3/objects/contacts/search', {
     method: 'POST',
     body: JSON.stringify({
@@ -88,7 +111,7 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
     hs_lead_status: 'NEW'
   };
   if (source) properties.hs_analytics_source = 'OFFLINE';
-  if (producto) properties.bizual_tipo_plan = producto;
+  // bizual_tipo_plan no longer set on Contact (now lives on Deal)
 
   if (search.total > 0 && search.results[0]) {
     const id = search.results[0].id;
@@ -108,14 +131,26 @@ async function findOrCreateContact({ email, firstname, lastname, company, phone,
 
 async function createDeal({ contactId, companyName, producto, mensaje }) {
   const dealName = `Demo Bizual — ${companyName || 'Lead web'}`;
+
+  // Build description with original producto value (form label, not HubSpot value)
+  const descriptionParts = [];
+  if (producto) descriptionParts.push(`Producto solicitado: ${producto}`);
+  if (mensaje) descriptionParts.push(mensaje);
+  const description = descriptionParts.join('\n\n');
+
   const properties = {
     dealname: dealName,
     pipeline: HUBSPOT_PIPELINE,
     dealstage: HUBSPOT_DEALSTAGE,
     hubspot_owner_id: HUBSPOT_OWNER_ID,
-    description: mensaje || ''
+    description
   };
-  if (producto) properties.bizual_tipo_plan = producto;
+
+  // Map form value to valid HubSpot dropdown option
+  const mappedProducto = mapProductoToHubspot(producto);
+  if (mappedProducto) {
+    properties.bizual_tipo_plan = mappedProducto;
+  }
 
   const deal = await hubspotFetch('/crm/v3/objects/deals', {
     method: 'POST',
@@ -178,15 +213,16 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     const firstname = parts.shift() || '';
     const lastname = parts.join(' ') || '';
 
+    // 1. Find or create Contact (without bizual_tipo_plan)
     const contact = await findOrCreateContact({
       email: email.trim().toLowerCase(),
       firstname, lastname,
       company: empresa.trim(),
       phone: telefono.trim(),
-      source: 'website_form',
-      producto
+      source: 'website_form'
     });
 
+    // 2. Create Deal (with mapped bizual_tipo_plan)
     const deal = await createDeal({
       contactId: contact.id,
       companyName: empresa.trim(),
@@ -194,6 +230,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       mensaje
     });
 
+    // 3. Add note to Contact with full message
     if (mensaje.trim()) {
       await addNoteToContact({
         contactId: contact.id,
@@ -213,14 +250,14 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     });
 
   } catch (err) {
-  console.error('[/api/contact] error:', err.message);
-  console.error('[/api/contact] hubspot body:', JSON.stringify(err.body, null, 2));
-  res.status(500).json({ 
-    ok: false, 
-    error: err.message || 'server_error',
-    details: err.body || null
-  });
-}
+    console.error('[/api/contact] error:', err.message);
+    console.error('[/api/contact] hubspot body:', JSON.stringify(err.body, null, 2));
+    res.status(500).json({
+      ok: false,
+      error: err.message || 'server_error',
+      details: err.body || null
+    });
+  }
 });
 
 // --- Static + SPA fallback ------------------------------------------------
