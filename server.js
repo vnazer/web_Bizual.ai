@@ -455,13 +455,18 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
 app.use(express.static(__dirname, {
   index: 'index.html',
-  maxAge: '1h',
   etag: true,
   lastModified: true,
   dotfiles: 'ignore',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+    } else if (/\.(png|jpg|jpeg|webp|svg|ico)$/.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
+    } else if (/\.(woff|woff2|ttf|eot)$/.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (/\.(css|js)$/.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
 }));
