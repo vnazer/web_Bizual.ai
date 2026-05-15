@@ -1,0 +1,22 @@
+# Bizual
+
+> Bizual es la plataforma de ventas inmobiliarias del futuro. Combina experiencias 3D inmersivas, inteligencia artificial disponible 24/7 y automatización de CRM para transformar cómo las inmobiliarias venden propiedades en Chile y Latinoamérica.
+
+## Producto
+
+Bizual ofrece a inmobiliarias y constructoras:
+
+- **Recorridos 3D inmersivos**: Visitas virtuales de alta calidad a proyectos en preventa o construcción, accesibles desde cualquier dispositivo sin descargar apps.
+- **Agente IA 24/7**: Atiende consultas de compradores en tiempo real, califica leads automáticamente y agenda visitas o demos.
+- **Integración CRM**: Sincronización con los CRM más usados por inmobiliarias (HubSpot, Salesforce y otros), centralizando toda la gestión del pipeline de ventas.
+
+## Planes
+
+- **Starter**: Ideal para proyectos pequeños o inmobiliarias que inician su transformación digital.
+- **Pro**: Para equipos de ventas con múltiples proyectos activos y mayor volumen de leads.
+- **Enterprise**: Solución personalizada para grandes inmobiliarias o grupos con proyectos en paralelo.
+
+## Contacto
+
+- Sitio web: https://bizual.ai
+- Formulario de contacto disponible en el sitio web
