@@ -464,6 +464,27 @@ app.get('/llms-full.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'llms-full.txt'));
 });
 
+// --- Block source/config files (root is the web root) ---------------------
+// Defense-in-depth: prevents express.static from exposing server code,
+// dependency manifests, node_modules, VCS data or the Markdown sources.
+const BLOCKED_FILES = new Set([
+  '/server.js', '/package.json', '/package-lock.json',
+  '/.htaccess', '/.gitignore', '/readme.md'
+]);
+app.use((req, res, next) => {
+  const p = decodeURIComponent(req.path).toLowerCase();
+  if (
+    BLOCKED_FILES.has(p) ||
+    p.endsWith('.md') ||
+    p.startsWith('/node_modules/') ||
+    p.startsWith('/.git') ||
+    p.startsWith('/.claude')
+  ) {
+    return res.status(404).sendFile(path.join(__dirname, 'index.html'));
+  }
+  next();
+});
+
 // --- Static (extensionless routing: /sales -> sales.html) -----------------
 
 app.use(express.static(__dirname, {

@@ -19,6 +19,13 @@ DirectoryIndex index.html
 # Disable directory listing
 Options -Indexes
 
+# Block source/config files from being served (root is the web root)
+<FilesMatch "^(server\.js|package\.json|package-lock\.json|.*\.md)$">
+  Require all denied
+</FilesMatch>
+# Block dependency, VCS and tooling directories
+RedirectMatch 404 ^/(node_modules|\.git|\.claude)(/|$)
+
 # Charset for text + llms.txt
 AddDefaultCharset UTF-8
 <IfModule mod_mime.c>
