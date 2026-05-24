@@ -9,10 +9,21 @@ DirectoryIndex index.html
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Extensionless URLs: /sales -> sales.html (if the .html exists)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 # Disable directory listing
 Options -Indexes
+
+# Charset for text + llms.txt
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+  AddType text/plain .txt
+</IfModule>
 
 # Compression
 <IfModule mod_deflate.c>

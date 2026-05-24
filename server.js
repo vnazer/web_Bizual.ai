@@ -223,10 +223,24 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
-// --- Static + SPA fallback ------------------------------------------------
+// --- llms.txt / llms-full.txt (text/plain; charset=utf-8) -----------------
+
+app.get('/llms.txt', (req, res) => {
+  res.type('text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(__dirname, 'llms.txt'));
+});
+app.get('/llms-full.txt', (req, res) => {
+  res.type('text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(__dirname, 'llms-full.txt'));
+});
+
+// --- Static (extensionless routing: /sales -> sales.html) -----------------
 
 app.use(express.static(__dirname, {
   index: 'index.html',
+  extensions: ['html'],
   maxAge: '1h',
   etag: true,
   lastModified: true,
@@ -234,13 +248,17 @@ app.use(express.static(__dirname, {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+    } else if (/\.(webp|png|jpe?g|svg|gif|ico)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000'); // 30 días
     }
   }
 }));
 
+// --- Fallback: unknown routes -> home -------------------------------------
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ ok: false, error: 'not_found' });
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.status(404).sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {

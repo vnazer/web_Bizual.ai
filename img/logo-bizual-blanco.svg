@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48" role="img" aria-label="Bizual">
+  <defs>
+    <linearGradient id="bgw" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6ba3ff"/><stop offset="1" stop-color="#2b77ff"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 6)">
+    <rect x="6" y="6" width="24" height="24" rx="6" transform="rotate(45 18 18)" fill="url(#bgw)"/>
+    <rect x="13" y="13" width="10" height="10" rx="2.5" transform="rotate(45 18 18)" fill="#fff" opacity="0.95"/>
+  </g>
+  <text x="46" y="33" font-family="Inter, sans-serif" font-size="26" font-weight="700" fill="#ffffff">Bizual</text>
+</svg>

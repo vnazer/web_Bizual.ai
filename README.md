@@ -2,16 +2,44 @@
 
 Landing page de Bizual.ai. Diseñado para servir tanto en **modo estático** (Apache/LiteSpeed sirve `index.html` directo) como en **modo Node.js** (Express via `server.js`). Despliega en cualquier hosting compartido o cloud sin cambios.
 
-## Estructura
+## Estructura (landing v2 · mayo 2026)
 ```
 .
-├── index.html              # landing principal (root para Apache static serving)
-├── bizual-landing-v6.html  # versión completa
-├── .htaccess               # Apache/LiteSpeed config (HTTPS, cache, security)
-├── server.js               # Express server (modo Node.js opcional)
+├── index.html              # Home — Sala de Ventas 3D
+├── sales.html              # Bizual Sales (incluye FAQ + FAQPage schema)
+├── assets.html             # Bizual Assets + caso Edificio Parqtec (mockups, sin pricing)
+├── contacto.html           # Formulario → POST /api/contact (HubSpot)
+├── privacidad.html         # Política de privacidad (generada desde Privacy_bizual.ai.md)
+├── terminos.html           # Términos (generado desde TOS_bizual.ai.md)
+├── llms.txt                # AEO/LLMO — resumen para motores de respuesta
+├── llms-full.txt           # AEO/LLMO — contenido extendido
+├── robots.txt              # incluye GPTBot, ClaudeBot, PerplexityBot, etc.
+├── sitemap.xml
+├── og-image.jpg            # 1200×630
+├── css/styles.css          # design system (vanilla CSS)
+├── js/main.js              # vanilla JS (nav, smooth scroll, form, analytics hooks)
+├── img/                    # logos (svg + png/webp) + og-image source
+├── .htaccess               # Apache/LiteSpeed (HTTPS, cache, extensionless URLs, security)
+├── server.js               # Express (modo Node.js): rutas /llms.txt, static extensionless
 ├── package.json
 └── .gitignore
 ```
+
+### Rutas extensionless
+Tanto `server.js` (vía `express.static({extensions:['html']})`) como `.htaccess`
+sirven `/sales`, `/assets`, `/contacto`, etc. sin la extensión `.html`.
+
+### AEO / LLMO
+- `llms.txt` y `llms-full.txt` se sirven como `text/plain; charset=utf-8`.
+- Cada página inyecta JSON-LD (`Organization`, `SoftwareApplication`, `FAQPage`,
+  `BreadcrumbList`, `WebSite`, `SpeakableSpecification`) minificado.
+- Emails visibles usan la entidad `&#64;`; en JSON-LD usan `@` (válido + sin `@` literal).
+
+### Notas de contenido
+- Sin pricing público (modelo comercial explicado, sin cifras).
+- Integraciones con CRM marcadas como “Pronto”.
+- El caso Edificio Parqtec usa mockups HTML/CSS (no muestra precios del cliente).
+- Las imágenes hero/Parqtec son placeholders en CSS hasta recibir capturas reales.
 
 ## Local
 ```bash

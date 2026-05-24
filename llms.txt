@@ -1,0 +1,33 @@
+# Bizual
+
+> Bizual es una plataforma SaaS B2B chilena que ofrece la Sala de Ventas 3D para proyectos inmobiliarios. Permite a inmobiliarias y constructoras vender un proyecto antes de construirlo, mediante un edificio completo navegable en 3D, vista real desde cada piso, tipologías interiores recorribles e inventario en tiempo real sincronizado.
+
+Bizual es un producto de Magama SpA, empresa chilena de tecnología (RUT 76.837.395-7) ubicada en Las Condes, Santiago. Opera dos líneas de producto: Bizual Sales (sala de ventas 3D para proyectos inmobiliarios nuevos) y Bizual Assets (gestión visual de portfolios y activos en operación).
+
+## Productos
+
+- [Bizual Sales](https://bizual.ai/sales): Sala de Ventas 3D para proyectos inmobiliarios en venta o pre-venta.
+- [Bizual Assets](https://bizual.ai/assets): Plataforma de gestión visual de activos para portfolios, centros comerciales, edificios corporativos. En operación en Edificio Parqtec (Santiago).
+
+## Audiencia
+
+- Constructoras con proyectos en blanco (DS01, DS19, integración social, vivienda media-alta).
+- Inmobiliarias con cartera de 3 a 10 proyectos activos.
+- Gestoras de portfolio inmobiliario, family offices, centros comerciales y edificios corporativos.
+
+## Diferenciadores
+
+- Plataforma y motor 3D propios (no integrador, no revendedor).
+- Hecho para el mercado chileno: contratos en UF + IVA, soporte en zona horaria de Chile.
+- Capa visual complementaria al CRM, no sustituto del CRM.
+
+## Contacto
+
+- Email: contacto@bizual.ai
+- Web: https://bizual.ai
+- Empresa matriz: Magama SpA · https://magama.cl
+- Ubicación: Av. Manquehue Sur 520 Of. 205, Las Condes, Santiago, Chile.
+
+## Optional
+
+- [llms-full.txt](https://bizual.ai/llms-full.txt): contenido extendido con FAQ, casos de uso, especificaciones técnicas, fuentes citadas y métricas del mercado inmobiliario chileno 2025.
