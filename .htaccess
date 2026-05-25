@@ -1,63 +1,36 @@
-# Bizual.ai — Apache/LiteSpeed config
-# Works both standalone (static) and behind Hostinger Node.js proxy.
+# Bizual.ai — .htaccess de la RAÍZ del repo (red de seguridad)
+#
+# Lo ideal: configurar el document root del sitio en Hostinger -> /public
+# (ahí actúa public/.htaccess). Este archivo es un seguro por si el document
+# root quedara apuntando a la raíz del repo: bloquea código/config y enruta
+# el sitio hacia /public igualmente.
 
-DirectoryIndex index.html
+DirectoryIndex public/index.html
+Options -Indexes
 
-# Force HTTPS
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Forzar HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Extensionless URLs: /sales -> sales.html (if the .html exists)
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}\.html -f
-  RewriteRule ^(.+?)/?$ $1.html [L]
+  # Nunca exponer código fuente, manifiestos ni directorios internos
+  RewriteRule ^(server\.js|package(-lock)?\.json)$ - [F]
+  RewriteRule \.md$ - [F]
+  RewriteRule ^(node_modules|\.git|\.claude)(/|$) - [F]
+
+  # Si el document root es la raíz del repo, servir el sitio desde /public
+  RewriteRule ^public/ - [L]
+  RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+  RewriteRule ^(.*)$ public/$1 [L]
+  RewriteCond %{DOCUMENT_ROOT}/public/$1.html -f
+  RewriteRule ^(.+?)/?$ public/$1.html [L]
 </IfModule>
 
-# Disable directory listing
-Options -Indexes
-
-# Block source/config files from being served (root is the web root)
+# Bloqueo adicional por si mod_rewrite no estuviera disponible
 <FilesMatch "^(server\.js|package\.json|package-lock\.json|.*\.md)$">
   Require all denied
 </FilesMatch>
-# Block dependency, VCS and tooling directories
-RedirectMatch 404 ^/(node_modules|\.git|\.claude)(/|$)
-
-# Charset for text + llms.txt
-AddDefaultCharset UTF-8
-<IfModule mod_mime.c>
-  AddType text/plain .txt
-</IfModule>
-
-# Compression
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
-</IfModule>
-
-# Cache headers
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/html "access plus 5 minutes"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType image/png "access plus 1 month"
-  ExpiresByType image/jpeg "access plus 1 month"
-  ExpiresByType image/svg+xml "access plus 1 month"
-  ExpiresByType image/webp "access plus 1 month"
-  ExpiresByType font/woff2 "access plus 1 year"
-</IfModule>
-
-# Security headers
-<IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "SAMEORIGIN"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-  Header unset X-Powered-By
-</IfModule>
-
-# Custom 404 (optional)
-ErrorDocument 404 /index.html

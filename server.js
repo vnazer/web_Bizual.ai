@@ -451,43 +451,26 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
-// --- llms.txt / llms-full.txt (text/plain; charset=utf-8) -----------------
+// --- Web root: SOLO la carpeta public/ ------------------------------------
+// Lista blanca: el código del servidor, package.json, node_modules y los .md
+// viven FUERA de public/, por lo que son inalcanzables vía web por diseño.
+const PUBLIC_DIR = path.join(__dirname, 'public');
 
+// llms.txt / llms-full.txt (text/plain; charset=utf-8)
 app.get('/llms.txt', (req, res) => {
   res.type('text/plain; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=86400');
-  res.sendFile(path.join(__dirname, 'llms.txt'));
+  res.sendFile(path.join(PUBLIC_DIR, 'llms.txt'));
 });
 app.get('/llms-full.txt', (req, res) => {
   res.type('text/plain; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=86400');
-  res.sendFile(path.join(__dirname, 'llms-full.txt'));
-});
-
-// --- Block source/config files (root is the web root) ---------------------
-// Defense-in-depth: prevents express.static from exposing server code,
-// dependency manifests, node_modules, VCS data or the Markdown sources.
-const BLOCKED_FILES = new Set([
-  '/server.js', '/package.json', '/package-lock.json',
-  '/.htaccess', '/.gitignore', '/readme.md'
-]);
-app.use((req, res, next) => {
-  const p = decodeURIComponent(req.path).toLowerCase();
-  if (
-    BLOCKED_FILES.has(p) ||
-    p.endsWith('.md') ||
-    p.startsWith('/node_modules/') ||
-    p.startsWith('/.git') ||
-    p.startsWith('/.claude')
-  ) {
-    return res.status(404).sendFile(path.join(__dirname, 'index.html'));
-  }
-  next();
+  res.sendFile(path.join(PUBLIC_DIR, 'llms-full.txt'));
 });
 
 // --- Static (extensionless routing: /sales -> sales.html) -----------------
 
-app.use(express.static(__dirname, {
+app.use(express.static(PUBLIC_DIR, {
   index: 'index.html',
   extensions: ['html'],
   etag: true,
@@ -510,7 +493,7 @@ app.use(express.static(__dirname, {
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ ok: false, error: 'not_found' });
-  res.status(404).sendFile(path.join(__dirname, 'index.html'));
+  res.status(404).sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {
