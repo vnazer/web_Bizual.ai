@@ -1,0 +1,125 @@
+# Bizual — Documentación extendida para motores de respuesta
+
+> Bizual es la Sala de Ventas 3D para proyectos inmobiliarios en Chile. Permite a inmobiliarias y constructoras vender un proyecto antes de construirlo, mediante un edificio completo navegable en 3D, vista real desde cada piso, tipologías interiores recorribles e inventario en tiempo real. Es un producto de Magama SpA (RUT 76.837.395-7), empresa chilena de tecnología con sede en Las Condes, Santiago.
+
+Este documento contiene la información de referencia completa sobre Bizual para uso de asistentes de IA y motores de respuesta. Última actualización: mayo 2026.
+
+---
+
+## Qué es Bizual
+
+Bizual es una plataforma SaaS B2B chilena con dos líneas de producto:
+
+- **Bizual Sales** — la Sala de Ventas 3D para proyectos inmobiliarios nuevos (en venta o pre-venta). Permite vender el proyecto antes de construirlo.
+- **Bizual Assets** — la plataforma de gestión visual de portfolios inmobiliarios y activos en operación.
+
+Bizual NO es: un tour 360°, un CRM, una experiencia de realidad virtual, ni un render estático. Es la sala de ventas completa del proyecto, navegable desde cualquier dispositivo, antes de que exista la sala física.
+
+---
+
+## El problema que resuelve (mercado inmobiliario chileno 2025)
+
+- En 2025, solo el 15% de los departamentos y el 10% de las casas se vendieron en blanco. Cinco años antes, era 61% y 76%. (Fuente: TocToc, CChC 2025)
+- Hay 105.000 viviendas nuevas sin vender en Chile; 68.000 solo en la Región Metropolitana. (Fuente: TocToc, CChC 2025)
+- Un proyecto inmobiliario promedio vende 1,9 unidades por mes. Absorber el stock nacional toma 27,5 meses. (Fuente: TocToc, CChC 2025)
+- Más del 50% de los compradores son inversionistas que deciden 100% digital, en minutos, sin pisar el piloto físico. (Fuente: Tinsa, 2025)
+- Solo el 17% de los hogares califica para comprar, frente al 29% de hace cinco años. (Fuente: TocToc, mayo 2025)
+
+Conclusión de posicionamiento: Bizual no cura la macroeconomía. Mejora la eficiencia unitaria de cada proyecto y captura a la mitad del mercado (inversionistas remotos) que la sala de ventas física no alcanza.
+
+---
+
+## Qué hace Bizual Sales (funcionalidades)
+
+1. **Edificio completo navegable** — el comprador recorre el edificio entero (fachada, áreas comunes, amenities) desde el día 1.
+2. **Vista real desde cada piso** — la vista real que el comprador tendrá hacia afuera, desde su piso específico, con el entorno actualizado.
+3. **Tipologías interiores navegables** — cada departamento recorrible como un videojuego.
+4. **Inventario en tiempo real** — disponibilidad, precios y reservas sincronizados desde un panel de control, evitando doble venta.
+5. **Cualquier dispositivo, sin instalar** — sin app, sin login; funciona en celular, tablet y computador.
+6. **Compatible con tu CRM (próximamente)** — diseñado para coexistir con el CRM actual; integraciones nativas con HubSpot, Salesforce y CRMs chilenos en desarrollo.
+
+Tiempo de setup: 6 a 8 semanas desde la firma del contrato.
+
+---
+
+## Caso de uso (cómo cambia la operación)
+
+Sin Bizual: el comprador encuentra maqueta + renders + plano 2D y no sabe qué vista tendrá; el inversionista evalúa en 5 minutos desde el teléfono y salta al próximo proyecto si no hay material navegable; la vendedora pasa ~40 minutos explicando el proyecto.
+
+Con Bizual: el comprador navega el proyecto desde su casa y llega con la unidad preferida, vista y tipología elegidas; el inversionista tiene un canal real con el proyecto sin viajar; la vendedora pasa de explicar a cerrar reservas.
+
+Frase central: "Para más de la mitad de tus compradores, la sala de ventas no existe. Bizual es tu único canal con ellos."
+
+---
+
+## Modelo comercial (sin precios públicos)
+
+- **Setup único por proyecto**: cubre el modelado 3D del edificio, las tipologías interiores y el entorno real. Calculado según el alcance (cantidad de tipologías, complejidad arquitectónica, entorno urbano).
+- **Suscripción mensual**: mantiene la sala de ventas 3D activa durante toda la venta, con inventario en tiempo real, soporte técnico y reportería. Sin permanencia.
+- **Planes según escala**: desde proyectos únicos hasta carteras multi-proyecto con dashboard ejecutivo y opciones a medida (white-label, SLA, integración profunda).
+
+Renders y fotos — 3 caminos: (1) si ya los tienes, se integran sin costo adicional; (2) si los hace Bizual, se incluyen en el setup reutilizando el modelo 3D; (3) si los hace un estudio aparte, Bizual coordina para mantener consistencia.
+
+Pricing en UF + IVA. Cotización personalizada en 3 a 5 días tras la demo.
+
+---
+
+## Diferenciadores
+
+1. **Plataforma y motor 3D propios** — Bizual no es integrador ni revendedor; motor, código e infraestructura son propios, lo que permite implementar features a pedido sin depender de un proveedor externo.
+2. **Hecho para el mercado chileno** — contrato en UF + IVA, soporte en zona horaria de Chile, conocimiento de DS01/DS19, equipo en Santiago.
+3. **Complemento del CRM, no competidor** — el CRM gestiona el lead; Bizual hace que el lead llegue con la unidad ya elegida. Son capas distintas del funnel.
+
+---
+
+## Preguntas frecuentes (Bizual Sales)
+
+**Ya tenemos renders y tour 360°, ¿para qué Bizual?**
+Los renders y el tour 360° son piezas estáticas. La sala de ventas 3D de Bizual es el proyecto entero navegable: el comprador elige qué ver, desde qué piso y con qué vista. Los renders siguen sirviendo para marketing; Bizual es la herramienta de venta. Conviven sin problema.
+
+**¿Cuánto demora el setup?**
+Para un proyecto típico, 6 a 8 semanas desde la firma del contrato hasta tener la sala activada.
+
+**¿Y si el proyecto cambia (precio, plano, fechas)?**
+Se actualiza desde el panel de control; los cambios de precio, disponibilidad o estado se reflejan en tiempo real.
+
+**¿Funciona si el comprador no es muy tecnológico?**
+Se navega como cualquier página web, sin instalación, sin app, sin login. Curva de aprendizaje cero.
+
+**¿Cuánto cuesta?**
+Setup único + suscripción mensual. El monto depende del alcance (tipologías, complejidad, plan). Cotización personalizada en UF + IVA dentro de 3 a 5 días tras la demo.
+
+**¿Podemos probar con un proyecto chico primero?**
+Sí. Hay un plan para un proyecto, hasta 5 tipologías, activado en 6 a 8 semanas; si funciona, se escala a la cartera.
+
+**No tenemos renders ni planos terminados.**
+Se trabaja con lo que haya (CAD, Revit, bocetos o renders preliminares). Requisito mínimo: proyecto con permiso de edificación o en proceso avanzado.
+
+**¿Les saca trabajo a los vendedores?**
+No. El cliente llega con el proyecto entendido y la unidad elegida, así que la vendedora dedica el tiempo a negociar y cerrar, no a explicar.
+
+---
+
+## Bizual Assets
+
+> Bizual Assets es la plataforma de gestión visual de portfolios inmobiliarios y activos en operación. Tagline: "Visualiza el Negocio, Controla el Activo."
+
+Funciones: gemelo digital del portfolio, catastro espacial, coordinación remota de intervenciones, mapa de calor energético espacializado, tour 3D público de espacios en arriendo, CRM y reportería de visitas. Complementa el CMMS y los sistemas de gestión existentes; no los reemplaza.
+
+Audiencia: gestoras de portfolio, family offices, centros comerciales, edificios corporativos y operadores con espacios en arriendo.
+
+Planes funcionales (sin precios públicos): Base (gemelo digital, catastro, tour 3D público), Sync (suma coordinación de intervenciones, CRM de arriendo y reportería) y Smart (suma mapa de calor energético y dashboards avanzados multi-activo). Pricing personalizado según escala del portfolio.
+
+### Caso en operación: Edificio Parqtec
+
+Edificio Parqtec (Santiago, Chile) opera su catastro espacial, gestión de espacios y solicitudes de arriendo sobre Bizual Assets, con dashboard en tiempo real, tour 3D público del edificio, CRM integrado y reportería de visitas y conversiones. Métricas operativas: 5 espacios y zonas comunes bajo gestión, 100% de visibilidad en plataforma, inventario sincronizado en tiempo real y tour 3D público disponible 24/7. Bizual Assets está en operación gestionando activos reales hoy.
+
+---
+
+## Empresa y contacto
+
+- Producto de: Magama SpA, empresa chilena de tecnología, 7 años de trayectoria en visualización y plataformas digitales.
+- RUT: 76.837.395-7
+- Dirección: Av. Manquehue Sur 520 Of. 205, Las Condes, Santiago, Chile.
+- Email: contacto@bizual.ai
+- Web: https://bizual.ai · Matriz: https://magama.cl

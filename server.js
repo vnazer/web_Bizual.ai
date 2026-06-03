@@ -451,29 +451,49 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
-// --- Static + SPA fallback ------------------------------------------------
+// --- Web root: SOLO la carpeta public/ ------------------------------------
+// Lista blanca: el código del servidor, package.json, node_modules y los .md
+// viven FUERA de public/, por lo que son inalcanzables vía web por diseño.
+const PUBLIC_DIR = path.join(__dirname, 'public');
 
-app.use(express.static(__dirname, {
+// llms.txt / llms-full.txt (text/plain; charset=utf-8)
+app.get('/llms.txt', (req, res) => {
+  res.type('text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(PUBLIC_DIR, 'llms.txt'));
+});
+app.get('/llms-full.txt', (req, res) => {
+  res.type('text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(PUBLIC_DIR, 'llms-full.txt'));
+});
+
+// --- Static (extensionless routing: /sales -> sales.html) -----------------
+
+app.use(express.static(PUBLIC_DIR, {
   index: 'index.html',
+  extensions: ['html'],
   etag: true,
   lastModified: true,
   dotfiles: 'ignore',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
-    } else if (/\.(png|jpg|jpeg|webp|svg|ico)$/.test(filePath)) {
-      res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
-    } else if (/\.(woff|woff2|ttf|eot)$/.test(filePath)) {
+    } else if (/\.(png|jpg|jpeg|webp|svg|gif|ico)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000, immutable'); // 30 días
+    } else if (/\.(woff|woff2|ttf|eot)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    } else if (/\.(css|js)$/.test(filePath)) {
+    } else if (/\.(css|js)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
 }));
 
+// --- Fallback: unknown routes -> home -------------------------------------
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ ok: false, error: 'not_found' });
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.status(404).sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {
