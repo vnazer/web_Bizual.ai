@@ -182,7 +182,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .mockup-bar .d { width: 11px; height: 11px; border-radius: 50%; }
 .mockup-bar .d:nth-child(1){ background:#ff5f57; } .mockup-bar .d:nth-child(2){ background:#ffbd2e; } .mockup-bar .d:nth-child(3){ background:#28c840; }
 .mockup-bar .mockup-url { margin-left: 10px; font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
-.mockup-screen { position: relative; background: linear-gradient(160deg, #0d1622 0%, #0a1018 60%, #070b12 100%); border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3.2; border: 1px solid rgba(255,255,255,0.05); }
+.mockup-screen { position: relative; background: linear-gradient(160deg, #0d1622 0%, #0a1018 60%, #070b12 100%); border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3.2; border: 1px solid rgba(255,255,255,0.05); perspective: 1000px; }
 .mockup-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(133,183,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(133,183,235,0.06) 1px, transparent 1px); background-size: 28px 28px; }
 .mockup-head { position: absolute; top: 16px; left: 18px; z-index: 3; }
 .mockup-eyebrow { font-family: var(--font-mono); font-size: 9px; color: var(--blue-sky); letter-spacing: 0.12em; font-weight: 500; margin-bottom: 3px; text-transform: uppercase; }
@@ -194,8 +194,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .mockup-live .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-bright); animation: pulse 1.6s infinite; }
 
 /* Edificio 3D isométrico (CSS puro) */
-.building { position: absolute; left: 50%; top: 53%; transform: translate(-50%, -50%) rotateX(8deg); display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; width: 50%; padding: 14px; }
-.unit { aspect-ratio: 1; border-radius: 4px; background: linear-gradient(150deg, #2b77ff, #10b981); opacity: 0.82; box-shadow: 0 0 10px rgba(43,119,255,0.3); }
+.building { position: absolute; left: 50%; top: 53%; transform: translate(-50%, -50%) rotateX(38deg) rotateZ(-2deg); transform-style: preserve-3d; display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; width: 52%; padding: 14px; }
+.unit { aspect-ratio: 1; border-radius: 4px; background: linear-gradient(150deg, #2b77ff, #10b981); opacity: 0.82; box-shadow: 0 0 10px rgba(43,119,255,0.3); transform: translateZ(8px); }
 .unit.sold { background: linear-gradient(150deg, #dc2626, #b91c1c); opacity: 0.9; }
 .unit.hold { background: linear-gradient(150deg, #d97706, #b45309); opacity: 0.9; }
 .unit.pick { outline: 2px solid #fff; outline-offset: 1px; }

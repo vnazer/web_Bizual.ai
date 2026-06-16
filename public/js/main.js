@@ -19,7 +19,10 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     links.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') links.classList.remove('open');
+      if (e.target.tagName === 'A') {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -56,9 +59,9 @@
   // Reveal on scroll
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
-    var ro = new IntersectionObserver(function (entries) {
+    var ro = new IntersectionObserver(function (entries, observer) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+        if (en.isIntersecting) { en.target.classList.add('in'); observer.unobserve(en.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (r) { ro.observe(r); });
