@@ -1,8 +1,7 @@
-/* Bizual landing v2 — vanilla JS (<8KB) */
+/* Bizual landing v3 — vanilla JS (<9KB) */
 (function () {
   'use strict';
 
-  // Analytics hook (no tracker installed; dispatches custom events).
   function track(name, detail) {
     try {
       window.dispatchEvent(new CustomEvent(name, { detail: detail || {} }));
@@ -18,6 +17,9 @@
     toggle.addEventListener('click', function () {
       var open = links.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') links.classList.remove('open');
     });
   }
 
@@ -35,7 +37,7 @@
   });
 
   // CTA click tracking
-  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function (b) {
+  document.querySelectorAll('.btn-primary, .btn-ghost, .btn-light').forEach(function (b) {
     b.addEventListener('click', function () {
       track('bizual_cta_click', { label: (b.textContent || '').trim().slice(0, 60), href: b.getAttribute('href') || '' });
     });
@@ -50,6 +52,19 @@
       }
     });
   });
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (r) { ro.observe(r); });
+  } else {
+    reveals.forEach(function (r) { r.classList.add('in'); });
+  }
 
   // Pre-fill product field from query string (?producto=bizual-sales)
   var params = new URLSearchParams(location.search);
@@ -94,9 +109,7 @@
           if (res && res.ok) {
             form.reset();
             if (msg) { msg.className = 'form-msg ok'; msg.textContent = '¡Recibido! Te escribimos en las próximas 24 horas para coordinar el horario de la demo.'; }
-          } else {
-            throw new Error((res && res.error) || 'error');
-          }
+          } else { throw new Error((res && res.error) || 'error'); }
         })
         .catch(function () {
           if (msg) { msg.className = 'form-msg err'; msg.textContent = 'No pudimos enviar tu mensaje. Escríbenos directo a contacto@bizual.ai y te respondemos.'; }
@@ -105,19 +118,5 @@
           if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Enviar'; }
         });
     });
-  }
-
-  // Lazy-load enhancement (fallback for native loading=lazy)
-  if (!('loading' in HTMLImageElement.prototype) && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          var img = en.target;
-          if (img.dataset.src) img.src = img.dataset.src;
-          obs.unobserve(img);
-        }
-      });
-    });
-    document.querySelectorAll('img[loading="lazy"]').forEach(function (i) { io.observe(i); });
   }
 })();
