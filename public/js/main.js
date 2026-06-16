@@ -78,7 +78,8 @@
       var map = {
         'bizual-sales': 'Bizual Sales',
         'bizual-assets': 'Bizual Assets',
-        'ambos': 'Ambos productos',
+        'bizual-training': 'Bizual Training',
+        'varios': 'Varios productos',
         'evaluando': 'Estoy evaluando'
       };
       var want = map[producto] || producto;

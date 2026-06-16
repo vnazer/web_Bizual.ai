@@ -227,6 +227,10 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 /* ---------- Features / cards ---------- */
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 2.5vw, 28px); }
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(20px, 2.5vw, 28px); }
+/* Grilla de 3 columnas exactas (features) — balanceada en desktop */
+.grid-feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.5vw, 28px); }
+@media (max-width: 940px) { .grid-feat { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid-feat { grid-template-columns: 1fr; } }
 .card { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: clamp(24px, 3vw, 34px); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s; }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gray-200); }
 .card .ic { width: 48px; height: 48px; border-radius: 14px; background: var(--blue-light); display: grid; place-items: center; font-size: 22px; margin-bottom: 18px; }
@@ -242,6 +246,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--blue) 0%, var(--green-bright) 100%); }
 .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--blue-light); }
 .product-card.alt::before { background: linear-gradient(90deg, var(--navy-soft) 0%, var(--blue) 100%); }
+.product-card.alt2::before { background: linear-gradient(90deg, var(--green-bright) 0%, var(--blue) 100%); }
+.product-card.alt2 .tag { color: var(--green); background: #dcfce7; }
 .product-card .tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); background: var(--blue-light); padding: 6px 13px; border-radius: var(--pill); margin-bottom: 16px; }
 .product-card.alt .tag { color: var(--navy); background: var(--lavanda); }
 .product-card h3 { font-size: clamp(22px, 2.2vw, 26px); }
