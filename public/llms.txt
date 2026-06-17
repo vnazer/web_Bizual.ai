@@ -1,25 +1,26 @@
 # Bizual
 
-> Bizual es una plataforma SaaS B2B chilena que ofrece la Sala de Ventas 3D para proyectos inmobiliarios. Permite a inmobiliarias y constructoras vender un proyecto antes de construirlo, mediante un edificio completo navegable en 3D, vista real desde cada piso, tipologías interiores recorribles e inventario en tiempo real sincronizado.
+> Bizual convierte espacios físicos en gemelos digitales que generan resultado de negocio. Es una plataforma SaaS B2B chilena con tres productos sobre un motor 3D propio: Bizual Sales (Sala de Ventas 3D para vender proyectos inmobiliarios antes de construir), Bizual Assets (gestión visual de activos en arriendo) y Bizual Training (capacitación inmersiva sobre el gemelo digital del espacio operativo).
 
-Bizual es un producto de Magama SpA, empresa chilena de tecnología (RUT 76.837.395-7) ubicada en Las Condes, Santiago. Opera dos líneas de producto: Bizual Sales (sala de ventas 3D para proyectos inmobiliarios nuevos) y Bizual Assets (gestión visual de portfolios y activos en operación).
+Bizual es un producto de Magama SpA, empresa chilena de tecnología (RUT 76.837.395-7) ubicada en Las Condes, Santiago. Los tres productos son independientes —modelos, clientes y precios distintos— pero comparten infraestructura y motor 3D propios.
 
 ## Productos
 
-- [Bizual Sales](https://bizual.ai/sales): Sala de Ventas 3D para proyectos inmobiliarios en venta o pre-venta.
-- [Bizual Assets](https://bizual.ai/assets): Plataforma de gestión visual de activos para portfolios, centros comerciales, edificios corporativos. En operación en Edificio Parqtec (Santiago).
+- [Bizual Sales](https://bizual.ai/sales) — Vender: Sala de Ventas 3D para proyectos inmobiliarios en venta o pre-venta. El comprador recorre el edificio, ve la vista real desde cada piso y reserva su unidad, 24/7, antes de que exista la sala física.
+- [Bizual Assets](https://bizual.ai/assets) — Gestionar: gemelo digital y catastro espacial para gestionar activos en arriendo (portfolios, centros comerciales, edificios corporativos). En operación en Edificio Parqtec (Santiago).
+- [Bizual Training](https://bizual.ai/training) — Capacitar: capacitación inmersiva sobre el gemelo digital del espacio operativo, con estaciones de contenido y tutor IA. Web, sin casco ni app. "Capacita en el espacio real, sin mover a tu equipo."
 
 ## Audiencia
 
-- Constructoras con proyectos en blanco (DS01, DS19, integración social, vivienda media-alta).
-- Inmobiliarias con cartera de 3 a 10 proyectos activos.
-- Gestoras de portfolio inmobiliario, family offices, centros comerciales y edificios corporativos.
+- Bizual Sales: inmobiliarias y constructoras con proyectos en venta (no construidos).
+- Bizual Assets: gestores de activos, family offices, centros comerciales con espacios en arriendo.
+- Bizual Training: operaciones con locales y personal de terreno (retail, QSR, hotelería, manufactura, logística).
 
 ## Diferenciadores
 
 - Plataforma y motor 3D propios (no integrador, no revendedor).
-- Hecho para el mercado chileno: contratos en UF + IVA, soporte en zona horaria de Chile.
-- Capa visual complementaria al CRM, no sustituto del CRM.
+- Hecho desde Chile: contratos en UF + IVA, soporte en zona horaria de Chile.
+- Capa visual complementaria al CRM y a los sistemas existentes, no sustituto.
 
 ## Contacto
 
@@ -30,4 +31,4 @@ Bizual es un producto de Magama SpA, empresa chilena de tecnología (RUT 76.837.
 
 ## Optional
 
-- [llms-full.txt](https://bizual.ai/llms-full.txt): contenido extendido con FAQ, casos de uso, especificaciones técnicas, fuentes citadas y métricas del mercado inmobiliario chileno 2025.
+- [llms-full.txt](https://bizual.ai/llms-full.txt): contenido extendido con FAQ, casos de uso, especificaciones y fuentes citadas.

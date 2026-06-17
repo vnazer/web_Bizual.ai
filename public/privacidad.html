@@ -1,222 +1,352 @@
 <!DOCTYPE html>
-<html lang="es-CL">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es-CL"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Política de Privacidad — Bizual</title>
-<meta name="description" content="Política de privacidad de Bizual (Magama SpA): tratamiento de datos personales conforme a la legislación chilena.">
+<meta name="description" content="Documento legal de Bizual (Magama SpA) — en revisión.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Cal Sans';font-style:normal;font-weight:400 800;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/npm/@fontsource/cal-sans@5/files/cal-sans-latin-400-normal.woff2') format('woff2');}
+:root{
+  --ink:#141c25;--ink-soft:#1e2a38;--ink-deep:#0a1018;
+  --blue:#2b77ff;--blue-dark:#1e5ad9;--blue-deep:#1542a8;--blue-light:#e8f0ff;--blue-soft:#f4f8ff;--blue-panel:#85b7eb;
+  --lav:#d3dcfa;--lav-soft:#eef1fc;--cream:#fafbfc;--white:#fff;
+  --n50:#f7f8fa;--n100:#edf0f4;--n200:#dde2eb;--n300:#c4cbd6;--n400:#8b95a7;--n500:#64748b;--n600:#4a5366;--n700:#2e3644;
+  --green:#0b9d6f;--green-bright:#10b981;--amber:#d97706;--red:#dc2626;
+  --grad-blue:linear-gradient(135deg,#2b77ff 0%,#1e5ad9 100%);
+  --shadow-sm:0 2px 8px rgba(20,28,37,.04);--shadow-md:0 8px 24px rgba(20,28,37,.08);
+  --shadow-lg:0 24px 48px -12px rgba(20,28,37,.15);--shadow-xl:0 40px 80px -20px rgba(20,28,37,.20);
+  --shadow-blue:0 20px 40px -10px rgba(43,119,255,.35);
+  --display:'Cal Sans','Inter',sans-serif;--sans:'Geist','Inter',sans-serif;--body:'Inter',sans-serif;--mono:'Geist Mono',ui-monospace,monospace;
+  --maxw:1320px;--ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--blue);font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:500;margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--grad-blue)}
+h1,h2,h3,.disp,.pname{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.02}
+.h2{font-size:clamp(38px,5.4vw,78px);line-height:1.0;letter-spacing:-.035em}
+.blue{color:var(--blue)}
+.lede{font-size:1.18rem;color:var(--n600);max-width:60ch}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:.98rem;padding:15px 28px;border-radius:100px;border:1.5px solid transparent;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),color .3s,border-color .3s}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--grad-blue);transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--n200)}
+.btn-ghost:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-white:hover{background:var(--grad-blue);color:#fff;transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+.btn-blue{background:var(--grad-blue);color:#fff}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+/* nav */
+nav{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+nav.scrolled{border-color:var(--n100);box-shadow:var(--shadow-sm)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-logo{height:30px;display:block}
+.nav-links{display:flex;align-items:center;gap:34px;font-family:var(--sans);font-size:.95rem;font-weight:500;color:var(--n600)}
+.nav-links a:not(.btn){position:relative;padding:4px 0}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--grad-blue);transition:width .3s var(--ease)}
+.nav-links a:not(.btn):hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{width:100%}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav-cta{padding:11px 22px;font-size:.9rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:95}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease),opacity .3s}
+nav.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.menu-open .burger span:nth-child(2){opacity:0}
+nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){
+  .burger{display:flex}
+  .nav-links{position:fixed;left:0;right:0;top:76px;flex-direction:column;align-items:flex-start;gap:6px;background:#fff;padding:18px clamp(20px,4vw,56px) 28px;border-bottom:1px solid var(--n100);box-shadow:var(--shadow-lg);transform:translateY(-130%);transition:transform .4s var(--ease);font-size:1.06rem}
+  nav.menu-open .nav-links{transform:none}
+  .nav-links a:not(.btn){display:block;width:100%;padding:12px 0;border-bottom:1px solid var(--n100)}
+  .nav-links a:not(.btn)::after{display:none}
+  .nav-links .nav-cta{margin-top:12px;width:100%;justify-content:center}
+}
+/* hero */
+.hero{position:relative;padding:72px 0 92px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--n100) 1px,transparent 1px),linear-gradient(90deg,var(--n100) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 95% 78% at 26% 16%,#000 32%,transparent 76%);opacity:.7;z-index:0;animation:meshMove 30s linear infinite}
+.hero::after{content:"";position:absolute;top:-180px;right:-140px;width:720px;height:720px;background:radial-gradient(circle,rgba(43,119,255,.14),transparent 62%);z-index:0;animation:float 13s ease-in-out infinite}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(54px,8.8vw,112px);line-height:.92;letter-spacing:-.04em;color:var(--ink)}
+.punch{margin-top:26px;font-family:var(--sans);font-size:clamp(1.18rem,2vw,1.6rem);font-weight:600;color:var(--ink);max-width:24ch}
+.punch .blue{color:var(--blue)}
+.hero .lede{margin-top:18px;max-width:44ch}
+.hero-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:13px 26px}
+.chip{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.9rem;color:var(--n600);font-weight:500}
+.chip .badge{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;background:var(--blue-light);color:var(--blue-deep);padding:3px 7px;border-radius:6px;text-transform:uppercase}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:30px;margin-bottom:20px;border:1px solid}
+.hero-badge .d{width:7px;height:7px;border-radius:50%}
+.hb-green{background:#e6f7ee;color:#0a7d3c;border-color:#b9e7cd}
+.hb-blue{background:var(--blue-light);color:var(--blue-deep);border-color:#c2d8ff}
+/* device 3d */
+.device{position:relative;background:linear-gradient(165deg,#0d1424,#0a1018);border-radius:20px;border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow-xl);overflow:hidden}
+.hero .device{animation:float 7s ease-in-out infinite}
+.device-bar{display:flex;align-items:center;gap:7px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dot{width:11px;height:11px;border-radius:50%}.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.device-bar .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:#9db6e8}
+.pulse{width:8px;height:8px;border-radius:50%;background:#28c840;box-shadow:0 0 0 0 rgba(40,200,64,.6);animation:pulse 1.8s infinite}
+.device-body{position:relative;padding:28px;min-height:330px;background:radial-gradient(120% 120% at 70% 0%,rgba(43,119,255,.12),transparent 55%)}
+.facade{margin:6px auto 0;width:200px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px;transform:perspective(900px) rotateY(-14deg) rotateX(4deg)}
+.unit{aspect-ratio:1/1.15;border-radius:4px;background:linear-gradient(160deg,#34d39e,#1f8fe0);opacity:.92;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.unit.sold{background:linear-gradient(160deg,#3a4456,#2a3340);opacity:.5}
+.unit.hot{background:linear-gradient(160deg,#ff8a4c,#eb5937);box-shadow:0 0 16px rgba(235,89,55,.55);animation:blink 2.6s ease-in-out infinite}
+.unit.pick{background:linear-gradient(160deg,#fff,#cfe0ff);box-shadow:0 0 14px rgba(255,255,255,.5)}
+.facade-label{position:absolute;left:28px;bottom:24px;color:#fff}
+.facade-label .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:#7f8db5}
+.facade-label .n{font-family:var(--display);font-size:1.5rem;margin-top:2px}
+.seg{position:absolute;right:24px;bottom:24px;display:flex;background:rgba(255,255,255,.08);border-radius:9px;padding:3px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:#9db6e8}
+.seg span{padding:6px 9px;border-radius:6px}.seg span.on{background:var(--blue);color:#fff}
+.fchip{position:absolute;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-radius:14px;padding:12px 15px;box-shadow:var(--shadow-lg);border:1px solid rgba(20,28,37,.05)}
+.fchip .lbl{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--n500);text-transform:uppercase}
+.fchip .big{font-family:var(--display);font-size:1.45rem;color:var(--ink);line-height:1.1}
+.fchip .sub{font-size:.78rem;color:var(--blue-deep);font-weight:600;font-family:var(--sans)}
+.fchip.tl{top:-22px;left:-26px;animation:float 6s ease-in-out infinite}
+.fchip.br{bottom:-20px;right:-22px;animation:float 8s ease-in-out infinite .5s}
+.device-zone{position:relative}
+.slot-tag{position:absolute;top:9px;left:14px;z-index:6;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;color:rgba(255,255,255,.3);text-transform:uppercase}
+/* sections */
+.band{padding:clamp(64px,8vw,104px) 0}
+.center{text-align:center}.center .lede{margin-left:auto;margin-right:auto}
+.sec-head{margin-bottom:56px}
+.dark{background:var(--ink-deep);color:#fff;position:relative;overflow:hidden}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 75% at 80% 0%,rgba(43,119,255,.16),transparent 60%)}
+.dark .wrap{position:relative;z-index:1}
+.dark .eyebrow{color:#9db6e8}.dark .h2{color:#fff}.dark .lede{color:#aeb9cc}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:52px 0 32px}
+.stat{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px 28px;transition:transform .3s var(--ease),border-color .3s}
+.stat:hover{transform:translateY(-6px);border-color:rgba(43,119,255,.5)}
+.stat .num{font-family:var(--display);font-weight:800;font-size:clamp(58px,7.2vw,90px);line-height:.9;color:#fff}
+.stat .num .u{color:var(--blue);font-size:.42em}
+.stat .lbl{margin-top:14px;font-size:1rem;color:#c7d2ea}
+.stat .src{margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:#6b7aa8}
+.dark .closing{font-size:1.12rem;color:#dbe4fb;border-top:1px solid rgba(255,255,255,.1);padding-top:26px;max-width:64ch;margin-left:auto;margin-right:auto}
+.dark .closing b{color:#fff}
+/* productos */
+.prod-feat{margin-top:50px}
+.pcard{position:relative;border-radius:24px;padding:clamp(28px,3.4vw,46px);overflow:hidden;transition:transform .35s var(--ease)}
+.pcard:hover{transform:translateY(-6px)}
+.pcard .ptop{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.pcard .pseg{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.pcard .pname{font-size:clamp(38px,4.2vw,64px);line-height:1;margin-bottom:10px}
+.pcard .pvalue{font-family:var(--sans);font-weight:700;font-size:1.18rem;margin-bottom:16px}
+.pcard .pdesc{font-size:1rem;margin-bottom:24px;max-width:52ch}
+.plist{list-style:none;margin-bottom:30px}
+.plist li{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-top:1px solid var(--bd);font-size:.98rem}
+.plist li:first-child{border-top:none}
+.plist svg{flex:none;margin-top:3px}
+.pbadge{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:30px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.pbadge .d{width:7px;height:7px;border-radius:50%}
+.pron{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;background:rgba(43,119,255,.14);color:var(--blue);padding:2px 7px;border-radius:5px;margin-left:8px;text-transform:uppercase;vertical-align:middle}
+.pcard.sales{background:linear-gradient(150deg,#11192b,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09)}
+.pcard.sales::after{content:"";position:absolute;top:-90px;right:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(43,119,255,.22),transparent 65%)}
+.pcard.sales .inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center}
+.pcard.sales .pseg{color:#9db6e8}.pcard.sales .pvalue{color:var(--blue-panel)}.pcard.sales .pdesc{color:#aeb9cc}
+.pcard.sales .plist li svg path{stroke:var(--green-bright)}
+.prod-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.pcard.assets{background:linear-gradient(155deg,#eef1fc,#fbfcff);color:var(--ink);box-shadow:var(--shadow-md);--bd:#dde2f5}
+.pcard.assets .pseg{color:var(--n500)}.pcard.assets .pvalue{color:var(--blue)}.pcard.assets .pdesc{color:var(--n600)}
+.pcard.assets .plist li svg path{stroke:var(--blue)}
+.pcard.training{background:linear-gradient(150deg,#131d31,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09)}
+.pcard.training .pseg{color:#9db6e8}.pcard.training .pvalue{color:var(--blue-panel)}.pcard.training .pdesc{color:#aeb9cc}
+.pcard.training .plist li svg path{stroke:var(--green-bright)}
+/* showcase */
+.show-grid{display:grid;gap:24px;margin-top:50px}
+.show-grid.g3{grid-template-columns:repeat(3,1fr)}
+.show-grid.g2{grid-template-columns:repeat(2,1fr)}
+.show{display:flex;flex-direction:column}
+.show .mock{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#0a1018;border:1px solid var(--n200);box-shadow:var(--shadow-md);margin-bottom:20px}
+.show.lightmock .mock{background:linear-gradient(155deg,#eef1fc,#f7f9ff)}
+.show .cap-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.show h3{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:8px}
+.show p{font-size:.95rem;color:var(--n600)}
+.slot-note{position:absolute;bottom:8px;right:10px;z-index:6;font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;color:rgba(255,255,255,.34);text-transform:uppercase}
+.show.lightmock .slot-note{color:rgba(20,28,37,.28)}
+.m-build{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 50% 0%,rgba(43,119,255,.12),transparent 55%)}
+.m-build .live{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+.m-facade{width:130px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;transform:perspective(700px) rotateY(-15deg)}
+.m-facade .u{aspect-ratio:1/1.1;border-radius:3px;background:linear-gradient(160deg,#34d39e,#1f8fe0);opacity:.9}
+.m-facade .u.h{background:linear-gradient(160deg,#ff8a4c,#eb5937)}.m-facade .u.s{background:#2a3340;opacity:.5}
+.m-build .lab{position:absolute;left:14px;bottom:12px;color:#fff;font-family:var(--display);font-size:1rem}
+.m-build .lab span{display:block;font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;color:#7f8db5}
+.m-sel{position:absolute;inset:0;padding:16px;display:flex;gap:12px}
+.m-leg{display:flex;flex-direction:column;gap:7px}
+.m-leg .it{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border-radius:7px;padding:6px 9px;font-size:.6rem;color:#c7d2ea;font-family:var(--sans)}
+.m-leg .it .c{width:8px;height:8px;border-radius:50%}
+.m-grid{flex:1;align-self:center;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-width:150px;margin:auto}
+.m-grid .u{aspect-ratio:1;border-radius:2px;background:#2f8f5f}
+.m-grid .u.h{background:#d97706}.m-grid .u.v{background:#7a2b2b}.m-grid .u.sel{outline:2px solid #fff}
+.m-pop{position:absolute;right:14px;bottom:14px;background:var(--blue);color:#fff;border-radius:10px;padding:10px 12px;font-family:var(--sans);box-shadow:var(--shadow-lg)}
+.m-pop .t{font-weight:700;font-size:.9rem}.m-pop .s{font-size:.6rem;opacity:.85}
+.m-det{position:absolute;inset:0;background:linear-gradient(160deg,#1a2740,#0a1018);padding:16px}
+.m-det .hd{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+.m-det .tag{display:inline-block;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:#34d39e;border:1px solid rgba(52,211,158,.4);border-radius:20px;padding:2px 8px;margin-top:6px}
+.m-det .specs{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:16px;color:#c7d2ea;font-family:var(--sans);font-size:.62rem}
+.m-det .specs b{display:block;color:#fff;font-size:.95rem;font-family:var(--display)}
+.m-det .price{margin-top:14px;background:var(--blue);color:#fff;border-radius:9px;padding:8px 12px;display:inline-block;font-family:var(--display);font-size:1.1rem}
+.m-det .acts{position:absolute;right:16px;bottom:16px;display:flex;flex-direction:column;gap:6px}
+.m-det .acts span{background:#fff;color:var(--ink);border-radius:7px;padding:6px 14px;font-family:var(--sans);font-size:.62rem;font-weight:600;text-align:center}
+.m-det .acts span.gh{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+/* assets dashboards */
+.m-dash{position:absolute;inset:14px;background:#0c1322;border-radius:12px;padding:13px;display:flex;flex-direction:column;color:#fff;font-family:var(--sans);overflow:hidden}
+.m-dash .dh{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.m-dash .dh .tt{font-family:var(--display);font-size:.95rem}
+.m-dash .dh .ct{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;background:rgba(255,255,255,.08);color:#9db6e8;padding:3px 6px;border-radius:5px}
+.m-dash .dh .nv{margin-left:auto;background:var(--blue);color:#fff;font-size:.5rem;padding:4px 8px;border-radius:6px;font-weight:600}
+.m-row{display:flex;align-items:center;gap:9px;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)}
+.m-row .th{width:22px;height:16px;border-radius:3px;background:rgba(43,119,255,.25);color:#9ec1ff;font-size:.4rem;display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
+.m-row .nm{font-size:.56rem;line-height:1.2}.m-row .nm span{display:block;color:#7f8db5;font-size:.46rem}
+.m-row .st{margin-left:auto;font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.st.disp{color:#34d39e;border:1px solid rgba(52,211,158,.4)}
+.st.arr{color:#9ec1ff;border:1px solid rgba(43,119,255,.4)}
+.st.venc{color:#f4a64a;border:1px solid rgba(217,119,6,.5)}
+.st.mant{color:#aab4c8;border:1px solid rgba(255,255,255,.18)}
+.m-dash .df{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;font-size:.46rem;color:#7f8db5;font-family:var(--mono);letter-spacing:.06em}
+.m-share{position:absolute;inset:14px;background:#0c1322;border-radius:12px;padding:14px;color:#fff;font-family:var(--sans)}
+.m-share .sh{display:flex;align-items:center;justify-content:space-between}
+.m-share .sh .tt{font-family:var(--display);font-size:.95rem}
+.m-share .sh .ac{font-family:var(--mono);font-size:.46rem;color:#34d39e;border:1px solid rgba(52,211,158,.4);padding:2px 7px;border-radius:20px;letter-spacing:.08em}
+.m-share .lk{margin-top:14px;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:#7f8db5}
+.m-share .lkbox{margin-top:6px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border-radius:8px;padding:8px 10px}
+.m-share .lkbox code{flex:1;font-family:var(--mono);font-size:.56rem;color:#9ec1ff}
+.m-share .lkbox b{background:#fff;color:var(--ink);font-size:.5rem;padding:4px 8px;border-radius:6px}
+.m-share .cfg{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m-share .cfg .it{background:rgba(255,255,255,.05);border-radius:8px;padding:8px 10px;font-size:.5rem;color:#aab4c8;display:flex;align-items:center;justify-content:space-between}
+.m-share .tog{width:22px;height:12px;border-radius:20px;background:var(--blue);position:relative}
+.m-share .tog::after{content:"";position:absolute;right:1px;top:1px;width:10px;height:10px;border-radius:50%;background:#fff}
+/* training plant */
+.m-plant{position:absolute;inset:0;padding:18px;background:radial-gradient(120% 120% at 50% 10%,rgba(43,119,255,.12),transparent 55%)}
+.m-plant .floor{position:absolute;inset:34px 22px 22px;border:1.5px solid rgba(255,255,255,.14);border-radius:8px;background:linear-gradient(160deg,rgba(255,255,255,.04),transparent)}
+.m-plant .pin{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--mono);font-size:.6rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(43,119,255,.7);font-weight:600}
+.m-plant .lab{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+/* diferenciadores */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.diff{position:relative;background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:30px;transition:transform .3s var(--ease),border-color .3s}
+.diff:hover{transform:translateY(-6px);border-color:rgba(43,119,255,.45)}
+.diff.hl{border-color:var(--blue)}
+.diff.hl::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;background:var(--grad-blue);border-radius:0 0 3px 3px}
+.diff .ic{width:48px;height:48px;border-radius:12px;background:var(--grad-blue);display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:var(--shadow-blue)}
+.diff .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:#9db6e8;background:rgba(255,255,255,.06);padding:4px 9px;border-radius:6px;text-transform:uppercase}
+.diff h3{color:#fff;font-size:1.3rem;letter-spacing:-.02em;margin:16px 0 8px}
+.diff p{font-size:.95rem;color:#aeb9cc}
+/* modelo / cols */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.mcol{border:1px solid var(--n200);border-radius:18px;padding:32px 28px;background:#fff;box-shadow:var(--shadow-sm)}
+.mcol .step{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--blue)}
+.mcol h3{font-size:1.3rem;margin-top:10px}.mcol p{font-size:.96rem;color:var(--n600);margin-top:10px}
+.cta-row{margin-top:42px;text-align:center}.cta-row .note{margin-top:14px;font-size:.85rem;color:var(--n400)}
+/* why / for-who */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+.why .ic{width:46px;height:46px;border-radius:12px;background:#fff;border:1px solid var(--n200);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.why h3{font-size:1.25rem;letter-spacing:-.01em}.why p{font-size:.96rem;color:var(--n600);margin-top:8px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.stp{padding:28px 24px;border:1px solid var(--n200);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm)}
+.stp .n{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.stp .t{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}
+.stp h3{font-size:1.12rem;margin:6px 0 7px}.stp p{font-size:.92rem;color:var(--n500)}
+.steps.s3{grid-template-columns:repeat(3,1fr)}
+/* faq */
+.faq-list{max-width:780px;margin:46px auto 0}
+details{border-bottom:1px solid var(--n200);padding:6px 0}
+summary{list-style:none;cursor:pointer;padding:20px 4px;font-family:var(--sans);font-weight:600;font-size:1.06rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--n200);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.2rem;transition:transform .3s,background .3s}
+details[open] summary .pm{transform:rotate(45deg);background:var(--blue-light)}
+details p{padding:0 4px 22px;color:var(--n600);font-size:.98rem}
+/* proof (training) */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:48px 0 26px}
+.proof{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:34px 28px}
+.proof .num{font-family:var(--display);font-weight:800;font-size:clamp(50px,6vw,76px);line-height:.9;color:#fff}
+.proof .num .u{color:var(--blue);font-size:.4em}
+.proof .lbl{margin-top:12px;color:#c7d2ea;font-size:1rem}
+.proof-src{text-align:center}
+.proof-src a{color:#9db6e8;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(157,182,232,.4);padding-bottom:2px}
+/* cta final */
+.cta-final{text-align:center}
+.cta-final h2{color:#fff;font-size:clamp(36px,5.2vw,68px);max-width:18ch;margin:0 auto}
+.cta-final .lede{margin:20px auto 30px}
+.cta-final .legal{margin-top:20px;font-size:.78rem;color:#6b7aa8;max-width:56ch;margin-left:auto;margin-right:auto}
+/* footer */
+footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-logo{height:30px;margin-bottom:16px;display:block}
+.foot-top p{font-size:.92rem;max-width:36ch}
+.foot-col h4{color:#fff;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.foot-col a{display:block;font-family:var(--sans);font-size:.94rem;margin-bottom:9px;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.84rem;color:#6b7595}
+.foot-bottom a{color:var(--blue)}
+/* reveal + kf */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(40,200,64,.55)}70%{box-shadow:0 0 0 9px rgba(40,200,64,0)}100%{box-shadow:0 0 0 0 rgba(40,200,64,0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes meshMove{0%{background-position:0 0,0 0}100%{background-position:48px 48px,48px 48px}}
+@media(max-width:980px){
+  .hero-grid,.pcard.sales .inner,.prod-row,.cols3,.why-grid{grid-template-columns:1fr}
+  .stat-grid,.show-grid.g3,.diff-grid,.steps,.proof-grid,.steps.s3{grid-template-columns:1fr 1fr}
+  .device-zone{margin-top:30px}.foot-top{grid-template-columns:1fr}
+}
+@media(max-width:560px){.stat-grid,.show-grid.g3,.show-grid.g2,.diff-grid,.steps,.proof-grid,.steps.s3{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}[data-reveal]{opacity:1;transform:none;transition:none}}
+</style>
 <link rel="canonical" href="https://bizual.ai/privacidad">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="/img/logo-bizual.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/css/styles.css?v=4">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="Magama SpA"><meta name="geo.region" content="CL">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_CL"><meta property="og:site_name" content="Bizual">
+<meta property="og:title" content="Política de Privacidad — Bizual"><meta property="og:description" content="Documento legal de Bizual (Magama SpA) — en revisión."><meta property="og:url" content="https://bizual.ai/privacidad"><meta property="og:image" content="https://bizual.ai/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Política de Privacidad — Bizual"><meta name="twitter:image" content="https://bizual.ai/og-image.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bizual.ai/#organization","name":"Bizual","url":"https://bizual.ai","logo":"https://bizual.ai/logo-bizual.png","parentOrganization":{"@type":"Organization","name":"Magama SpA","url":"https://magama.cl","taxID":"76.837.395-7"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"contacto\u0040bizual.ai","availableLanguage":["Spanish"],"areaServed":"CL"}}</script>
 </head>
-<body>
-<header class="site-header"><div class="container"><nav class="nav" aria-label="Principal">
-<a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="i" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ba3ff"/><stop offset="1" stop-color="#2b77ff"/></linearGradient></defs><rect x="7" y="7" width="18" height="18" rx="5" transform="rotate(45 16 16)" fill="url(#i)"/><rect x="12.5" y="12.5" width="7" height="7" rx="2" transform="rotate(45 16 16)" fill="#fff"/></svg> Bizual</a>
-<button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-<div class="nav-links"><a href="/sales">Bizual Sales</a><a href="/assets">Bizual Assets</a><a href="/contacto" class="btn-primary">Agenda tu demo</a></div>
-</nav></div></header>
-<main><section><div class="container legal">
-<h1>Política de Privacidad</h1>
-<p><strong>bizual.ai</strong> — Versión 1.0 | Última actualización: mayo 2025</p>
-<hr>
-<h2>1. Responsable del Tratamiento</h2>
-<p><strong>Magama SpA</strong> (en adelante, "Magama", "Bizual" o el "Responsable"), sociedad por acciones constituida bajo las leyes de la República de Chile, opera la plataforma <strong>Bizual</strong> accesible en <strong>www.bizual.ai</strong>.</p>
-<p><strong>Contacto de privacidad:</strong></p>
-<ul>
-<li><strong>Email:</strong> privacidad&#64;bizual.ai</li>
-<li><strong>Sitio web:</strong> www.bizual.ai</li>
-</ul>
-<hr>
-<h2>2. Marco Normativo</h2>
-<p>El tratamiento de datos personales en el contexto de la Plataforma Bizual se realiza conforme a:</p>
-<ul>
-<li><strong>Ley N° 19.628</strong> sobre Protección de la Vida Privada (texto vigente y sus modificaciones).</li>
-<li><strong>Ley N° 19.496</strong> sobre Protección de los Derechos de los Consumidores.</li>
-<li><strong>Ley N° 21.521</strong> sobre Actividad de Corretaje de Propiedades, en lo que resulte pertinente.</li>
-<li>Demás normativa aplicable de la República de Chile.</li>
-</ul>
-<p>Magama reconoce que la legislación chilena de protección de datos se encuentra en proceso de modernización. Ante la entrada en vigencia de nuevas normas, esta Política será actualizada para reflejar las obligaciones correspondientes.</p>
-<hr>
-<h2>3. Ámbito de Aplicación</h2>
-<p>Esta Política aplica a:</p>
-<ol>
-<li><strong>Clientes:</strong> Las empresas, corredoras, inmobiliarias y organizaciones que contratan el Servicio Bizual.</li>
-<li><strong>Usuarios Autorizados:</strong> Las personas naturales (empleados, colaboradores, agentes) habilitados por el Cliente para acceder a la Plataforma.</li>
-<li><strong>Visitantes del sitio web:</strong> Personas que navegan por www.bizual.ai sin haber contratado el Servicio.</li>
-<li><strong>Personas de contacto externas:</strong> Personas naturales cuyos datos son cargados por los Clientes en la Plataforma (por ejemplo, compradores, vendedores, arrendatarios).</li>
-</ol>
-<p>Para las personas de contacto externas (punto 4), el Cliente actúa como <strong>responsable del tratamiento</strong> y Magama como <strong>encargado</strong>, según se detalla en la Sección 10.</p>
-<hr>
-<h2>4. Datos Personales que Tratamos</h2>
-<h3>4.1 Datos de registro y administración de Cuenta</h3>
-<p>Cuando el Cliente crea una cuenta o gestiona su suscripción:</p>
-<table><thead><tr><th>Dato</th><th>Finalidad</th></tr></thead><tbody>
-<tr><td>Razón social y RUT de la empresa</td><td>Identificación del Cliente y facturación</td></tr>
-<tr><td>Nombre, apellido y cargo del administrador</td><td>Gestión de la cuenta</td></tr>
-<tr><td>Correo electrónico corporativo</td><td>Autenticación, comunicaciones y soporte</td></tr>
-<tr><td>Número de teléfono</td><td>Soporte y contacto comercial</td></tr>
-<tr><td>Datos de facturación</td><td>Emisión de documentos tributarios</td></tr>
-</tbody></table>
-<h3>4.2 Datos de Usuarios Autorizados</h3>
-<p>Para cada Usuario Autorizado habilitado por el Cliente:</p>
-<table><thead><tr><th>Dato</th><th>Finalidad</th></tr></thead><tbody>
-<tr><td>Nombre y apellido</td><td>Identificación en la Plataforma</td></tr>
-<tr><td>Correo electrónico corporativo</td><td>Autenticación y comunicaciones del Servicio</td></tr>
-<tr><td>Rol y permisos asignados</td><td>Control de acceso</td></tr>
-<tr><td>Registros de actividad en la Plataforma</td><td>Auditoría, seguridad y mejora del Servicio</td></tr>
-</tbody></table>
-<h3>4.3 Datos de uso y técnicos</h3>
-<table><thead><tr><th>Dato</th><th>Fuente</th><th>Finalidad</th></tr></thead><tbody>
-<tr><td>Dirección IP</td><td>Servidor</td><td>Seguridad, prevención de fraude y análisis técnico</td></tr>
-<tr><td>Tipo y versión de navegador</td><td>Navegador</td><td>Compatibilidad</td></tr>
-<tr><td>Acciones realizadas en la Plataforma</td><td>Logs del sistema</td><td>Auditoría, soporte y mejora</td></tr>
-<tr><td>Datos de sesión</td><td>Servidor</td><td>Autenticación y continuidad del Servicio</td></tr>
-<tr><td>Métricas de uso agregadas</td><td>Analytics</td><td>Mejora de funcionalidades</td></tr>
-</tbody></table>
-<h3>4.4 Datos del Cliente (contenido de la Plataforma)</h3>
-<p>Los Datos del Cliente son los contenidos cargados por el Cliente o sus Usuarios Autorizados en la Plataforma: información de propiedades, contactos, contratos, documentos y cualquier otro dato propio del negocio del Cliente.</p>
-<p><strong>Bizual actúa como encargado del tratamiento</strong> respecto de estos datos, no como responsable. El Cliente es el único responsable de la legitimidad de dicho tratamiento.</p>
-<h3>4.5 Datos que NO recopilamos directamente</h3>
-<p>Bizual <strong>no recopila</strong> de los Usuarios Autorizados:</p>
-<ul>
-<li>Datos biométricos.</li>
-<li>Datos de salud o vida sexual.</li>
-<li>Datos de afiliación política, sindical o religiosa.</li>
-<li>Información financiera personal (tarjetas de crédito, cuentas bancarias personales). Los datos de pago del Cliente son procesados por proveedores de pago certificados, no almacenados por Bizual.</li>
-</ul>
-<hr>
-<h2>5. Finalidades del Tratamiento</h2>
-<p>Bizual trata los datos personales de Clientes y Usuarios Autorizados para las siguientes finalidades:</p>
-<table><thead><tr><th>Finalidad</th><th>Base de licitud</th></tr></thead><tbody>
-<tr><td>Prestar el Servicio contratado y mantener la Plataforma operativa</td><td>Ejecución del contrato</td></tr>
-<tr><td>Autenticar y gestionar el acceso de Usuarios Autorizados</td><td>Ejecución del contrato</td></tr>
-<tr><td>Facturar y gestionar el cobro del Servicio</td><td>Ejecución del contrato y obligación legal (SII)</td></tr>
-<tr><td>Enviar comunicaciones operativas del Servicio (actualizaciones, mantenimientos, incidentes)</td><td>Ejecución del contrato</td></tr>
-<tr><td>Dar soporte técnico y atender reclamos</td><td>Ejecución del contrato</td></tr>
-<tr><td>Mejorar la Plataforma mediante análisis de uso agregado y anonimizado</td><td>Interés legítimo del Responsable</td></tr>
-<tr><td>Enviar comunicaciones comerciales sobre nuevas funcionalidades o servicios</td><td>Consentimiento del Usuario</td></tr>
-<tr><td>Cumplir obligaciones legales (SII, regulación aplicable)</td><td>Obligación legal</td></tr>
-<tr><td>Prevenir fraude y garantizar la seguridad de la Plataforma</td><td>Interés legítimo del Responsable</td></tr>
-</tbody></table>
-<hr>
-<h2>6. Comunicaciones Comerciales</h2>
-<p>Bizual podrá enviar comunicaciones sobre novedades del Servicio, nuevas funcionalidades o productos de Magama al correo electrónico del administrador de Cuenta y, cuando corresponda, a los Usuarios Autorizados que hayan prestado su consentimiento.</p>
-<p>El destinatario podrá cancelar su suscripción a estas comunicaciones en cualquier momento, utilizando el enlace de baja presente en cada correo o escribiendo a privacidad&#64;bizual.ai.</p>
-<hr>
-<h2>7. Comunicación de Datos a Terceros</h2>
-<p>Magama/Bizual <strong>no vende ni cede</strong> datos personales a terceros para fines comerciales propios de esos terceros.</p>
-<p>Los datos podrán ser comunicados en los siguientes casos:</p>
-<table><thead><tr><th>Destinatario</th><th>Fundamento</th></tr></thead><tbody>
-<tr><td>Proveedores de infraestructura cloud (servidores, almacenamiento)</td><td>Ejecución del Servicio, bajo acuerdo de confidencialidad</td></tr>
-<tr><td>Proveedores de soporte técnico habilitados por Magama</td><td>Ejecución del Servicio, bajo acuerdo de confidencialidad</td></tr>
-<tr><td>Proveedores de procesamiento de pagos certificados</td><td>Ejecución del Servicio</td></tr>
-<tr><td>Herramientas de análisis de uso (en forma anonimizada o seudonimizada)</td><td>Interés legítimo del Responsable</td></tr>
-<tr><td>Autoridades competentes (Ministerio Público, tribunales, SII, otros reguladores)</td><td>Obligación legal o requerimiento judicial</td></tr>
-<tr><td>Empresas del grupo Magama</td><td>Interés legítimo del grupo, para finalidades coherentes con las declaradas</td></tr>
-</tbody></table>
-<p>Magama exige a todos sus proveedores que traten los datos personales conforme a estándares de seguridad y confidencialidad equivalentes a los establecidos en la Ley N° 19.628.</p>
-<hr>
-<h2>8. Transferencia Internacional de Datos</h2>
-<p>Para la prestación del Servicio, Magama puede utilizar proveedores de infraestructura y servicios tecnológicos ubicados fuera de Chile (por ejemplo, servicios de computación en la nube o herramientas de análisis). En tales casos:</p>
-<ul>
-<li>Magama contrata proveedores que cuentan con políticas de privacidad y certificaciones de seguridad reconocidas internacionalmente.</li>
-<li>Cuando el proveedor opera bajo el Reglamento General de Protección de Datos de la Unión Europea (RGPD), ello constituye una garantía adicional de protección.</li>
-<li>El Cliente acepta que dichas transferencias son necesarias para la prestación del Servicio.</li>
-</ul>
-<hr>
-<h2>9. Plazos de Conservación</h2>
-<table><thead><tr><th>Categoría de datos</th><th>Plazo de conservación</th></tr></thead><tbody>
-<tr><td>Datos de Cuenta y Usuarios Autorizados</td><td>Durante la vigencia del contrato + 5 años (prescripción comercial general)</td></tr>
-<tr><td>Datos de facturación y documentos tributarios</td><td>6 años conforme al Código Tributario chileno</td></tr>
-<tr><td>Registros de actividad y logs de seguridad</td><td>12 meses desde su generación</td></tr>
-<tr><td>Datos de uso agregados y anonimizados</td><td>Sin plazo limitado (ya no son datos personales)</td></tr>
-<tr><td>Datos del Cliente (contenido de la Plataforma)</td><td>30 días corridos tras la terminación del contrato, conforme a los Términos del Servicio</td></tr>
-<tr><td>Comunicaciones de soporte</td><td>2 años desde el cierre de la solicitud</td></tr>
-</tbody></table>
-<p>Transcurridos estos plazos, los datos serán suprimidos o anonimizados de forma definitiva, salvo que la normativa exija su conservación por un período mayor.</p>
-<hr>
-<h2>10. Bizual como Encargado del Tratamiento (Datos de Terceros del Cliente)</h2>
-<p>En la medida en que los Datos del Cliente contengan datos personales de terceros (compradores, vendedores, arrendatarios, prospectos u otras personas naturales):</p>
-<ul>
-<li>El <strong>Cliente es el responsable del tratamiento</strong> de dichos datos.</li>
-<li><strong>Magama actúa como encargado del tratamiento</strong> en los términos del artículo 8° de la Ley N° 19.628.</li>
-</ul>
-<p>En consecuencia:</p>
-<ul>
-<li>Magama tratará estos datos únicamente según las instrucciones del Cliente y para prestar el Servicio.</li>
-<li>Magama no cederá ni divulgará estos datos a terceros, salvo instrucción expresa del Cliente o por obligación legal.</li>
-<li>Al término del contrato, Magama eliminará o devolverá al Cliente estos datos, conforme a los plazos de la Sección 9.</li>
-</ul>
-<p>El <strong>Cliente es el único responsable</strong> de:</p>
-<ul>
-<li>Contar con la base de licitud adecuada para tratar y transferir a Bizual los datos de esos terceros.</li>
-<li>Informar a dichos terceros sobre el tratamiento, conforme a los artículos 4° y 5° de la Ley N° 19.628.</li>
-<li>Responder ante esos terceros por el ejercicio de sus derechos.</li>
-</ul>
-<p>Las partes podrán suscribir un <strong>Acuerdo de Encargo de Tratamiento</strong> específico si la naturaleza o volumen de los datos personales de terceros así lo requieren.</p>
-<hr>
-<h2>11. Derechos del Titular de los Datos</h2>
-<p>Conforme a la Ley N° 19.628, los titulares de datos personales tratados por Bizual en calidad de Responsable (principalmente administradores de Cuenta y Usuarios Autorizados) tienen los siguientes derechos:</p>
-<table><thead><tr><th>Derecho</th><th>Descripción</th></tr></thead><tbody>
-<tr><td><strong>Acceso</strong></td><td>Conocer qué datos personales trata Bizual y cómo</td></tr>
-<tr><td><strong>Rectificación</strong></td><td>Solicitar corrección de datos inexactos o incompletos</td></tr>
-<tr><td><strong>Cancelación / Supresión</strong></td><td>Solicitar eliminación de datos cuando no haya fundamento legal para su tratamiento</td></tr>
-<tr><td><strong>Oposición</strong></td><td>Oponerse al tratamiento para determinadas finalidades (en especial, comunicaciones comerciales)</td></tr>
-<tr><td><strong>Bloqueo</strong></td><td>Solicitar suspensión temporal del tratamiento</td></tr>
-</tbody></table>
-<h3>Cómo ejercer sus derechos</h3>
-<p>El titular puede enviar su solicitud a <strong>privacidad&#64;bizual.ai</strong>, indicando:</p>
-<ul>
-<li>Nombre completo y correo electrónico registrado.</li>
-<li>Derecho que desea ejercer y datos a los que se refiere.</li>
-<li>Medio de acreditación de identidad (cédula de identidad u equivalente).</li>
-</ul>
-<p>Bizual responderá dentro de los plazos establecidos por la legislación vigente, no superior a <strong>30 días hábiles</strong> desde la recepción de la solicitud completa.</p>
-<blockquote><p><strong>Nota para personas de contacto externas (Datos del Cliente):</strong> Si usted es una persona cuyos datos han sido cargados en la Plataforma por un Cliente de Bizual (por ejemplo, como comprador, vendedor o arrendatario), deberá dirigir el ejercicio de sus derechos directamente al Cliente que cargó sus datos, ya que él es el responsable del tratamiento. Bizual cooperará con el Cliente para facilitar el ejercicio de dichos derechos.</p></blockquote>
-<hr>
-<h2>12. Medidas de Seguridad</h2>
-<p>Magama implementa medidas técnicas y organizativas apropiadas para proteger los datos personales tratados en la Plataforma, incluyendo:</p>
-<ul>
-<li><strong>Cifrado de datos</strong> en tránsito (TLS) y en reposo.</li>
-<li><strong>Control de acceso basado en roles</strong> (RBAC), con credenciales únicas por Usuario Autorizado.</li>
-<li><strong>Registro y monitoreo de actividad</strong> para detección de accesos no autorizados.</li>
-<li><strong>Backups periódicos</strong> de la información almacenada.</li>
-<li><strong>Evaluaciones de seguridad</strong> periódicas de la infraestructura.</li>
-</ul>
-<p>En caso de incidente de seguridad que afecte datos personales, Magama notificará al Cliente afectado dentro de las <strong>72 horas</strong> siguientes a tomar conocimiento del incidente, con la información disponible sobre su naturaleza y las medidas adoptadas.</p>
-<hr>
-<h2>13. Cookies y Tecnologías de Seguimiento</h2>
-<h3>13.1 Uso de cookies en la Plataforma</h3>
-<table><thead><tr><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr></thead><tbody>
-<tr><td><strong>Cookies de sesión y autenticación</strong></td><td>Mantener la sesión activa del Usuario Autorizado</td><td>Sesión</td></tr>
-<tr><td><strong>Cookies técnicas</strong></td><td>Garantizar el funcionamiento y seguridad de la Plataforma</td><td>Hasta 12 meses</td></tr>
-<tr><td><strong>Cookies analíticas</strong></td><td>Medir el uso de la Plataforma de forma agregada y anonimizada</td><td>Hasta 14 meses</td></tr>
-<tr><td><strong>Cookies de preferencias</strong></td><td>Recordar configuraciones del Usuario</td><td>Hasta 12 meses</td></tr>
-</tbody></table>
-<h3>13.2 Gestión de cookies</h3>
-<p>El Usuario puede configurar su navegador para rechazar cookies. Tenga en cuenta que las cookies de sesión y autenticación son esenciales para el funcionamiento de la Plataforma: desactivarlas puede impedir el acceso al Servicio.</p>
-<hr>
-<h2>14. Modificaciones a esta Política</h2>
-<p>Magama puede actualizar esta Política para reflejar cambios en el Servicio, en la normativa aplicable o en sus prácticas de tratamiento. Los cambios serán comunicados al Cliente con al menos <strong>15 días de anticipación</strong> por correo electrónico al administrador de Cuenta. El uso continuado del Servicio tras la entrada en vigencia de los cambios implica la aceptación de la Política actualizada.</p>
-<hr>
-<h2>15. Contacto y Reclamos</h2>
-<p>Para consultas, solicitudes de ejercicio de derechos o reclamos relacionados con el tratamiento de datos personales:</p>
-<p><strong>Email:</strong> privacidad&#64;bizual.ai</p>
-<p><strong>Sitio web:</strong> www.bizual.ai</p>
-<p>Sin perjuicio de lo anterior, el titular tiene derecho a presentar reclamos ante la autoridad competente en materia de protección de datos personales en Chile, de conformidad con la normativa vigente.</p>
-<hr>
-<p><em>Esta Política ha sido elaborada conforme al marco legal chileno vigente a la fecha indicada. Se recomienda su revisión periódica, en especial ante cambios en la Ley N° 19.628 y la normativa inmobiliaria aplicable.</em></p>
-</div></section></main>
-<footer><div class="container"><div class="footer-grid">
-<div class="footer-brand"><img src="/img/logo-bizual-blanco.svg" alt="Bizual" width="120" height="29"><p>Un producto de <strong>Magama SpA</strong>, empresa chilena de tecnología con 7 años en visualización y plataformas digitales.</p><p class="micro">RUT 76.837.395-7 · Av. Manquehue Sur 520 Of. 205, Las Condes, Santiago.</p></div>
-<nav class="footer-nav"><h4>Productos</h4><ul><li><a href="/sales">Bizual Sales</a></li><li><a href="/assets">Bizual Assets</a></li></ul></nav>
-<nav class="footer-nav"><h4>Empresa</h4><ul><li><a href="/contacto">Contacto</a></li><li><a href="https://magama.cl">Magama.cl</a></li></ul></nav>
-<div class="footer-contacto"><h4>Contacto</h4><p>contacto&#64;bizual.ai</p></div>
-</div><div class="footer-legal"><p>&copy; 2026 Magama SpA · <a href="/privacidad">Política de privacidad</a> · <a href="/terminos">Términos</a></p></div></div></footer>
-<script src="/js/main.js?v=4" defer></script>
-</body>
-</html>
+<body><nav id="nav"><div class="wrap nav-in">
+  <a href="/" aria-label="Bizual — inicio"><img class="nav-logo" src="/img/logo-bizual-light.png" alt="Bizual"></a>
+  <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <div class="nav-links">
+    <a href="/#productos">Productos</a>
+    <a href="/sales">Sales</a>
+    <a href="/assets">Assets</a>
+    <a href="/training">Training</a>
+    <a href="#faq">FAQ</a>
+    <a href="/contacto" class="btn btn-primary nav-cta">Solicitar demo <span class="arr">&rarr;</span></a>
+  </div>
+</div></nav>
+<section class="hero" style="padding-bottom:80px"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Legal</span>
+  <h1 style="font-size:clamp(36px,5vw,64px)">Política de Privacidad</h1>
+  <p class="lede" style="margin-top:20px">Contenido legal en revisión. Estamos finalizando este documento con nuestro asesor legal y lo publicaremos aquí próximamente.</p>
+  <p class="lede" style="margin-top:14px">Mientras tanto, si tienes una consulta sobre el tratamiento de tus datos o los términos del servicio, escríbenos a contacto&#64;bizual.ai.</p>
+  <div style="margin-top:32px"><a href="/" class="btn btn-ghost"><span>Volver al inicio</span> <span class="arr">→</span></a></div>
+</div></section><footer><div class="wrap">
+  <div class="foot-top">
+    <div><img class="foot-logo" src="/img/logo-bizual-dark.png" alt="Bizual">
+      <p>Convertimos espacios físicos en gemelos digitales que generan resultado de negocio. Un producto de Magama SpA.</p></div>
+    <div class="foot-col"><h4>Productos</h4><a href="/sales">Bizual Sales</a><a href="/assets">Bizual Assets</a><a href="/training">Bizual Training</a></div>
+    <div class="foot-col"><h4>Contacto</h4><a href="/contacto">contacto&#64;bizual.ai</a><a href="/contacto">Solicitar demo</a><span style="display:block;font-size:.9rem;margin-top:4px;color:#9aa6c4">Santiago, Chile</span></div>
+  </div>
+  <div class="foot-bottom"><span>&copy; 2026 Magama SpA · Bizual</span><span><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a></span></div>
+</div></footer>
+<script>
+var nav=document.getElementById("nav"),burger=document.getElementById("burger");
+window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",window.scrollY>10)});
+if(burger){burger.addEventListener("click",function(){nav.classList.toggle("menu-open")});
+document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("menu-open")})});}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.1,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll("[data-reveal]").forEach(function(el){io.observe(el)});
+function ac(el){var t=parseInt(el.getAttribute("data-count"),10),s=null,d=1500;function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){ac(e.target);co.unobserve(e.target)}})},{threshold:.6});
+document.querySelectorAll("[data-count]").forEach(function(el){co.observe(el)});
+</script>
+</body></html>
