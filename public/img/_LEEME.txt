@@ -1,0 +1,50 @@
+══════════════════════════════════════════════════════════════════════
+  CÓMO CAMBIAR LAS IMÁGENES DE LA WEB DE BIZUAL  (sin tocar código)
+══════════════════════════════════════════════════════════════════════
+
+Cada foto de producto en la web es un "slot" con un nombre fijo. Mientras un
+slot no tenga imagen, la web muestra automáticamente el mockup de diseño (el
+panel 3D dibujado) — nunca queda un hueco roto.
+
+Tienes DOS formas de cambiar una imagen. Elige la que te acomode.
+
+----------------------------------------------------------------------
+ FORMA 1 — Reemplazar el archivo (la más simple, recomendada)
+----------------------------------------------------------------------
+1. Prepara tu imagen en formato WebP (idealmente) con el nombre EXACTO del
+   slot, por ejemplo:  sales-01-edificio.webp
+2. Súbela a esta carpeta  (public/img/)  reemplazando la que está.
+3. Listo. La web la toma sola. No hay que editar nada más.
+
+   (Si subes PNG o JPG en vez de WebP, usa el mismo nombre base, p.ej.
+    sales-01-edificio.png, y avísale al desarrollador para ajustar la
+    extensión — lo más simple es mantener .webp.)
+
+----------------------------------------------------------------------
+ FORMA 2 — Apuntar a una URL externa (Drive público, CDN, etc.)
+----------------------------------------------------------------------
+1. Abre el archivo  public/media.json
+2. Busca el slot que quieres cambiar y pega la URL nueva entre comillas.
+   Ejemplo:
+     "sales-01-edificio": "https://misitio.com/fotos/edificio.webp",
+3. Guarda. La web cargará esa URL en ese slot.
+   (Si dejas el valor en "" vacío, se usa el archivo local o el mockup.)
+
+----------------------------------------------------------------------
+ SLOTS DISPONIBLES (nombre · dónde aparece · medida ideal · peso máx)
+----------------------------------------------------------------------
+ sales-01-edificio        Home y /sales   1200x900 (4:3)   120 KB
+ sales-02-vista-unidad    Home y /sales   1200x900 (4:3)   120 KB
+ sales-03-todo-conectado  Home y /sales   1200x900 (4:3)   120 KB
+ assets-01-cartera        /assets         1280x960 (4:3)   120 KB
+ assets-02-compartir      /assets         1280x960 (4:3)   120 KB
+ training-hero            /training       1280x900         120 KB
+ hero-sala-ventas-3d      Home y /sales   1400x1000        160 KB  (opcional)
+ assets-hero-panel        /assets         1400x1000        160 KB  (opcional)
+ og-image                 redes sociales  1200x630         300 KB  (reemplaza /og-image.jpg)
+
+Consejos:
+- Formato WebP = más liviano y carga más rápido. Mantén el peso bajo el máximo.
+- Respeta la proporción (4:3 donde se indica) para que no se deforme.
+- Tras subir, refresca la web con Cmd/Ctrl + Shift + R para ver el cambio.
+══════════════════════════════════════════════════════════════════════

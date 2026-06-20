@@ -1,235 +1,431 @@
 <!DOCTYPE html>
-<html lang="es-CL">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es-CL"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizual Assets — Gemelo digital para gestionar tus activos en arriendo</title>
+<meta name="description" content="Bizual Assets crea una réplica digital exacta de cada espacio: comparte con un link sin cuenta, documenta cada arriendo y gestiona toda tu cartera desde un panel.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Cal Sans';font-style:normal;font-weight:400 800;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/npm/@fontsource/cal-sans@5/files/cal-sans-latin-400-normal.woff2') format('woff2');}
+:root{
+  --ink:#141c25;--ink-soft:#1e2a38;--ink-deep:#0a1018;
+  --blue:#2b77ff;--blue-dark:#1e5ad9;--blue-deep:#1542a8;--blue-light:#e8f0ff;--blue-soft:#f4f8ff;--blue-panel:#85b7eb;
+  --lav:#d3dcfa;--lav-soft:#eef1fc;--cream:#fafbfc;--white:#fff;
+  --n50:#f7f8fa;--n100:#edf0f4;--n200:#dde2eb;--n300:#c4cbd6;--n400:#8b95a7;--n500:#64748b;--n600:#4a5366;--n700:#2e3644;
+  --green:#0b9d6f;--green-bright:#10b981;--amber:#d97706;--red:#dc2626;
+  --grad-blue:linear-gradient(135deg,#2b77ff 0%,#1e5ad9 100%);
+  --shadow-sm:0 2px 8px rgba(20,28,37,.04);--shadow-md:0 8px 24px rgba(20,28,37,.08);
+  --shadow-lg:0 24px 48px -12px rgba(20,28,37,.15);--shadow-xl:0 40px 80px -20px rgba(20,28,37,.20);
+  --shadow-blue:0 20px 40px -10px rgba(43,119,255,.35);
+  --display:'Cal Sans','Inter',sans-serif;--sans:'Geist','Inter',sans-serif;--body:'Inter',sans-serif;--mono:'Geist Mono',ui-monospace,monospace;
+  --maxw:1320px;--ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--blue);font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:500;margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--grad-blue)}
+h1,h2,h3,.disp,.pname{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.02}
+.h2{font-size:clamp(34px,4.4vw,60px);line-height:1.0;letter-spacing:-.035em}
+.blue{color:var(--blue)}
+.lede{font-size:1.18rem;color:var(--n600);max-width:60ch}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:.98rem;padding:15px 28px;border-radius:100px;border:1.5px solid transparent;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),color .3s,border-color .3s}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--grad-blue);transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--n200)}
+.btn-ghost:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-white:hover{background:var(--grad-blue);color:#fff;transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+.btn-blue{background:var(--grad-blue);color:#fff}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:var(--shadow-blue)}
+/* nav */
+nav{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+nav.scrolled{border-color:var(--n100);box-shadow:var(--shadow-sm)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-logo{height:30px;display:block}
+.nav-links{display:flex;align-items:center;gap:34px;font-family:var(--sans);font-size:.95rem;font-weight:500;color:var(--n600)}
+.nav-links a:not(.btn){position:relative;padding:4px 0}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--grad-blue);transition:width .3s var(--ease)}
+.nav-links a:not(.btn):hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{width:100%}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav-cta{padding:11px 22px;font-size:.9rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:95}
+.burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease),opacity .3s}
+nav.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.menu-open .burger span:nth-child(2){opacity:0}
+nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){
+  .burger{display:flex}
+  .nav-links{position:fixed;left:0;right:0;top:76px;flex-direction:column;align-items:flex-start;gap:6px;background:#fff;padding:18px clamp(20px,4vw,56px) 28px;border-bottom:1px solid var(--n100);box-shadow:var(--shadow-lg);transform:translateY(-130%);transition:transform .4s var(--ease);font-size:1.06rem}
+  nav.menu-open .nav-links{transform:none}
+  .nav-links a:not(.btn){display:block;width:100%;padding:12px 0;border-bottom:1px solid var(--n100)}
+  .nav-links a:not(.btn)::after{display:none}
+  .nav-links .nav-cta{margin-top:12px;width:100%;justify-content:center}
+}
+/* hero */
+.hero{position:relative;padding:72px 0 92px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--n100) 1px,transparent 1px),linear-gradient(90deg,var(--n100) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 95% 78% at 26% 16%,#000 32%,transparent 76%);opacity:.7;z-index:0;animation:meshMove 30s linear infinite}
+.hero::after{content:"";position:absolute;top:-180px;right:-140px;width:720px;height:720px;background:radial-gradient(circle,rgba(43,119,255,.14),transparent 62%);z-index:0;animation:float 13s ease-in-out infinite}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(46px,6.8vw,88px);line-height:.92;letter-spacing:-.04em;color:var(--ink)}
+.punch{margin-top:26px;font-family:var(--sans);font-size:clamp(1.18rem,2vw,1.6rem);font-weight:600;color:var(--ink);max-width:24ch}
+.punch .blue{color:var(--blue)}
+.hero .lede{margin-top:18px;max-width:44ch}
+.hero-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:13px 26px}
+.chip{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.9rem;color:var(--n600);font-weight:500}
+.chip .badge{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;background:var(--blue-light);color:var(--blue-deep);padding:3px 7px;border-radius:6px;text-transform:uppercase}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:30px;margin-bottom:20px;border:1px solid}
+.hero-badge .d{width:7px;height:7px;border-radius:50%}
+.hb-green{background:#e6f7ee;color:#0a7d3c;border-color:#b9e7cd}
+.hb-blue{background:var(--blue-light);color:var(--blue-deep);border-color:#c2d8ff}
+/* device 3d */
+.device{position:relative;background:linear-gradient(165deg,#0d1424,#0a1018);border-radius:20px;border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow-xl);overflow:hidden}
+.hero .device{animation:float 7s ease-in-out infinite}
+.device-bar{display:flex;align-items:center;gap:7px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dot{width:11px;height:11px;border-radius:50%}.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.device-bar .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:#9db6e8}
+.pulse{width:8px;height:8px;border-radius:50%;background:#28c840;box-shadow:0 0 0 0 rgba(40,200,64,.6);animation:pulse 1.8s infinite}
+.device-body{position:relative;padding:28px;min-height:330px;background:radial-gradient(120% 120% at 70% 0%,rgba(43,119,255,.12),transparent 55%)}
+.facade{margin:6px auto 0;width:200px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px;transform:perspective(900px) rotateY(-14deg) rotateX(4deg)}
+.unit{aspect-ratio:1/1.15;border-radius:4px;background:linear-gradient(160deg,#34d39e,#1f8fe0);opacity:.92;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.unit.sold{background:linear-gradient(160deg,#3a4456,#2a3340);opacity:.5}
+.unit.hot{background:linear-gradient(160deg,#ff8a4c,#eb5937);box-shadow:0 0 16px rgba(235,89,55,.55);animation:blink 2.6s ease-in-out infinite}
+.unit.pick{background:linear-gradient(160deg,#fff,#cfe0ff);box-shadow:0 0 14px rgba(255,255,255,.5)}
+.facade-label{position:absolute;left:28px;bottom:24px;color:#fff}
+.facade-label .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:#7f8db5}
+.facade-label .n{font-family:var(--display);font-size:1.5rem;margin-top:2px}
+.seg{position:absolute;right:24px;bottom:24px;display:flex;background:rgba(255,255,255,.08);border-radius:9px;padding:3px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:#9db6e8}
+.seg span{padding:6px 9px;border-radius:6px}.seg span.on{background:var(--blue);color:#fff}
+.fchip{position:absolute;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-radius:14px;padding:12px 15px;box-shadow:var(--shadow-lg);border:1px solid rgba(20,28,37,.05)}
+.fchip .lbl{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--n500);text-transform:uppercase}
+.fchip .big{font-family:var(--display);font-size:1.45rem;color:var(--ink);line-height:1.1}
+.fchip .sub{font-size:.78rem;color:var(--blue-deep);font-weight:600;font-family:var(--sans)}
+.fchip.tl{top:-22px;left:-26px;animation:float 6s ease-in-out infinite}
+.fchip.br{bottom:-20px;right:-22px;animation:float 8s ease-in-out infinite .5s}
+.device-zone{position:relative}
+.slot-tag{position:absolute;top:9px;left:14px;z-index:6;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;color:rgba(255,255,255,.3);text-transform:uppercase}
+/* sections */
+.band{padding:clamp(64px,8vw,104px) 0}
+.center{text-align:center}.center .lede{margin-left:auto;margin-right:auto}
+.sec-head{margin-bottom:56px}
+.dark{background:var(--ink-deep);color:#fff;position:relative;overflow:hidden}
+.dark::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 75% at 80% 0%,rgba(43,119,255,.16),transparent 60%)}
+.dark .wrap{position:relative;z-index:1}
+.dark .eyebrow{color:#9db6e8}.dark .h2{color:#fff}.dark .lede{color:#aeb9cc}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:52px 0 32px}
+.stat{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px 28px;transition:transform .3s var(--ease),border-color .3s}
+.stat:hover{transform:translateY(-6px);border-color:rgba(43,119,255,.5)}
+.stat .num{font-family:var(--display);font-weight:800;font-size:clamp(50px,6vw,76px);line-height:.9;color:#fff}
+.stat .num .u{color:var(--blue);font-size:.42em}
+.stat .lbl{margin-top:14px;font-size:1rem;color:#c7d2ea}
+.stat .src{margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:#6b7aa8}
+.dark .closing{font-size:1.12rem;color:#dbe4fb;border-top:1px solid rgba(255,255,255,.1);padding-top:26px;max-width:64ch;margin-left:auto;margin-right:auto}
+.dark .closing b{color:#fff}
+/* productos */
+.prod-feat{margin-top:50px}
+.pcard{position:relative;border-radius:24px;padding:clamp(28px,3.4vw,46px);overflow:hidden;transition:transform .35s var(--ease)}
+.pcard:hover{transform:translateY(-6px)}
+.pcard .ptop{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.pcard .pseg{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.pcard .pname{font-size:clamp(34px,3.6vw,54px);line-height:1;margin-bottom:10px}
+.pcard .pvalue{font-family:var(--sans);font-weight:700;font-size:1.18rem;margin-bottom:16px}
+.pcard .pdesc{font-size:1rem;margin-bottom:24px;max-width:52ch}
+.plist{list-style:none;margin-bottom:30px}
+.plist li{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-top:1px solid var(--bd);font-size:.98rem}
+.plist li:first-child{border-top:none}
+.plist svg{flex:none;margin-top:3px}
+.pbadge{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:30px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.pbadge .d{width:7px;height:7px;border-radius:50%}
+.pron{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;background:rgba(43,119,255,.14);color:var(--blue);padding:2px 7px;border-radius:5px;margin-left:8px;text-transform:uppercase;vertical-align:middle}
+.pcard.sales{background:linear-gradient(150deg,#11192b,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09)}
+.pcard.sales::after{content:"";position:absolute;top:-90px;right:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(43,119,255,.22),transparent 65%)}
+.pcard.sales .inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center}
+.pcard.sales .pseg{color:#9db6e8}.pcard.sales .pvalue{color:var(--blue-panel)}.pcard.sales .pdesc{color:#aeb9cc}
+.pcard.sales .plist li svg path{stroke:var(--green-bright)}
+.prod-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.pcard.assets{background:linear-gradient(155deg,#eef1fc,#fbfcff);color:var(--ink);box-shadow:var(--shadow-md);--bd:#dde2f5}
+.pcard.assets .pseg{color:var(--n500)}.pcard.assets .pvalue{color:var(--blue)}.pcard.assets .pdesc{color:var(--n600)}
+.pcard.assets .plist li svg path{stroke:var(--blue)}
+.pcard.training{background:linear-gradient(150deg,#131d31,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09)}
+.pcard.training .pseg{color:#9db6e8}.pcard.training .pvalue{color:var(--blue-panel)}.pcard.training .pdesc{color:#aeb9cc}
+.pcard.training .plist li svg path{stroke:var(--green-bright)}
+/* showcase */
+.show-grid{display:grid;gap:24px;margin-top:50px}
+.show-grid.g3{grid-template-columns:repeat(3,1fr)}
+.show-grid.g2{grid-template-columns:repeat(2,1fr)}
+.show{display:flex;flex-direction:column}
+.show .mock{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#0a1018;border:1px solid var(--n200);box-shadow:var(--shadow-md);margin-bottom:20px}
+.show.lightmock .mock{background:linear-gradient(155deg,#eef1fc,#f7f9ff)}
+.show .cap-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.show h3{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:8px}
+.show p{font-size:.95rem;color:var(--n600)}
+.slot-note{position:absolute;bottom:8px;right:10px;z-index:6;font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;color:rgba(255,255,255,.34);text-transform:uppercase}
+.show.lightmock .slot-note{color:rgba(20,28,37,.28)}
+.m-build{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 50% 0%,rgba(43,119,255,.12),transparent 55%)}
+.m-build .live{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+.m-facade{width:130px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;transform:perspective(700px) rotateY(-15deg)}
+.m-facade .u{aspect-ratio:1/1.1;border-radius:3px;background:linear-gradient(160deg,#34d39e,#1f8fe0);opacity:.9}
+.m-facade .u.h{background:linear-gradient(160deg,#ff8a4c,#eb5937)}.m-facade .u.s{background:#2a3340;opacity:.5}
+.m-build .lab{position:absolute;left:14px;bottom:12px;color:#fff;font-family:var(--display);font-size:1rem}
+.m-build .lab span{display:block;font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;color:#7f8db5}
+.m-sel{position:absolute;inset:0;padding:16px;display:flex;gap:12px}
+.m-leg{display:flex;flex-direction:column;gap:7px}
+.m-leg .it{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border-radius:7px;padding:6px 9px;font-size:.6rem;color:#c7d2ea;font-family:var(--sans)}
+.m-leg .it .c{width:8px;height:8px;border-radius:50%}
+.m-grid{flex:1;align-self:center;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-width:150px;margin:auto}
+.m-grid .u{aspect-ratio:1;border-radius:2px;background:#2f8f5f}
+.m-grid .u.h{background:#d97706}.m-grid .u.v{background:#7a2b2b}.m-grid .u.sel{outline:2px solid #fff}
+.m-pop{position:absolute;right:14px;bottom:14px;background:var(--blue);color:#fff;border-radius:10px;padding:10px 12px;font-family:var(--sans);box-shadow:var(--shadow-lg)}
+.m-pop .t{font-weight:700;font-size:.9rem}.m-pop .s{font-size:.6rem;opacity:.85}
+.m-det{position:absolute;inset:0;background:linear-gradient(160deg,#1a2740,#0a1018);padding:16px}
+.m-det .hd{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+.m-det .tag{display:inline-block;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:#34d39e;border:1px solid rgba(52,211,158,.4);border-radius:20px;padding:2px 8px;margin-top:6px}
+.m-det .specs{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:16px;color:#c7d2ea;font-family:var(--sans);font-size:.62rem}
+.m-det .specs b{display:block;color:#fff;font-size:.95rem;font-family:var(--display)}
+.m-det .price{margin-top:14px;background:var(--blue);color:#fff;border-radius:9px;padding:8px 12px;display:inline-block;font-family:var(--display);font-size:1.1rem}
+.m-det .acts{position:absolute;right:16px;bottom:16px;display:flex;flex-direction:column;gap:6px}
+.m-det .acts span{background:#fff;color:var(--ink);border-radius:7px;padding:6px 14px;font-family:var(--sans);font-size:.62rem;font-weight:600;text-align:center}
+.m-det .acts span.gh{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+/* assets dashboards */
+.m-dash{position:absolute;inset:14px;background:#0c1322;border-radius:12px;padding:13px;display:flex;flex-direction:column;color:#fff;font-family:var(--sans);overflow:hidden}
+.m-dash .dh{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.m-dash .dh .tt{font-family:var(--display);font-size:.95rem}
+.m-dash .dh .ct{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;background:rgba(255,255,255,.08);color:#9db6e8;padding:3px 6px;border-radius:5px}
+.m-dash .dh .nv{margin-left:auto;background:var(--blue);color:#fff;font-size:.5rem;padding:4px 8px;border-radius:6px;font-weight:600}
+.m-row{display:flex;align-items:center;gap:9px;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)}
+.m-row .th{width:22px;height:16px;border-radius:3px;background:rgba(43,119,255,.25);color:#9ec1ff;font-size:.4rem;display:flex;align-items:center;justify-content:center;font-family:var(--mono)}
+.m-row .nm{font-size:.56rem;line-height:1.2}.m-row .nm span{display:block;color:#7f8db5;font-size:.46rem}
+.m-row .st{margin-left:auto;font-family:var(--mono);font-size:.42rem;letter-spacing:.06em;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.st.disp{color:#34d39e;border:1px solid rgba(52,211,158,.4)}
+.st.arr{color:#9ec1ff;border:1px solid rgba(43,119,255,.4)}
+.st.venc{color:#f4a64a;border:1px solid rgba(217,119,6,.5)}
+.st.mant{color:#aab4c8;border:1px solid rgba(255,255,255,.18)}
+.m-dash .df{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;font-size:.46rem;color:#7f8db5;font-family:var(--mono);letter-spacing:.06em}
+.m-share{position:absolute;inset:14px;background:#0c1322;border-radius:12px;padding:14px;color:#fff;font-family:var(--sans)}
+.m-share .sh{display:flex;align-items:center;justify-content:space-between}
+.m-share .sh .tt{font-family:var(--display);font-size:.95rem}
+.m-share .sh .ac{font-family:var(--mono);font-size:.46rem;color:#34d39e;border:1px solid rgba(52,211,158,.4);padding:2px 7px;border-radius:20px;letter-spacing:.08em}
+.m-share .lk{margin-top:14px;font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;color:#7f8db5}
+.m-share .lkbox{margin-top:6px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border-radius:8px;padding:8px 10px}
+.m-share .lkbox code{flex:1;font-family:var(--mono);font-size:.56rem;color:#9ec1ff}
+.m-share .lkbox b{background:#fff;color:var(--ink);font-size:.5rem;padding:4px 8px;border-radius:6px}
+.m-share .cfg{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m-share .cfg .it{background:rgba(255,255,255,.05);border-radius:8px;padding:8px 10px;font-size:.5rem;color:#aab4c8;display:flex;align-items:center;justify-content:space-between}
+.m-share .tog{width:22px;height:12px;border-radius:20px;background:var(--blue);position:relative}
+.m-share .tog::after{content:"";position:absolute;right:1px;top:1px;width:10px;height:10px;border-radius:50%;background:#fff}
+/* training plant */
+.m-plant{position:absolute;inset:0;padding:18px;background:radial-gradient(120% 120% at 50% 10%,rgba(43,119,255,.12),transparent 55%)}
+.m-plant .floor{position:absolute;inset:34px 22px 22px;border:1.5px solid rgba(255,255,255,.14);border-radius:8px;background:linear-gradient(160deg,rgba(255,255,255,.04),transparent)}
+.m-plant .pin{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--mono);font-size:.6rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(43,119,255,.7);font-weight:600}
+.m-plant .lab{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:#9db6e8}
+/* diferenciadores */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.diff{position:relative;background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:30px;transition:transform .3s var(--ease),border-color .3s}
+.diff:hover{transform:translateY(-6px);border-color:rgba(43,119,255,.45)}
+.diff.hl{border-color:var(--blue)}
+.diff.hl::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;background:var(--grad-blue);border-radius:0 0 3px 3px}
+.diff .ic{width:48px;height:48px;border-radius:12px;background:var(--grad-blue);display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:var(--shadow-blue)}
+.diff .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:#9db6e8;background:rgba(255,255,255,.06);padding:4px 9px;border-radius:6px;text-transform:uppercase}
+.diff h3{color:#fff;font-size:1.3rem;letter-spacing:-.02em;margin:16px 0 8px}
+.diff p{font-size:.95rem;color:#aeb9cc}
+/* modelo / cols */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.mcol{border:1px solid var(--n200);border-radius:18px;padding:32px 28px;background:#fff;box-shadow:var(--shadow-sm)}
+.mcol .step{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--blue)}
+.mcol h3{font-size:1.3rem;margin-top:10px}.mcol p{font-size:.96rem;color:var(--n600);margin-top:10px}
+.cta-row{margin-top:42px;text-align:center}.cta-row .note{margin-top:14px;font-size:.85rem;color:var(--n400)}
+/* why / for-who */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px}
+.why .ic{width:46px;height:46px;border-radius:12px;background:#fff;border:1px solid var(--n200);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.why h3{font-size:1.25rem;letter-spacing:-.01em}.why p{font-size:.96rem;color:var(--n600);margin-top:8px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.stp{padding:28px 24px;border:1px solid var(--n200);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm)}
+.stp .n{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.stp .t{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}
+.stp h3{font-size:1.12rem;margin:6px 0 7px}.stp p{font-size:.92rem;color:var(--n500)}
+.steps.s3{grid-template-columns:repeat(3,1fr)}
+/* faq */
+.faq-list{max-width:780px;margin:46px auto 0}
+details{border-bottom:1px solid var(--n200);padding:6px 0}
+summary{list-style:none;cursor:pointer;padding:20px 4px;font-family:var(--sans);font-weight:600;font-size:1.06rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--n200);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.2rem;transition:transform .3s,background .3s}
+details[open] summary .pm{transform:rotate(45deg);background:var(--blue-light)}
+details p{padding:0 4px 22px;color:var(--n600);font-size:.98rem}
+/* proof (training) */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:48px 0 26px}
+.proof{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:34px 28px}
+.proof .num{font-family:var(--display);font-weight:800;font-size:clamp(50px,6vw,76px);line-height:.9;color:#fff}
+.proof .num .u{color:var(--blue);font-size:.4em}
+.proof .lbl{margin-top:12px;color:#c7d2ea;font-size:1rem}
+.proof-src{text-align:center}
+.proof-src a{color:#9db6e8;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(157,182,232,.4);padding-bottom:2px}
+/* cta final */
+.cta-final{text-align:center}
+.cta-final h2{color:#fff;font-size:clamp(32px,4.2vw,56px);max-width:18ch;margin:0 auto}
+.cta-final .lede{margin:20px auto 30px}
+.cta-final .legal{margin-top:20px;font-size:.78rem;color:#6b7aa8;max-width:56ch;margin-left:auto;margin-right:auto}
+/* footer */
+footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-logo{height:30px;margin-bottom:16px;display:block}
+.foot-top p{font-size:.92rem;max-width:36ch}
+.foot-col h4{color:#fff;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.foot-col a{display:block;font-family:var(--sans);font-size:.94rem;margin-bottom:9px;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.84rem;color:#6b7595}
+.foot-bottom a{color:var(--blue)}
+/* reveal + kf */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(40,200,64,.55)}70%{box-shadow:0 0 0 9px rgba(40,200,64,0)}100%{box-shadow:0 0 0 0 rgba(40,200,64,0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes meshMove{0%{background-position:0 0,0 0}100%{background-position:48px 48px,48px 48px}}
+@media(max-width:980px){
+  .hero-grid,.pcard.sales .inner,.prod-row,.cols3,.why-grid{grid-template-columns:1fr}
+  .stat-grid,.show-grid.g3,.diff-grid,.steps,.proof-grid,.steps.s3{grid-template-columns:1fr 1fr}
+  .device-zone{margin-top:30px}.foot-top{grid-template-columns:1fr}
+}
+@media(max-width:560px){.stat-grid,.show-grid.g3,.show-grid.g2,.diff-grid,.steps,.proof-grid,.steps.s3{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}[data-reveal]{opacity:1;transform:none;transition:none}}
 
-<title>Bizual Assets — Gestión Visual de Activos y Portfolios Inmobiliarios | Chile</title>
-<meta name="description" content="Bizual Assets es la plataforma de gestión visual de portfolios inmobiliarios y activos en operación: gemelo digital, catastro espacial, coordinación remota de intervenciones y mapa de calor energético. En operación en Edificio Parqtec.">
-<link rel="canonical" href="https://bizual.ai/assets">
-
+/* §6 sistema de medios editable */
+.slot{position:relative}
+.slot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;display:none;z-index:7}
+.slot.has-img .slot-img{display:block}
+.slot-note{display:none}
+</style><link rel="canonical" href="https://bizual.ai/assets">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<meta name="author" content="Magama SpA">
-<meta name="geo.region" content="CL">
-
-<meta property="og:type" content="website">
-<meta property="og:locale" content="es_CL">
-<meta property="og:site_name" content="Bizual">
-<meta property="og:title" content="Bizual Assets — Gestión Visual de Activos y Portfolios Inmobiliarios">
-<meta property="og:description" content="Visualiza el negocio, controla el activo. Gemelo digital del portfolio y catastro espacial. En operación en Edificio Parqtec.">
-<meta property="og:url" content="https://bizual.ai/assets">
-<meta property="og:image" content="https://bizual.ai/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bizual Assets — Gestión Visual de Activos">
-<meta name="twitter:description" content="Visualiza el negocio, controla el activo.">
-<meta name="twitter:image" content="https://bizual.ai/og-image.jpg">
-
-<link rel="icon" type="image/png" href="/img/logo-bizual.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/css/styles.css">
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bizual.ai/#organization","name":"Bizual","alternateName":"Bizual by Magama","url":"https://bizual.ai","logo":"https://bizual.ai/img/logo-bizual.png","description":"Sala de Ventas 3D y gestión visual de activos inmobiliarios en Chile.","parentOrganization":{"@type":"Organization","name":"Magama SpA","url":"https://magama.cl","taxID":"76.837.395-7"},"address":{"@type":"PostalAddress","streetAddress":"Av. Manquehue Sur 520 Of. 205","addressLocality":"Las Condes","addressRegion":"Región Metropolitana","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"contacto\u0040bizual.ai","availableLanguage":["Spanish"],"areaServed":"CL"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bizual Assets","applicationCategory":"BusinessApplication","applicationSubCategory":"Real Estate Asset Management Platform","operatingSystem":"Web","url":"https://bizual.ai/assets","description":"Plataforma de gestión visual de portfolios inmobiliarios y activos en operación: gemelo digital del portfolio, catastro espacial, coordinación remota de intervenciones y mapa de calor energético espacializado.","featureList":["Gemelo digital del portfolio","Catastro espacial","Coordinación remota de intervenciones","Mapa de calor energético espacializado","Tour 3D público de espacios en arriendo","CRM y reportería de visitas"],"audience":{"@type":"BusinessAudience","audienceType":"Portfolio Managers, Family Offices, Shopping Centers, Corporate Real Estate"},"offers":{"@type":"Offer","priceCurrency":"CLF","priceSpecification":{"@type":"PriceSpecification","description":"Planes y pricing personalizado según escala del portfolio. Cotización a medida."}},"publisher":{"@id":"https://bizual.ai/#organization"}}</script>
+<meta name="author" content="Magama SpA"><meta name="geo.region" content="CL"><meta name="geo.placename" content="Santiago, Chile">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_CL"><meta property="og:site_name" content="Bizual">
+<meta property="og:title" content="Bizual Assets — Gemelo digital para gestionar tus activos en arriendo"><meta property="og:description" content="Gemelo digital del portfolio, catastro espacial y gestión visual de activos en operación. En operación en Edificio Parqtec.">
+<meta property="og:url" content="https://bizual.ai/assets"><meta property="og:image" content="https://bizual.ai/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bizual Assets — Gemelo digital para gestionar tus activos en arriendo"><meta name="twitter:description" content="Gemelo digital del portfolio, catastro espacial y gestión visual de activos en operación. En operación en Edificio Parqtec."><meta name="twitter:image" content="https://bizual.ai/og-image.jpg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bizual.ai/#organization","name":"Bizual","alternateName":"Bizual by Magama","url":"https://bizual.ai","logo":"https://bizual.ai/logo-bizual.png","description":"Convertimos espacios físicos en gemelos digitales que generan negocio. Sala de Ventas 3D, gestión visual de activos y capacitación inmersiva para empresas en Chile.","parentOrganization":{"@type":"Organization","name":"Magama SpA","url":"https://magama.cl","taxID":"76.837.395-7"},"address":{"@type":"PostalAddress","streetAddress":"Av. Manquehue Sur 520 Of. 205","addressLocality":"Las Condes","addressRegion":"Región Metropolitana","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"contacto\u0040bizual.ai","availableLanguage":["Spanish"],"areaServed":"CL"},"areaServed":{"@type":"Country","name":"Chile"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bizual Assets","alternateName":null,"applicationCategory":"BusinessApplication","applicationSubCategory":"Real Estate Asset Management Platform","operatingSystem":"Web","url":"https://bizual.ai/assets","description":"Plataforma de gestión visual de portfolios inmobiliarios y activos en operación: gemelo digital, catastro espacial y coordinación remota.","featureList":["Gemelo digital del portfolio","Catastro espacial","Coordinación remota de intervenciones","Tour 3D público de espacios en arriendo"],"publisher":{"@id":"https://bizual.ai/#organization"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://bizual.ai/"},{"@type":"ListItem","position":2,"name":"Bizual Assets","item":"https://bizual.ai/assets"}]}</script>
-</head>
-<body>
-
-<header class="site-header">
-  <div class="container">
-    <nav class="nav" aria-label="Principal">
-      <a class="brand" href="/">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="i" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ba3ff"/><stop offset="1" stop-color="#2b77ff"/></linearGradient></defs><rect x="7" y="7" width="18" height="18" rx="5" transform="rotate(45 16 16)" fill="url(#i)"/><rect x="12.5" y="12.5" width="7" height="7" rx="2" transform="rotate(45 16 16)" fill="#fff"/></svg>
-        Bizual
-      </a>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-      <div class="nav-links">
-        <a href="/sales">Bizual Sales</a>
-        <a href="/assets">Bizual Assets</a>
-        <a href="#caso-parqtec">Caso Parqtec</a>
-        <a href="/contacto?producto=bizual-assets" class="btn-primary">Solicita una demo</a>
-      </div>
-    </nav>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Mi prospecto necesita crear una cuenta?","acceptedAnswer":{"@type":"Answer","text":"No. Compartes el espacio con un link; tu prospecto lo recorre directo, con contraseña y vencimiento opcionales."}},{"@type":"Question","name":"¿Sirve como respaldo legal del estado del espacio?","acceptedAnswer":{"@type":"Answer","text":"Documenta el estado en 3D antes y después de cada arriendo. Es respaldo visual para tu gestión; la validez legal la define tu contrato y asesoría."}},{"@type":"Question","name":"¿Puedo gestionar varios inmuebles a la vez?","acceptedAnswer":{"@type":"Answer","text":"Sí. Toda tu cartera vive en un panel con estados (disponible, arrendado, por vencer, mantención)."}},{"@type":"Question","name":"¿Cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"Setup único + suscripción mensual en UF. Cotización personalizada en UF + IVA en 3–5 días."}}]}</script>
+</head><body><nav id="nav"><div class="wrap nav-in">
+  <a href="/" aria-label="Bizual — inicio"><img class="nav-logo" src="/img/logo-bizual-light.png" alt="Bizual"></a>
+  <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <div class="nav-links">
+    <a href="/#productos">Productos</a>
+    <a href="/sales">Sales</a>
+    <a href="/assets" class="active">Assets</a>
+    <a href="/training">Training</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/contacto?producto=bizual-assets" class="btn btn-primary nav-cta">Solicitar demo <span class="arr">&rarr;</span></a>
   </div>
-</header>
-
-<main>
-
-<section class="hero" id="hero">
-  <div class="container">
-    <h1>Bizual Assets — Visualiza el Negocio, Controla el Activo</h1>
-    <p class="subhead">
-      <strong>Bizual Assets es la plataforma de gestión visual de portfolios inmobiliarios y activos en operación.</strong>
-      Gemelo digital del portfolio, catastro espacial, coordinación remota de intervenciones
-      y mapa de calor energético espacializado — en una sola plataforma.
-    </p>
-    <div class="cta-group">
-      <a href="/contacto?producto=bizual-assets" class="btn-primary">Solicita una demo →</a>
-      <a href="#caso-parqtec" class="btn-link">Ver caso en operación</a>
-    </div>
+</div></nav>
+<header class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <span class="hero-badge hb-green" data-reveal><span class="d" style="background:#16a34a"></span> En operación · Parqtec</span>
+    <h1 data-reveal style="--d:.05s">Cada espacio, listo para <span class="blue">arrendar más rápido.</span></h1>
+    <p class="punch" data-reveal style="--d:.12s">Tu cartera de arriendos, documentada y compartible en un link.</p>
+    <p class="lede" data-reveal style="--d:.18s">Una réplica digital exacta de cada espacio. Comparte con prospectos sin que necesiten cuenta, documenta cada arriendo en 3D y termina con las disputas y las visitas innecesarias.</p>
+    <div class="hero-cta" data-reveal style="--d:.24s"><a href="/contacto?producto=bizual-assets" class="btn btn-primary">Solicitar demo Assets <span class="arr">&rarr;</span></a><a href="#en-accion" class="btn btn-ghost">Ver el panel</a></div>
+    <div class="chips" data-reveal style="--d:.3s"><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Comparte sin cuenta</span><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Respaldo visual 3D</span><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Cartera en un panel</span></div>
   </div>
-</section>
-
-<!-- CASO PARQTEC (mockups · sin pricing del cliente) -->
-<section class="caso-parqtec" id="caso-parqtec" aria-labelledby="caso-parqtec-titulo">
-  <div class="container">
-    <span class="badge-vivo">▌ EN OPERACIÓN</span>
-    <h2 id="caso-parqtec-titulo">Bizual Assets en operación: Edificio Parqtec</h2>
-    <p class="intro-caso intro">
-      Edificio Parqtec (Santiago, Chile) opera su catastro espacial,
-      gestión de espacios y solicitudes de arriendo sobre Bizual Assets.
-      Dashboard en tiempo real, recorrido 3D del edificio para arrendatarios
-      potenciales, CRM integrado y reportería de visitas y conversiones —
-      todo en una sola plataforma.
-    </p>
-
-    <div class="grid-parqtec">
-
-      <!-- Mockup 1: Dashboard -->
-      <figure class="captura" style="border:0;box-shadow:none;background:none">
-        <div class="mock" role="img" aria-label="Dashboard de Bizual Assets en Edificio Parqtec: total de espacios, disponibilidad, solicitudes y actividad">
-          <div class="mock-top"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-url">lab.bizual.ai · Edificio Parqtec · Dashboard</span></div>
-          <div class="mock-body">
-            <aside class="mock-side">
-              <div class="mbrand"><svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="16" height="16" rx="4" transform="rotate(45 16 16)" fill="#6ba3ff"/></svg> Bizual</div>
-              <div class="ml active"><span class="ic"></span> Dashboard</div>
-              <div class="ml"><span class="ic"></span> Espacios</div>
-              <div class="ml"><span class="ic"></span> Tour 3D</div>
-              <div class="ml"><span class="ic"></span> CRM</div>
-              <div class="ml"><span class="ic"></span> Configuración</div>
-            </aside>
-            <div class="mock-main">
-              <div class="mock-h">Dashboard</div>
-              <div class="mock-sub">Resumen de Edificio Parqtec</div>
-              <div class="kpis">
-                <div class="kpi"><div class="kl">Total espacios</div><div class="kv">5</div><div class="kf">3 arrendables · +2 comunes</div></div>
-                <div class="kpi"><div class="kl">Disponibles</div><div class="kv">3</div><div class="kf">Tasa 100%</div></div>
-                <div class="kpi"><div class="kl">Solicitudes</div><div class="kv">1</div><div class="kf">Esta semana</div></div>
-                <div class="kpi"><div class="kl">Visitas públicas</div><div class="kv">2</div><div class="kf">Sesiones únicas (7d)</div></div>
-              </div>
-              <div class="chart">
-                <div class="panel"><div class="pt">Ocupación por tipo</div><div class="bars"><div class="bar" style="height:100%"></div><div class="bar" style="height:55%"></div></div></div>
-                <div class="panel"><div class="pt">Actividad de solicitudes · 8 semanas</div>
-                  <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><polyline fill="rgba(43,119,255,.12)" stroke="none" points="0,68 0,66 28,66 56,66 84,66 112,66 140,66 168,8 200,38 200,70 0,70"/><polyline fill="none" stroke="#2b77ff" stroke-width="2.5" points="0,66 28,66 56,66 84,66 112,66 140,66 168,8 200,38"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="device-zone" data-reveal style="--d:.2s">
+    <div class="device"><span class="slot-tag">slot: assets-hero-panel</span>
+      <div class="device-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="live">PANEL</span></div>
+      <div class="device-body" style="min-height:340px;padding:18px">
+        <div class="m-dash" style="position:relative;inset:auto">
+          <div class="dh"><span class="tt">Mi Cartera</span><span class="ct">12 ESPACIOS</span><span class="nv">+ Nuevo</span></div>
+          <div class="m-row"><span class="th">3D</span><div class="nm">Local Apoquindo 3500<span>120 m² · Comercial</span></div><span class="st disp">DISPONIBLE</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Oficina Costanera 12B<span>85 m² · Tech Solutions SpA</span></div><span class="st arr">ARRENDADO</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Bodega Quilicura 4<span>450 m² · LogiCenter Ltda.</span></div><span class="st venc">POR VENCER</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Local Vitacura 2800<span>95 m² · Remodelación</span></div><span class="st mant">MANTENCIÓN</span></div>
+          <div class="df"><span>Mostrando 4 de 12</span><span>VER TODOS</span></div>
         </div>
-        <figcaption>Dashboard ejecutivo: ocupación por tipo, actividad de solicitudes y disponibilidad en tiempo real.</figcaption>
-      </figure>
-
-      <!-- Mockup 2: Espacios -->
-      <figure class="captura" style="border:0;box-shadow:none;background:none">
-        <div class="mock" role="img" aria-label="Gestión de espacios del Edificio Parqtec: catastro, tipo, superficie, estado y marcador 3D">
-          <div class="mock-top"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-url">lab.bizual.ai · Edificio Parqtec · Espacios</span></div>
-          <div class="mock-body">
-            <aside class="mock-side">
-              <div class="mbrand"><svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true"><rect x="8" y="8" width="16" height="16" rx="4" transform="rotate(45 16 16)" fill="#6ba3ff"/></svg> Bizual</div>
-              <div class="ml"><span class="ic"></span> Dashboard</div>
-              <div class="ml active"><span class="ic"></span> Espacios</div>
-              <div class="ml"><span class="ic"></span> Tour 3D</div>
-              <div class="ml"><span class="ic"></span> CRM</div>
-              <div class="ml"><span class="ic"></span> Configuración</div>
-            </aside>
-            <div class="mock-main">
-              <div class="mock-h">Espacios</div>
-              <div class="mock-sub">3 arrendables · 3 disponibles · 2 zonas comunes</div>
-              <table class="mock-table">
-                <thead><tr><th>Código</th><th>Nombre</th><th>Tipo</th><th>Piso</th><th>M²</th><th>Estado</th><th>3D</th></tr></thead>
-                <tbody>
-                  <tr><td>T-701</td><td>Terraza</td><td>Otro</td><td>7</td><td>276</td><td><span class="pill ok">Disponible</span></td><td class="check">✓</td></tr>
-                  <tr><td>O-401</td><td>Oficina 4to piso</td><td>Oficina</td><td>4</td><td>400</td><td><span class="pill ok">Disponible</span></td><td class="check">✓</td></tr>
-                  <tr><td>A-101</td><td>Auditorio</td><td>Otro</td><td>—</td><td>500</td><td><span class="pill ok">Disponible</span></td><td class="check">✓</td></tr>
-                  <tr><td>C-001</td><td>Comedor</td><td>Comedor</td><td>—</td><td>100</td><td><span class="pill zona">Zona común</span></td><td class="check">✓</td></tr>
-                  <tr><td>C-000</td><td>Conserjería</td><td>Lobby</td><td>—</td><td>20</td><td><span class="pill zona">Zona común</span></td><td class="check">✓</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <figcaption>Gestión de espacios: catastro, estado y marcador 3D por unidad. Catálogo completo del edificio.</figcaption>
-      </figure>
-
-      <!-- Mockup 3: Tour 3D público -->
-      <figure class="captura">
-        <div class="mock-tour" role="img" aria-label="Tour 3D público del Edificio Parqtec navegable desde el navegador">
-          <div class="sky"></div>
-          <div class="bld b1"></div><div class="bld b2"></div><div class="bld b3"></div>
-          <div class="ground"></div>
-          <div class="marker"></div>
-          <div class="badge">Tour 3D público · recorre el edificio antes de visitar</div>
-        </div>
-        <figcaption>Tour 3D público: el arrendatario potencial recorre el edificio y sus espacios antes de visitar, 24/7.</figcaption>
-      </figure>
-
-    </div>
-
-    <div class="metricas-parqtec">
-      <article class="metrica"><span class="numero">5</span><span class="label">Espacios y zonas comunes bajo gestión</span></article>
-      <article class="metrica"><span class="numero">100%</span><span class="label">Visibilidad en plataforma</span></article>
-      <article class="metrica"><span class="numero">Tiempo real</span><span class="label">Inventario sincronizado</span></article>
-      <article class="metrica"><span class="numero">24/7</span><span class="label">Tour 3D público disponible</span></article>
-    </div>
-
-    <blockquote class="cita-parqtec">Bizual Assets no es promesa. Está en operación, gestionando activos reales, con métricas reales, hoy.</blockquote>
-
-    <div class="cta-parqtec"><a href="/contacto?producto=bizual-assets" class="btn-primary">Solicita una demo de Assets →</a></div>
+      </div></div>
   </div>
-</section>
+</div></header>
 
-<!-- QUÉ HACE ASSETS -->
-<section class="que-hace" id="que-hace" aria-labelledby="qh-titulo">
-  <div class="container">
-    <h2 id="qh-titulo">Qué hace Bizual Assets</h2>
-    <p class="intro">La capa visual de control para quien gestiona el activo, no la venta. Bizual Assets complementa tu CMMS y tus sistemas de gestión actuales — no los reemplaza.</p>
-    <div class="grid-features">
-      <article class="feature"><span class="icon" aria-hidden="true">🗺️</span><h3>Gemelo digital del portfolio</h3><p>Cada edificio y espacio, navegable y vinculado a su información de gestión.</p></article>
-      <article class="feature"><span class="icon" aria-hidden="true">📐</span><h3>Catastro espacial</h3><p>Inventario espacial vivo: superficie, estado, uso y disponibilidad por unidad.</p></article>
-      <article class="feature"><span class="icon" aria-hidden="true">🛠️</span><h3>Coordinación remota de intervenciones</h3><p>Visualiza y coordina mantenciones e intervenciones sobre el modelo, sin estar en terreno.</p></article>
-      <article class="feature"><span class="icon" aria-hidden="true">🌡️</span><h3>Mapa de calor energético espacializado</h3><p>Consumo y eficiencia energética representados sobre el espacio físico real.</p></article>
-      <article class="feature"><span class="icon" aria-hidden="true">🧭</span><h3>Tour 3D público de espacios</h3><p>Recorrido navegable para arrendatarios potenciales, disponible 24/7 sin instalar nada.</p></article>
-      <article class="feature feature-soon"><span class="icon" aria-hidden="true">🔌</span><h3>Compatible con tus sistemas <span class="badge-soon">Pronto</span></h3><p>Diseñado para coexistir con tu CMMS y CRM actuales. Integraciones nativas — próximamente.</p></article>
-    </div>
+<span id="en-accion"></span>
+<section class="band"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow" data-reveal>Bizual Assets · En acción</span>
+  <h2 class="h2" data-reveal style="--d:.06s">Toda tu operación de arriendo, <span class="blue">en una pantalla.</span></h2>
+  <p class="lede" data-reveal style="--d:.1s">Tu portafolio en una réplica digital exacta. Comparte espacios con prospectos sin que necesiten cuenta y documenta cada arriendo en video 3D.</p></div>
+  <div class="show-grid g2">
+    <div class="show" data-reveal style="--d:.05s"><div class="mock slot" data-slot="assets-01-cartera"><img class="slot-img" src="/img/assets-01-cartera.webp" alt="Panel de cartera de activos en Bizual Assets" loading="lazy" onload="this.closest('.slot').classList.add('has-img')"><span class="slot-note">slot: assets-01-cartera.webp</span>
+      <div class="m-dash"><div class="dh"><span class="tt">Mi Cartera</span><span class="ct">12 ESPACIOS</span><span class="nv">+ Nuevo</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Local Apoquindo 3500<span>120 m² · Comercial</span></div><span class="st disp">DISPONIBLE</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Oficina Costanera 12B<span>85 m² · Tech Solutions SpA</span></div><span class="st arr">ARRENDADO</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Bodega Quilicura 4<span>450 m² · LogiCenter Ltda.</span></div><span class="st venc">POR VENCER</span></div><div class="m-row"><span class="th">3D</span><div class="nm">Local Vitacura 2800<span>95 m² · Remodelación</span></div><span class="st mant">MANTENCIÓN</span></div><div class="df"><span>Mostrando 4 de 12</span><span>VER TODOS</span></div></div></div>
+      <div class="cap-num">01 · Panel de portafolio</div><h3>Toda tu cartera, de un vistazo.</h3>
+      <p>Disponibles, arrendados, por vencer y en mantención. Sabes el estado de cada metro cuadrado sin abrir una planilla.</p></div>
+    <div class="show" data-reveal style="--d:.13s"><div class="mock slot" data-slot="assets-02-compartir"><img class="slot-img" src="/img/assets-02-compartir.webp" alt="Pantalla para compartir un espacio con un enlace único" loading="lazy" onload="this.closest('.slot').classList.add('has-img')"><span class="slot-note">slot: assets-02-compartir.webp</span>
+      <div class="m-share"><div class="sh"><span class="tt">Compartir espacio</span><span class="ac">● ACTIVO</span></div>
+        <div class="lk" style="margin-top:12px">LINK ÚNICO</div>
+        <div class="lkbox"><code>bizual.ai/share/k7m9p2x4</code><b>Copiar link</b></div>
+        <div class="cfg"><div class="it"><span>Contraseña</span><span class="tog"></span></div><div class="it"><span>Vence · 15 Mar</span><span class="tog"></span></div></div>
+        <div class="df" style="margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.46rem;color:#7f8db5;letter-spacing:.06em"><span>Visto 23 veces</span><span>Última hace 2 horas</span></div></div></div>
+      <div class="cap-num">02 · Link compartible</div><h3>Un enlace, y el prospecto ya está dentro.</h3>
+      <p>Comparte el espacio con contraseña y vencimiento opcionales. Sin cuentas, sin descargas — y sabes cuántas veces lo vieron.</p></div>
   </div>
-</section>
+</div></section>
 
-<!-- PLANES (sin números) -->
-<section class="modelo-comercial" id="planes" aria-labelledby="pl-titulo">
-  <div class="container">
-    <h2 id="pl-titulo">Planes según la escala de tu portfolio</h2>
-    <p class="intro">Tres niveles funcionales que crecen contigo, desde el catastro digital hasta la gestión inteligente del activo.</p>
-    <div class="grid-modelo">
-      <article class="card-modelo"><h3>Base</h3><p>Gemelo digital y catastro espacial del portfolio. Tour 3D público de los espacios. La capa visual para empezar a controlar el activo.</p></article>
-      <article class="card-modelo"><h3>Sync</h3><p>Todo lo de Base, más coordinación remota de intervenciones, CRM de arriendo y reportería de visitas y conversiones.</p></article>
-      <article class="card-modelo"><h3>Smart</h3><p>Todo lo de Sync, más mapa de calor energético espacializado y dashboards avanzados para gestión inteligente y multi-activo.</p></article>
-    </div>
-    <p class="micro">Planes y pricing personalizado según escala de tu portfolio.</p>
-    <div class="cta-modelo"><a href="/contacto?producto=bizual-assets" class="btn-primary">Solicita cotización personalizada →</a></div>
+<section class="band dark"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow" data-reveal>Lo que resuelve</span>
+  <h2 class="h2" data-reveal style="--d:.06s">Menos visitas a terreno. <span style="color:#85b7eb">Cero disputas sin respaldo.</span></h2>
+  <p class="lede" data-reveal style="--d:.1s">Seis formas en que Bizual Assets acelera tus arriendos y protege tu operación.</p></div>
+  <div class="diff-grid"><div class="diff" data-reveal style="--d:0.04s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 2 8 4.5v9L12 20l-8-4.5v-9L12 2Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Gemelo digital navegable</h3><p>Una réplica 3D exacta de cada espacio, recorrible desde el navegador.</p></div><div class="diff hl" data-reveal style="--d:0.10s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Estado documentado antes y después</h3><p>Cada arriendo queda registrado en 3D. Respaldo visual ante cualquier disputa.</p></div><div class="diff" data-reveal style="--d:0.16s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Comparte con un link, sin cuenta</h3><p>Tu prospecto recorre el espacio desde un enlace. Sin registros ni fricción.</p></div><div class="diff" data-reveal style="--d:0.04s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#fff" stroke-width="2"/><path d="M3 9h18M9 4v16" stroke="#fff" stroke-width="2"/></svg></div><span class="tag">★ Diferenciador</span><h3>Toda tu cartera en un panel</h3><p>Disponibles, arrendados, por vencer y en mantención. Todo en una vista.</p></div><div class="diff" data-reveal style="--d:0.10s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="#fff" stroke-width="2"/><path d="M12 2v3M12 19v3M22 12h-3M5 12H2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Cada equipo etiquetado en su lugar</h3><p>Activos y equipamiento ubicados en su posición exacta dentro del gemelo.</p></div><div class="diff" data-reveal style="--d:0.16s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12h6M9 16h6M9 8h3M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Informes PDF en un click</h3><p>Genera reportes profesionales del estado de cada espacio al instante.</p></div></div>
+</div></section>
+
+<section class="band" style="background:var(--n50)"><div class="wrap center">
+  <span class="eyebrow" data-reveal style="justify-content:center">Caso en operación</span>
+  <h2 class="h2" data-reveal style="--d:.06s">Hoy operando en Parqtec.</h2>
+  <p class="lede" data-reveal style="--d:.1s;margin-left:auto;margin-right:auto">Bizual Assets está en operación documentando y compartiendo espacios. Cuando los resultados estén consolidados, los publicaremos aquí — con datos reales, no promesas.</p>
+  <div class="cta-row" data-reveal><a href="/contacto?producto=bizual-assets" class="btn btn-blue">Solicita cotización personalizada <span class="arr">&rarr;</span></a><p class="note">Valores en UF + IVA. Setup único + suscripción mensual.</p></div>
+</div></section>
+
+<section class="band" id="faq" style="background:var(--n50)"><div class="wrap">
+  <div class="sec-head center"><span class="eyebrow" data-reveal>Preguntas frecuentes</span>
+  <h2 class="h2" data-reveal style="--d:.06s">Lo que suelen preguntarnos.</h2></div>
+  <div class="faq-list" data-reveal><details><summary>¿Mi prospecto necesita crear una cuenta? <span class="pm">+</span></summary><p>No. Compartes el espacio con un link; tu prospecto lo recorre directo, con contraseña y vencimiento opcionales.</p></details><details><summary>¿Sirve como respaldo legal del estado del espacio? <span class="pm">+</span></summary><p>Documenta el estado en 3D antes y después de cada arriendo. Es respaldo visual para tu gestión; la validez legal la define tu contrato y asesoría.</p></details><details><summary>¿Puedo gestionar varios inmuebles a la vez? <span class="pm">+</span></summary><p>Sí. Toda tu cartera vive en un panel con estados (disponible, arrendado, por vencer, mantención).</p></details><details><summary>¿Cuánto cuesta? <span class="pm">+</span></summary><p>Setup único + suscripción mensual en UF. Cotización personalizada en UF + IVA en 3–5 días.</p></details></div></div></section>
+
+<section class="band dark cta-final" id="contacto"><div class="wrap">
+  <h2 data-reveal>Documenta, comparte y arrienda más rápido.</h2>
+  <p class="lede" data-reveal style="--d:.08s">Agenda una demo de 30 minutos y te mostramos Bizual Assets con un caso real.</p>
+  <div data-reveal style="--d:.14s"><a href="/contacto?producto=bizual-assets" class="btn btn-blue">Solicitar demo <span class="arr">&rarr;</span></a></div>
+  <p class="legal" data-reveal style="--d:.2s">Al enviar el formulario aceptas el tratamiento de tus datos conforme a la Ley 21.719. Nunca compartimos tu información.</p>
+</div></section>
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div><img class="foot-logo" src="/img/logo-bizual-dark.png" alt="Bizual">
+      <p>Convertimos espacios físicos en gemelos digitales que generan resultado de negocio. Un producto de Magama SpA.</p></div>
+    <div class="foot-col"><h4>Productos</h4><a href="/sales">Bizual Sales</a><a href="/assets">Bizual Assets</a><a href="/training">Bizual Training</a></div>
+    <div class="foot-col"><h4>Contacto</h4><a href="/contacto?producto=bizual-assets">contacto&#64;bizual.ai</a><a href="/contacto?producto=bizual-assets">Solicitar demo</a><span style="display:block;font-size:.9rem;margin-top:4px;color:#9aa6c4">Santiago, Chile</span></div>
   </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/img/logo-bizual-blanco.svg" alt="Bizual" width="120" height="29">
-        <p>Un producto de <strong>Magama SpA</strong>, empresa chilena de tecnología con 7 años en visualización y plataformas digitales.</p>
-        <p class="micro">RUT 76.837.395-7 · Av. Manquehue Sur 520 Of. 205, Las Condes, Santiago.</p>
-      </div>
-      <nav class="footer-nav"><h4>Productos</h4><ul><li><a href="/sales">Bizual Sales</a></li><li><a href="/assets">Bizual Assets</a></li></ul></nav>
-      <nav class="footer-nav"><h4>Empresa</h4><ul><li><a href="/contacto">Contacto</a></li><li><a href="https://magama.cl">Magama.cl</a></li></ul></nav>
-      <div class="footer-contacto"><h4>Contacto</h4><p>contacto&#64;bizual.ai</p></div>
-    </div>
-    <div class="footer-legal"><p>&copy; 2026 Magama SpA · <a href="/privacidad">Política de privacidad</a> · <a href="/terminos">Términos</a></p></div>
-  </div>
-</footer>
-
-<script src="/js/main.js" defer></script>
-</body>
-</html>
+  <div class="foot-bottom"><span>&copy; 2026 Magama SpA · Bizual</span><span><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a></span></div>
+</div></footer>
+<script>
+var nav=document.getElementById("nav"),burger=document.getElementById("burger");
+window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",window.scrollY>10)});
+if(burger){burger.addEventListener("click",function(){nav.classList.toggle("menu-open")});
+document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("menu-open")})});}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.1,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll("[data-reveal]").forEach(function(el){io.observe(el)});
+function ac(el){var t=parseInt(el.getAttribute("data-count"),10),s=null,d=1500;function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){ac(e.target);co.unobserve(e.target)}})},{threshold:.6});
+document.querySelectorAll("[data-count]").forEach(function(el){co.observe(el)});
+</script>
+<script>
+/* §6.3 — override opcional de imágenes vía /media.json (sin tocar HTML) */
+fetch('/media.json').then(function(r){return r.json();}).then(function(map){
+  document.querySelectorAll('.slot[data-slot]').forEach(function(s){
+    var u=map[s.dataset.slot], img=s.querySelector('.slot-img');
+    if(u&&img&&img.getAttribute('src')!==u){img.src=u;}
+  });
+}).catch(function(){});
+</script>
+</body></html>
