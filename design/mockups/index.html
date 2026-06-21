@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-CL"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bizual — Vende tu proyecto inmobiliario antes de construirlo</title>
+<title>Bizual — Convertimos tus espacios físicos en gemelos digitales que generan resultado</title>
 <meta name="description" content="Bizual Sales: la Sala de Ventas 3D de tu proyecto. El comprador recorre el edificio, ve la vista real desde cada piso y reserva su unidad, 24/7. Sales, Assets y Training sobre un motor 3D propio.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@ a{text-decoration:none;color:inherit}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--blue);font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:500;margin-bottom:22px}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--grad-blue)}
 h1,h2,h3,.disp,.pname{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.02}
-.h2{font-size:clamp(38px,5.4vw,78px);line-height:1.0;letter-spacing:-.035em}
+.h2{font-size:clamp(34px,4.4vw,60px);line-height:1.0;letter-spacing:-.035em}
 .blue{color:var(--blue)}
 .lede{font-size:1.18rem;color:var(--n600);max-width:60ch}
 /* buttons */
@@ -77,7 +77,7 @@ nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--n100) 1px,transparent 1px),linear-gradient(90deg,var(--n100) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 95% 78% at 26% 16%,#000 32%,transparent 76%);opacity:.7;z-index:0;animation:meshMove 30s linear infinite}
 .hero::after{content:"";position:absolute;top:-180px;right:-140px;width:720px;height:720px;background:radial-gradient(circle,rgba(43,119,255,.14),transparent 62%);z-index:0;animation:float 13s ease-in-out infinite}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(54px,8.8vw,112px);line-height:.92;letter-spacing:-.04em;color:var(--ink)}
+.hero h1{font-size:clamp(46px,6.8vw,88px);line-height:1.0;letter-spacing:-.04em;color:var(--ink)}
 .punch{margin-top:26px;font-family:var(--sans);font-size:clamp(1.18rem,2vw,1.6rem);font-weight:600;color:var(--ink);max-width:24ch}
 .punch .blue{color:var(--blue)}
 .hero .lede{margin-top:18px;max-width:44ch}
@@ -126,7 +126,7 @@ nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:52px 0 32px}
 .stat{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px 28px;transition:transform .3s var(--ease),border-color .3s}
 .stat:hover{transform:translateY(-6px);border-color:rgba(43,119,255,.5)}
-.stat .num{font-family:var(--display);font-weight:800;font-size:clamp(58px,7.2vw,90px);line-height:.9;color:#fff}
+.stat .num{font-family:var(--display);font-weight:800;font-size:clamp(50px,6vw,76px);line-height:.9;color:#fff}
 .stat .num .u{color:var(--blue);font-size:.42em}
 .stat .lbl{margin-top:14px;font-size:1rem;color:#c7d2ea}
 .stat .src{margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:#6b7aa8}
@@ -138,7 +138,7 @@ nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg
 .pcard:hover{transform:translateY(-6px)}
 .pcard .ptop{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
 .pcard .pseg{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
-.pcard .pname{font-size:clamp(38px,4.2vw,64px);line-height:1;margin-bottom:10px}
+.pcard .pname{font-size:clamp(34px,3.6vw,54px);line-height:1;margin-bottom:10px}
 .pcard .pvalue{font-family:var(--sans);font-weight:700;font-size:1.18rem;margin-bottom:16px}
 .pcard .pdesc{font-size:1rem;margin-bottom:24px;max-width:52ch}
 .plist{list-style:none;margin-bottom:30px}
@@ -160,6 +160,17 @@ nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg
 .pcard.training{background:linear-gradient(150deg,#131d31,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09)}
 .pcard.training .pseg{color:#9db6e8}.pcard.training .pvalue{color:var(--blue-panel)}.pcard.training .pdesc{color:#aeb9cc}
 .pcard.training .plist li svg path{stroke:var(--green-bright)}
+.prod-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+.pcard.eq{background:linear-gradient(150deg,#131d31,#0a1018);color:#fff;box-shadow:var(--shadow-xl);--bd:rgba(255,255,255,.09);display:flex;flex-direction:column;padding:clamp(24px,2.4vw,34px)}
+.pcard.eq .ptop{min-height:30px;margin-bottom:18px}
+.pcard.eq .pname{font-size:clamp(28px,2.6vw,38px);margin-bottom:8px}
+.pcard.eq .pseg{color:#9db6e8}
+.pcard.eq .pvalue{color:var(--blue-panel);font-size:1.04rem;margin-bottom:12px}
+.pcard.eq .pdesc{color:#aeb9cc;font-size:.94rem;margin-bottom:20px;min-height:118px}
+.pcard.eq .plist{flex:1 0 auto;margin-bottom:22px}
+.pcard.eq .plist li svg path{stroke:var(--green-bright)}
+.pcard.eq .btn{margin-top:auto;width:100%;justify-content:center}
+@media(max-width:980px){.prod-grid3{grid-template-columns:1fr}.pcard.eq .pdesc{min-height:0}}
 /* showcase */
 .show-grid{display:grid;gap:24px;margin-top:50px}
 .show-grid.g3{grid-template-columns:repeat(3,1fr)}
@@ -274,7 +285,7 @@ details p{padding:0 4px 22px;color:var(--n600);font-size:.98rem}
 .proof-src a{color:#9db6e8;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(157,182,232,.4);padding-bottom:2px}
 /* cta final */
 .cta-final{text-align:center}
-.cta-final h2{color:#fff;font-size:clamp(36px,5.2vw,68px);max-width:18ch;margin:0 auto}
+.cta-final h2{color:#fff;font-size:clamp(32px,4.2vw,56px);max-width:18ch;margin:0 auto}
 .cta-final .lede{margin:20px auto 30px}
 .cta-final .legal{margin-top:20px;font-size:.78rem;color:#6b7aa8;max-width:56ch;margin-left:auto;margin-right:auto}
 /* footer */
@@ -309,116 +320,62 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
     <a href="sales.html">Sales</a>
     <a href="assets.html">Assets</a>
     <a href="training.html">Training</a>
-    <a href="#faq">FAQ</a>
     <a href="#contacto" class="btn btn-primary nav-cta">Solicitar demo <span class="arr">&rarr;</span></a>
   </div>
 </div></nav>
-<header class="hero" id="top"><div class="wrap hero-grid">
-  <div>
-    <span class="eyebrow" data-reveal>Gemelos digitales que generan resultado</span>
-    <h1 data-reveal style="--d:.05s">Vende tu proyecto inmobiliario <span class="blue">antes de construirlo.</span></h1>
-    <p class="punch" data-reveal style="--d:.12s">Mientras tu competencia agenda visitas, tú ya estás cerrando.</p>
-    <p class="lede" data-reveal style="--d:.18s">La <strong>Sala de Ventas 3D</strong> de tu proyecto: el comprador recorre el edificio completo, ve la vista real desde cada piso y reserva su unidad. 24/7, desde cualquier dispositivo.</p>
-    <div class="hero-cta" data-reveal style="--d:.24s"><a href="#contacto" class="btn btn-primary">Solicitar demo <span class="arr">&rarr;</span></a><a href="#productos" class="btn btn-ghost">Ver los 3 productos</a></div>
-    <div class="chips" data-reveal style="--d:.3s">
+<header class="hero" id="top"><div class="wrap center">
+  <div style="max-width:940px;margin:0 auto">
+    <span class="eyebrow" data-reveal>La plataforma de gemelos digitales para tu negocio</span>
+    <h1 data-reveal style="--d:.05s">Convertimos tus espacios físicos en <span class="blue">gemelos digitales que generan resultado.</span></h1>
+    <p class="lede" data-reveal style="--d:.16s">Una réplica 3D navegable de tu espacio real, en el navegador. Para <strong>vender</strong> tu proyecto antes de construirlo, <strong>gestionar</strong> tus activos en arriendo o <strong>capacitar</strong> a tu equipo en terreno.</p>
+    <div class="hero-cta" data-reveal style="--d:.24s;justify-content:center"><a href="#contacto" class="btn btn-primary">Solicitar demo <span class="arr">&rarr;</span></a><a href="#productos" class="btn btn-ghost">Ver los 3 productos</a></div>
+    <div class="chips" data-reveal style="--d:.3s;justify-content:center">
       <span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Motor 3D propio</span>
-      <span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Compatible con tu CRM <span class="badge">Pronto</span></span>
+      <span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Todo en el navegador, sin apps</span>
       <span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Sin permanencia</span>
     </div>
   </div>
-  <div class="device-zone" data-reveal style="--d:.2s"><div class="device">
-      <span class="slot-tag">slot: hero-sala-ventas-3d</span>
-      <div class="device-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="live"><span class="pulse"></span> EN VIVO</span></div>
-      <div class="device-body">
-        <div class="facade"><div class="unit"></div><div class="unit"></div><div class="unit hot"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit pick"></div><div class="unit"></div><div class="unit"></div><div class="unit sold"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit hot"></div><div class="unit"></div><div class="unit sold"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit"></div><div class="unit sold"></div><div class="unit"></div><div class="unit"></div></div>
-        <div class="facade-label"><div class="k">Proyecto</div><div class="n">Edificio Arlegui</div></div>
-        <div class="seg"><span class="on">3D</span><span>UNID</span><span>MAPA</span></div>
-      </div></div>
-    <div class="fchip tl"><div class="lbl">Disponibles</div><div class="big">24 <span style="font-size:.85rem;font-family:var(--sans);font-weight:600">unidades</span></div><div class="sub">+3 esta semana</div></div>
-    <div class="fchip br"><div class="lbl">Desde</div><div class="big">UF 2.000</div><div class="sub">Piso 14 · vista real</div></div></div>
 </div></header>
-
-<section class="band dark"><div class="wrap center">
-  <div class="sec-head"><span class="eyebrow" data-reveal>El contexto del mercado</span>
-  <h2 class="h2" data-reveal style="--d:.06s">Nunca hubo tanto stock, tanta competencia y tanta presión por cerrar ventas.</h2></div>
-  <div class="stat-grid">
-    <div class="stat" data-reveal style="--d:.05s"><div class="num"><span data-count="109">0</span><span class="u">K</span></div><div class="lbl">Unidades en stock en Chile</div><div class="src">CChC · 2025</div></div>
-    <div class="stat" data-reveal style="--d:.12s"><div class="num"><span data-count="30">0</span><span class="u"> meses</span></div><div class="lbl">Para agotar el stock actual</div><div class="src">CChC · 2025</div></div>
-    <div class="stat" data-reveal style="--d:.19s"><div class="num"><span data-count="75">0</span><span class="u">%</span></div><div class="lbl">Deptos entre 2.000 y 4.000 UF</div><div class="src">CChC · 2025</div></div>
-    <div class="stat" data-reveal style="--d:.26s"><div class="num"><span data-count="48">0</span><span class="u">K</span></div><div class="lbl">Viviendas vendidas 2025 (+14%)</div><div class="src">CChC · 2025</div></div>
-  </div>
-  <p class="closing" data-reveal>Bizual no cura la macroeconomía. <b>Maximiza la conversión de cada visita</b> — cuando cada lead vale más que nunca, la eficiencia unitaria es la diferencia.</p>
-</div></section>
 
 <section class="band" id="productos"><div class="wrap">
   <div class="sec-head center"><span class="eyebrow" data-reveal>La línea Bizual</span>
   <h2 class="h2" data-reveal style="--d:.06s">Un motor. <span class="blue">Tres formas de generar resultado.</span></h2>
   <p class="lede" data-reveal style="--d:.1s">Convertimos espacios físicos en gemelos digitales. Cada producto es independiente, con su propio uso y cliente — nunca se mezclan.</p></div>
-  <div class="prod-feat">
-    <div class="pcard sales" data-reveal><div class="inner">
-      <div><div class="ptop"><span class="pseg">A · Proyectos en venta</span></div>
-        <div class="pname">Bizual Sales</div>
-        <div class="pvalue">Convierte visitas digitales en ventas reales.</div>
-        <p class="pdesc">Tu comprador entra a tu proyecto desde su sofá. Recorre el edificio, sube a su piso, mira por su ventana — y decide. Mientras la competencia agenda visitas, tú ya estás cerrando.</p>
-        <a href="sales.html" class="btn btn-white">Ver Bizual Sales <span class="arr">&rarr;</span></a></div>
-      <div><ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Tu edificio en 3D, ubicado en su calle real</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> La vista exacta desde cada piso, antes de construir</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Recorrido interior del depto antes del primer ladrillo</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Disponible 24/7, también fuera de horario</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Stock sincronizable con tu CRM<span class="pron">Pronto</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Cada lead llega con su historial completo</li></ul></div>
-    </div></div>
-    <div class="prod-row">
-      <div class="pcard assets" data-reveal style="--d:.08s">
-        <div class="ptop"><span class="pseg">B · Activos en arriendo</span><span class="pbadge" style="background:#e6f7ee;color:#0a7d3c;border:1px solid #b9e7cd"><span class="d" style="background:#16a34a"></span> En operación · Parqtec</span></div>
-        <div class="pname">Bizual Assets</div><div class="pvalue">Una réplica digital exacta de tu edificio. En tu pantalla.</div>
-        <p class="pdesc">Un gemelo digital de cada espacio donde cada metro cuadrado queda documentado. Arrienda más rápido, evita disputas con respaldo visual y reduce las visitas innecesarias a terreno.</p>
-        <ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Gemelo digital navegable de cada espacio</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estado documentado antes y después de cada arriendo</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Comparte el espacio con un link, sin cuenta</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Toda tu cartera de arriendos en un solo panel</li></ul>
-        <a href="assets.html" class="btn btn-primary">Ver Bizual Assets <span class="arr">&rarr;</span></a></div>
-      <div class="pcard training" data-reveal style="--d:.16s">
-        <div class="ptop"><span class="pseg">C · Espacios operativos</span><span class="pbadge" style="background:rgba(43,119,255,.16);color:#85b7eb;border:1px solid rgba(43,119,255,.4)"><span class="d" style="background:#2b77ff"></span> Nuevo</span></div>
-        <div class="pname">Bizual Training</div><div class="pvalue">Capacita en el espacio real, sin mover a tu equipo.</div>
-        <p class="pdesc">Una réplica 3D de tu espacio operativo donde entrenas y estandarizas a tu equipo de terreno en remoto. Menos viajes, menos papel, todos operando igual.</p>
-        <ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Réplica 3D navegable del espacio operativo</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estaciones y procedimientos señalizados en el sitio</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estandariza la operación entre todas tus sedes</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Capacita sin mover a nadie de su lugar de trabajo</li></ul>
-        <a href="training.html" class="btn btn-white">Ver Bizual Training <span class="arr">&rarr;</span></a></div>
+  <div class="prod-grid3">
+    <div class="pcard eq" data-reveal style="--d:.05s">
+      <div class="ptop"><span class="pseg">Vender · Proyectos en venta</span></div>
+      <div class="pname">Bizual Sales</div>
+      <div class="pvalue">Vende tu proyecto antes de construirlo.</div>
+      <p class="pdesc">El comprador recorre el edificio completo, ve la vista real desde cada piso y reserva su unidad — 24/7, desde el navegador.</p>
+      <ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Tu edificio en 3D, en su calle real</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Vista real desde cada piso, antes de construir</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Disponible 24/7, también fuera de horario</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Cada lead llega con su historial completo</li></ul>
+      <a href="sales.html" class="btn btn-white">Ver Bizual Sales <span class="arr">&rarr;</span></a>
+    </div>
+    <div class="pcard eq" data-reveal style="--d:.13s">
+      <div class="ptop"><span class="pseg">Gestionar · Activos en arriendo</span><span class="pbadge" style="background:rgba(22,163,74,.16);color:#8ce0ad;border:1px solid rgba(22,163,74,.4)"><span class="d" style="background:#16a34a"></span> En operación · Parqtec</span></div>
+      <div class="pname">Bizual Assets</div>
+      <div class="pvalue">Visualiza el Negocio, Controla el Activo.</div>
+      <p class="pdesc">Un gemelo digital de cada espacio donde cada metro cuadrado queda documentado. Gestiona, respalda y comparte tu cartera desde un solo lugar.</p>
+      <ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Gemelo digital navegable de cada espacio</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estado documentado antes y después de cada arriendo</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Comparte el espacio con un link, sin cuenta</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Toda tu cartera en un solo panel</li></ul>
+      <a href="assets.html" class="btn btn-white">Ver Bizual Assets <span class="arr">&rarr;</span></a>
+    </div>
+    <div class="pcard eq" data-reveal style="--d:.21s">
+      <div class="ptop"><span class="pseg">Capacitar · Espacios operativos</span><span class="pbadge" style="background:rgba(43,119,255,.16);color:#85b7eb;border:1px solid rgba(43,119,255,.4)"><span class="d" style="background:#2b77ff"></span> Nuevo</span></div>
+      <div class="pname">Bizual Training</div>
+      <div class="pvalue">Capacita en el espacio real, sin mover a tu equipo.</div>
+      <p class="pdesc">Una réplica 3D de tu espacio operativo donde entrenas y estandarizas a tu equipo de terreno en remoto. Menos viajes, menos papel, todos operando igual.</p>
+      <ul class="plist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Réplica 3D navegable del espacio operativo</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estaciones y procedimientos señalizados en el sitio</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estandariza la operación entre todas tus sedes</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Capacita sin mover a nadie de su lugar</li></ul>
+      <a href="training.html" class="btn btn-white">Ver Bizual Training <span class="arr">&rarr;</span></a>
     </div>
   </div>
-</div></section>
-
-<section class="band"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow" data-reveal>Bizual Sales · En acción</span>
-  <h2 class="h2" data-reveal style="--d:.06s">Así <span class="blue">vende tu proyecto.</span></h2>
-  <p class="lede" data-reveal style="--d:.1s">No es un catálogo de fotos. Es la primera vez que tu comprador "vive" su depto antes de firmar — y la última vez que lo dudará.</p></div>
-  <div class="show-grid g3">
-    <div class="show" data-reveal style="--d:.05s"><div class="mock"><span class="slot-note">slot: sales-01-edificio.webp</span>
-      <div class="m-build"><span class="live"><span class="pulse"></span> LIVE</span>
-        <div class="m-facade"><div class="u"></div><div class="u"></div><div class="u h"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u s"></div><div class="u"></div><div class="u"></div><div class="u h"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u s"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div></div>
-        <div class="lab"><span>EDIFICIO</span>Arlegui</div></div></div>
-      <div class="cap-num">01 · El edificio en su entorno</div><h3>Tu edificio. Tu calle. Tu cuadra.</h3>
-      <p>No un render genérico. El proyecto en su calle real, con su orientación real, rotable en 3D.</p></div>
-    <div class="show" data-reveal style="--d:.13s"><div class="mock"><span class="slot-note">slot: sales-02-vista-unidad.webp</span>
-      <div class="m-sel"><div class="m-leg"><div class="it"><span class="c" style="background:#2f8f5f"></span> Disponible</div><div class="it"><span class="c" style="background:#d97706"></span> Reservado</div><div class="it"><span class="c" style="background:#7a2b2b"></span> Vendido</div></div>
-        <div class="m-grid"><div class="u"></div><div class="u"></div><div class="u"></div><div class="u h"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u sel"></div><div class="u"></div><div class="u"></div><div class="u v"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div><div class="u"></div></div>
-        <div class="m-pop"><div class="t">903 · Disponible</div><div class="s">Piso 9 · 62 m² · 2D 2B · UF 2.450</div></div></div></div>
-      <div class="cap-num">02 · Vista por unidad</div><h3>La vista del piso 9, exacta. Antes de subir.</h3>
-      <p>Cada piso y orientación muestra la vista real. El comprador decide sabiendo lo que verá, no imaginándolo.</p></div>
-    <div class="show" data-reveal style="--d:.21s"><div class="mock"><span class="slot-note">slot: sales-03-todo-conectado.webp</span>
-      <div class="m-det"><div class="hd">UNIDAD 903</div><span class="tag">DISPONIBLE</span>
-        <div class="specs"><div>m² útiles<b>62</b></div><div>Dorm.<b>2</b></div><div>Baños<b>2</b></div><div>Orient.<b>N</b></div></div>
-        <div class="price">UF 2.450</div><div class="acts"><span>Agendar visita</span><span class="gh">WhatsApp</span></div></div></div>
-      <div class="cap-num">03 · Todo conectado</div><h3>Del recorrido a la firma, sin saltos.</h3>
-      <p>El lead queda con contexto completo: qué unidad vio, qué miró, qué preguntó. WhatsApp y agenda a un click.</p></div>
-  </div></div></section>
-
-<section class="band dark"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow" data-reveal>Bizual Sales · Lo que te hace ganar</span>
-  <h2 class="h2" data-reveal style="--d:.06s">Lo que tiene tu competencia, no está aquí. <span style="color:#85b7eb">Lo que te hace cerrar antes, sí.</span></h2>
-  <p class="lede" data-reveal style="--d:.1s">Seis razones por las que un proyecto con Bizual cierra antes que el de al lado.</p></div>
-  <div class="diff-grid"><div class="diff" data-reveal style="--d:0.04s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="#fff" stroke-width="2"/></svg></div><span class="tag">★ Diferenciador</span><h3>Vista real por piso y orientación</h3><p>El comprador sabe exactamente qué verá desde su depto, a su altura, mirando a su lado. No imagina — sabe.</p></div><div class="diff hl" data-reveal style="--d:0.10s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 21V9l9-6 9 6v12" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Edificio 3D en su entorno exacto</h3><p>No un render aislado. El proyecto en su calle, con su entorno real — el comprador se ubica antes de entrar.</p></div><div class="diff" data-reveal style="--d:0.16s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="2"/></svg></div><span class="tag">★ Diferenciador</span><h3>Recorrido interior de cada tipología</h3><p>Tu comprador entra al depto antes del primer ladrillo y se proyecta viviendo en él.</p></div><div class="diff" data-reveal style="--d:0.04s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Un asistente que responde y agenda 24/7<span class="pron">Pronto</span></h3><p>Resuelve dudas del proyecto, agenda visitas y califica leads — también cuando tu equipo no está.</p></div><div class="diff" data-reveal style="--d:0.10s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Disponibilidad real, sincronizada con tu CRM<span class="pron">Pronto</span></h3><p>Stock vivo: nadie ofrece dos veces la misma unidad. Integraciones nativas en camino.</p></div><div class="diff" data-reveal style="--d:0.16s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 7a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z" stroke="#fff" stroke-width="2"/><path d="M4 21a8 8 0 0 1 16 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><span class="tag">★ Diferenciador</span><h3>Sabes qué miró cada lead antes de llamar</h3><p>Qué unidad vio, qué comparó, cuánto tiempo estuvo. Tu ejecutivo llama con contexto, no a ciegas.</p></div></div>
 </div></section>
 
 <section class="band" style="background:var(--n50)"><div class="wrap">
   <div class="sec-head center"><span class="eyebrow" data-reveal>Modelo comercial transparente</span>
   <h2 class="h2" data-reveal style="--d:.06s">Claro desde el día uno. Sin letra chica.</h2></div>
   <div class="cols3">
-    <div class="mcol" data-reveal style="--d:.05s"><div class="step">01 · Setup</div><h3>Producción + montaje</h3><p>Pago único por la producción 3D de tu proyecto y la configuración de tu plataforma. La producción visual queda de tu propiedad.</p></div>
+    <div class="mcol" data-reveal style="--d:.05s"><div class="step">01 · Setup</div><h3>Producción + montaje</h3><p>Pago único por la producción visual y el montaje 3D de tu espacio, más la configuración de tu plataforma. La producción visual queda de tu propiedad.</p></div>
     <div class="mcol" data-reveal style="--d:.12s"><div class="step">02 · Suscripción</div><h3>Uso de la plataforma</h3><p>Fee mensual en UF por el uso de Bizual. Se ajusta solo con la inflación. Sin permanencia.</p></div>
-    <div class="mcol" data-reveal style="--d:.19s"><div class="step">03 · Renders</div><h3>Tres caminos</h3><p>Usamos tus renders, los producimos nosotros, o partimos de tu material existente. Tú eliges según tu proyecto.</p></div>
+    <div class="mcol" data-reveal style="--d:.19s"><div class="step">03 · Material visual</div><h3>Tres caminos</h3><p>Usamos el material que ya tienes, lo producimos nosotros, o partimos de tu material existente. Tú eliges según tu caso.</p></div>
   </div>
   <div class="cta-row" data-reveal><a href="#contacto" class="btn btn-blue">Solicita cotización personalizada <span class="arr">&rarr;</span></a>
   <p class="note">Cotizamos según el tamaño y la etapa de tu proyecto. Valores en UF + IVA.</p></div></div></section>
@@ -428,29 +385,24 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
   <h2 class="h2" data-reveal style="--d:.06s">Tecnología propia. Sin amarras.</h2></div>
   <div class="why-grid">
     <div class="why" data-reveal style="--d:.05s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 2 8 4.5v9L12 20l-8-4.5v-9L12 2Z" stroke="#2b77ff" stroke-width="2" stroke-linejoin="round"/><path d="m12 11 8-4.5M12 11v9M12 11 4 6.5" stroke="#2b77ff" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>Motor 3D propio</h3><p>Infraestructura y código propios. Actualizamos rápido y personalizamos de verdad, sin depender de un proveedor externo.</p></div>
-    <div class="why" data-reveal style="--d:.12s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 12a4 4 0 0 1 4-4h4M16 12a4 4 0 0 1-4 4H8" stroke="#2b77ff" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="12" r="2.5" stroke="#2b77ff" stroke-width="2"/><circle cx="18" cy="12" r="2.5" stroke="#2b77ff" stroke-width="2"/></svg></div><h3>Complementa tu CRM</h3><p>No reemplaza tu sistema: es la capa visual que potencia lo que ya usas para vender y gestionar.</p></div>
-    <div class="why" data-reveal style="--d:.19s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2M4 7h16M4 7v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 12h6" stroke="#2b77ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Tu producción visual es tuya</h3><p>Renders, fotos, video y recorridos quedan de tu propiedad una vez pagado el setup. La plataforma se usa bajo licencia.</p></div>
+    <div class="why" data-reveal style="--d:.12s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 12a4 4 0 0 1 4-4h4M16 12a4 4 0 0 1-4 4H8" stroke="#2b77ff" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="12" r="2.5" stroke="#2b77ff" stroke-width="2"/><circle cx="18" cy="12" r="2.5" stroke="#2b77ff" stroke-width="2"/></svg></div><h3>Complementa tus sistemas</h3><p>No reemplaza lo que ya tienes: es la capa visual que potencia tus sistemas para vender, gestionar y capacitar.</p></div>
+    <div class="why" data-reveal style="--d:.19s"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2M4 7h16M4 7v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M9 12h6" stroke="#2b77ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Tu producción visual es tuya</h3><p>Renders, escaneos, fotos, video y recorridos quedan en tu poder, en archivos. El modelo 3D interactivo vive en la plataforma y lo usas con tu suscripción.</p></div>
   </div>
 </div></section>
 
 <section class="band"><div class="wrap">
   <div class="sec-head center"><span class="eyebrow" data-reveal>Cómo arrancamos</span>
-  <h2 class="h2" data-reveal style="--d:.06s">De tu proyecto a tu Sala de Ventas 3D.</h2></div>
+  <h2 class="h2" data-reveal style="--d:.06s">De tu espacio físico a tu gemelo digital.</h2></div>
   <div class="steps">
-    <div class="stp" data-reveal style="--d:.04s"><div class="n">1</div><div class="t">30 min</div><h3>Demo</h3><p>Te mostramos Bizual con un proyecto real y definimos el alcance.</p></div>
-    <div class="stp" data-reveal style="--d:.1s"><div class="n">2</div><div class="t">3–5 días</div><h3>Propuesta</h3><p>Te entregamos una cotización personalizada para tu proyecto.</p></div>
-    <div class="stp" data-reveal style="--d:.16s"><div class="n">3</div><div class="t">6–8 semanas</div><h3>Setup</h3><p>Construimos el gemelo 3D de tu edificio y cargamos tu inventario.</p></div>
-    <div class="stp" data-reveal style="--d:.22s"><div class="n">4</div><div class="t">En vivo</div><h3>Operación</h3><p>Tu sala de ventas 3D queda online y sigues prospectos desde un panel.</p></div>
+    <div class="stp" data-reveal style="--d:.04s"><div class="n">1</div><div class="t">30 min</div><h3>Demo</h3><p>Te mostramos Bizual con un caso real y definimos el alcance.</p></div>
+    <div class="stp" data-reveal style="--d:.1s"><div class="n">2</div><div class="t">3–5 días</div><h3>Propuesta</h3><p>Te entregamos una cotización personalizada para tu caso.</p></div>
+    <div class="stp" data-reveal style="--d:.16s"><div class="n">3</div><div class="t">6–8 semanas</div><h3>Setup</h3><p>Digitalizamos tu espacio y construimos tu gemelo 3D navegable.</p></div>
+    <div class="stp" data-reveal style="--d:.22s"><div class="n">4</div><div class="t">En vivo</div><h3>Operación</h3><p>Tu gemelo digital queda online y lo gestionas desde un panel.</p></div>
   </div></div></section>
 
-<section class="band" id="faq" style="background:var(--n50)"><div class="wrap">
-  <div class="sec-head center"><span class="eyebrow" data-reveal>Preguntas frecuentes</span>
-  <h2 class="h2" data-reveal style="--d:.06s">Lo que suelen preguntarnos.</h2></div>
-  <div class="faq-list" data-reveal><details><summary>¿Bizual reemplaza a mi CRM? <span class="pm">+</span></summary><p>No. Bizual es la capa visual que se monta sobre tu CRM. Sigues trabajando con tu sistema; Bizual potencia la experiencia de venta y la trazabilidad. Las integraciones nativas están en camino.</p></details><details><summary>¿Necesito tener el proyecto construido? <span class="pm">+</span></summary><p>No. Bizual Sales está pensado para proyectos en venta antes de construir: el comprador recorre el edificio y elige su unidad aunque la sala física no exista todavía.</p></details><details><summary>¿El comprador necesita una app o lentes especiales? <span class="pm">+</span></summary><p>No. Todo funciona en el navegador, desde cualquier dispositivo. Sin descargas, sin hardware especial.</p></details><details><summary>¿De quién es el material 3D que producen? <span class="pm">+</span></summary><p>La producción visual queda de tu propiedad una vez pagado el setup. La plataforma se usa bajo licencia.</p></details><details><summary>¿Cuánto demora el setup? <span class="pm">+</span></summary><p>Entre 6 y 8 semanas desde que cerramos el alcance, dependiendo del tamaño del proyecto y del material disponible.</p></details><details><summary>¿Cuánto cuesta? <span class="pm">+</span></summary><p>El modelo es setup único + suscripción mensual en UF. Lo cotizamos según el tamaño y la etapa de tu proyecto y te entregamos una propuesta personalizada en UF + IVA en 3–5 días.</p></details></div></div></section>
-
 <section class="band dark cta-final" id="contacto"><div class="wrap">
-  <h2 data-reveal>Empieza a vender antes de abrir la sala de ventas.</h2>
-  <p class="lede" data-reveal style="--d:.08s">Agenda una demo de 30 minutos. Te mostramos Bizual con un proyecto real y vemos si calza con el tuyo.</p>
+  <h2 data-reveal>Convierte tu espacio físico en un gemelo digital que genera resultado.</h2>
+  <p class="lede" data-reveal style="--d:.08s">Agenda una demo de 30 minutos. Te mostramos Bizual con un caso real y vemos qué producto calza con el tuyo.</p>
   <div data-reveal style="--d:.14s"><a href="#" class="btn btn-blue">Solicitar demo <span class="arr">&rarr;</span></a></div>
   <p class="legal" data-reveal style="--d:.2s">Al enviar el formulario aceptas el tratamiento de tus datos conforme a la Ley 21.719. Nunca compartimos tu información.</p>
 </div></section>
