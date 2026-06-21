@@ -403,7 +403,7 @@ document.querySelectorAll("[data-count]").forEach(function(el){co.observe(el)});
   /* Delta G.1 — el select SOLO se preselecciona, nunca se deshabilita */
   var sel=document.querySelector('select[name="producto"]');
   var p=new URLSearchParams(location.search).get('producto');
-  if(sel&&p){var map={'bizual-sales':'Bizual Sales','bizual-assets':'Bizual Assets','bizual-training':'Bizual Training'};var w=map[p];if(w){Array.prototype.forEach.call(sel.options,function(o){if(o.value===w)sel.value=o.value;});}}
+  if(sel&&p){var map={'bizual-sales':'Bizual Sales','bizual-assets':'Bizual Assets','bizual-training':'Bizual Training'};var w=map[p];if(w){sel.value=w;}}
   var f=document.getElementById('contact-form');if(!f)return;
   var msg=f.querySelector('.form-msg'),btn=f.querySelector('button[type=submit]');
   f.addEventListener('submit',function(e){

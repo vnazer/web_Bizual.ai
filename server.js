@@ -78,7 +78,7 @@ function mapProductoToHubspot(producto) {
   // no romper el submit con un value inexistente. El producto real igual queda
   // en la descripción del deal (createDeal lo agrega siempre).
   // TODO backend: cuando HubSpot agregue el valor "Bizual Training", devolverlo aquí.
-  if (!producto) return null;
+  if (typeof producto !== 'string') return null;
   const p = producto.toLowerCase().trim();
 
   if (p === 'bizual sales') return 'Bizual Sales';
