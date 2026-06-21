@@ -77,7 +77,7 @@ nav.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--n100) 1px,transparent 1px),linear-gradient(90deg,var(--n100) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 95% 78% at 26% 16%,#000 32%,transparent 76%);opacity:.7;z-index:0;animation:meshMove 30s linear infinite}
 .hero::after{content:"";position:absolute;top:-180px;right:-140px;width:720px;height:720px;background:radial-gradient(circle,rgba(43,119,255,.14),transparent 62%);z-index:0;animation:float 13s ease-in-out infinite}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(46px,6.8vw,88px);line-height:.92;letter-spacing:-.04em;color:var(--ink)}
+.hero h1{font-size:clamp(46px,6.8vw,88px);line-height:1.0;letter-spacing:-.04em;color:var(--ink)}
 .punch{margin-top:26px;font-family:var(--sans);font-size:clamp(1.18rem,2vw,1.6rem);font-weight:600;color:var(--ink);max-width:24ch}
 .punch .blue{color:var(--blue)}
 .hero .lede{margin-top:18px;max-width:44ch}
@@ -306,18 +306,18 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
 .slot{position:relative}
 .slot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;display:none;z-index:7}
 .slot.has-img .slot-img{display:block}
-.slot-note{display:none}
+.slot-note,.slot-tag{display:none}
 </style><link rel="canonical" href="https://bizual.ai/training">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Magama SpA"><meta name="geo.region" content="CL"><meta name="geo.placename" content="Santiago, Chile">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_CL"><meta property="og:site_name" content="Bizual">
-<meta property="og:title" content="Bizual Training — Capacita a tu equipo en el espacio real, en 3D"><meta property="og:description" content="Capacitación inmersiva sobre el gemelo digital de tu espacio operativo. Web, sin casco ni app. Capacita en el espacio real, sin mover a tu equipo.">
-<meta property="og:url" content="https://bizual.ai/training"><meta property="og:image" content="https://bizual.ai/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="Bizual Training — Capacita a tu equipo en el espacio real, en 3D"><meta property="og:description" content="Capacitación inmersiva sobre el gemelo digital de tu espacio operativo. Web, sin casco ni app. Capacita en el espacio real, sin mover a tu equipo."><meta property="og:url" content="https://bizual.ai/training"><meta property="og:image" content="https://bizual.ai/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bizual Training — Capacita a tu equipo en el espacio real, en 3D"><meta name="twitter:description" content="Capacitación inmersiva sobre el gemelo digital de tu espacio operativo. Web, sin casco ni app. Capacita en el espacio real, sin mover a tu equipo."><meta name="twitter:image" content="https://bizual.ai/og-image.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bizual.ai/#organization","name":"Bizual","alternateName":"Bizual by Magama","url":"https://bizual.ai","logo":"https://bizual.ai/logo-bizual.png","description":"Convertimos espacios físicos en gemelos digitales que generan negocio. Sala de Ventas 3D, gestión visual de activos y capacitación inmersiva para empresas en Chile.","parentOrganization":{"@type":"Organization","name":"Magama SpA","url":"https://magama.cl","taxID":"76.837.395-7"},"address":{"@type":"PostalAddress","streetAddress":"Av. Manquehue Sur 520 Of. 205","addressLocality":"Las Condes","addressRegion":"Región Metropolitana","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"contacto\u0040bizual.ai","availableLanguage":["Spanish"],"areaServed":"CL"},"areaServed":{"@type":"Country","name":"Chile"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bizual Training","alternateName":null,"applicationCategory":"BusinessApplication","applicationSubCategory":"Immersive Training Platform","operatingSystem":"Web","url":"https://bizual.ai/training","description":"Capacitación inmersiva sobre el gemelo digital del espacio operativo: estaciones de contenido, tutor IA y dashboard de avance. Web, sin casco ni app.","featureList":["Gemelo digital del espacio operativo","Estaciones de contenido etiquetadas","Tutor IA contextual","Dashboard de avance por persona y local"],"publisher":{"@id":"https://bizual.ai/#organization"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bizual.ai/#organization","name":"Bizual","alternateName":"Bizual by Magama","url":"https://bizual.ai","logo":"https://bizual.ai/logo-bizual.png","description":"Convertimos espacios físicos en gemelos digitales que generan resultado de negocio. Sala de Ventas 3D, gestión visual de activos y capacitación inmersiva para empresas en Chile.","parentOrganization":{"@type":"Organization","name":"Magama SpA","url":"https://magama.cl","taxID":"76.837.395-7"},"address":{"@type":"PostalAddress","streetAddress":"Av. Manquehue Sur 520 Of. 205","addressLocality":"Las Condes","addressRegion":"Región Metropolitana","addressCountry":"CL"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"contacto\u0040bizual.ai","availableLanguage":["Spanish"],"areaServed":"CL"},"areaServed":{"@type":"Country","name":"Chile"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bizual Training","applicationCategory":"BusinessApplication","applicationSubCategory":"Immersive Training Platform","operatingSystem":"Web","url":"https://bizual.ai/training","description":"Capacitación inmersiva sobre el gemelo digital del espacio operativo: estaciones de contenido, tutor IA y dashboard. Web, sin casco ni app.","featureList":["Gemelo digital del espacio operativo","Estaciones de contenido","Tutor IA contextual","Dashboard de avance"],"publisher":{"@id":"https://bizual.ai/#organization"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://bizual.ai/"},{"@type":"ListItem","position":2,"name":"Bizual Training","item":"https://bizual.ai/training"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito tener el espacio construido?","acceptedAnswer":{"@type":"Answer","text":"Sí. Bizual Training digitaliza tu espacio operativo real —local, bodega o planta—: tu equipo entrena sobre una réplica 3D de lo que ya existe."}},{"@type":"Question","name":"¿Mi equipo necesita casco de realidad virtual o una app?","acceptedAnswer":{"@type":"Answer","text":"No. Todo corre en el navegador, desde cualquier dispositivo. Sin casco, sin app, sin hardware especial."}},{"@type":"Question","name":"¿Sirve si tengo alta rotación de personal?","acceptedAnswer":{"@type":"Answer","text":"Sí. El gemelo queda disponible 24/7 como estándar único: cada persona que ingresa se capacita igual, sin depender de quién esté para entrenarla."}},{"@type":"Question","name":"¿Cómo se cobra?","acceptedAnswer":{"@type":"Answer","text":"Por espacio o local, o por marca — nunca por usuario. El modelo es setup único (digitalización del espacio) + suscripción mensual en UF."}},{"@type":"Question","name":"¿De quién es el material que producen?","acceptedAnswer":{"@type":"Answer","text":"La producción visual del setup —escaneos, fotos y video, tours 360°, planos y galería— queda en tu poder: te la entregamos en archivos. El modelo 3D interactivo navegable es parte del servicio Bizual: vive en la plataforma y lo usas mientras tienes tu suscripción activa, no se entrega como archivo descargable."}}]}</script>
 </head><body><nav id="nav"><div class="wrap nav-in">
   <a href="/" aria-label="Bizual — inicio"><img class="nav-logo" src="/img/logo-bizual-light.png" alt="Bizual"></a>
   <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
@@ -326,8 +326,8 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
     <a href="/sales">Sales</a>
     <a href="/assets">Assets</a>
     <a href="/training" class="active">Training</a>
-    <a href="/#faq">FAQ</a>
-    <a href="/contacto?producto=bizual-training" class="btn btn-primary nav-cta">Solicitar demo <span class="arr">&rarr;</span></a>
+    <a href="#faq">FAQ</a>
+    <a href="/contacto?producto=bizual-training#form" class="btn btn-primary nav-cta">Solicitar demo <span class="arr">&rarr;</span></a>
   </div>
 </div></nav>
 <header class="hero" id="top"><div class="wrap hero-grid">
@@ -336,14 +336,13 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
     <h1 data-reveal style="--d:.05s">Capacita en el espacio real, <span class="blue">sin mover a tu equipo.</span></h1>
     <p class="punch" data-reveal style="--d:.12s">Tu operación, replicada en 3D para entrenar a todo tu equipo.</p>
     <p class="lede" data-reveal style="--d:.18s">Una réplica 3D de tu espacio operativo donde tu gente entrena, recorre estaciones y aprende procedimientos en remoto. Menos viajes, menos papel, todos operando igual.</p>
-    <div class="hero-cta" data-reveal style="--d:.24s"><a href="/contacto?producto=bizual-training" class="btn btn-primary">Solicitar demo Training <span class="arr">&rarr;</span></a><a href="#como" class="btn btn-ghost">Cómo funciona</a></div>
+    <div class="hero-cta" data-reveal style="--d:.24s"><a href="/contacto?producto=bizual-training#form" class="btn btn-primary">Solicitar demo Training <span class="arr">&rarr;</span></a><a href="#como" class="btn btn-ghost">Cómo funciona</a></div>
     <div class="chips" data-reveal style="--d:.3s"><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Entrena en remoto</span><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Estandariza entre sedes</span><span class="chip"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#2b77ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Sin mover a nadie</span></div>
   </div>
   <div class="device-zone" data-reveal style="--d:.2s">
-    <div class="device"><span class="slot-tag">slot: training-hero.webp</span>
+    <div class="device slot" data-slot="training-hero"><img class="slot-img" src="/img/training-hero.webp" alt="Planta del espacio operativo con estaciones de capacitación señalizadas" loading="lazy" onload="this.closest('.slot').classList.add('has-img')"><span class="slot-tag">slot: training-hero.webp</span>
       <div class="device-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="live"><span class="pulse"></span> 3D</span></div>
-      <div class="device-body slot" data-slot="training-hero" style="min-height:340px">
-        <img class="slot-img" src="/img/training-hero.webp" alt="Planta del espacio operativo con estaciones de capacitación señalizadas" loading="lazy" onload="this.closest('.slot').classList.add('has-img')">
+      <div class="device-body" style="min-height:340px">
         <div class="m-plant"><div class="lab">PLANTA · Estaciones</div><div class="floor">
           <div class="pin" style="top:18%;left:18%">1</div><div class="pin" style="top:30%;left:60%">2</div>
           <div class="pin" style="top:62%;left:34%">3</div><div class="pin" style="top:70%;left:72%">4</div>
@@ -382,13 +381,18 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
     <div class="proof" data-reveal style="--d:.12s"><div class="num">−<span data-count="30">0</span><span class="u">%</span></div><div class="lbl">Viajes para entrenar</div></div>
     <div class="proof" data-reveal style="--d:.19s"><div class="num">−<span data-count="95">0</span><span class="u">%</span></div><div class="lbl">Uso de papel</div></div>
   </div>
-  
+</div></section>
+
+<section class="band" id="faq" style="background:var(--n50)"><div class="wrap">
+  <div class="sec-head center"><span class="eyebrow" data-reveal>Preguntas frecuentes</span>
+  <h2 class="h2" data-reveal style="--d:.06s">Lo que suelen preguntarnos.</h2></div>
+  <div class="faq-list" data-reveal itemscope itemtype="https://schema.org/FAQPage"><details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question"><summary itemprop="name">¿Necesito tener el espacio construido? <span class="pm">+</span></summary><div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Sí. Bizual Training digitaliza tu espacio operativo real —local, bodega o planta—: tu equipo entrena sobre una réplica 3D de lo que ya existe.</p></div></details><details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question"><summary itemprop="name">¿Mi equipo necesita casco de realidad virtual o una app? <span class="pm">+</span></summary><div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">No. Todo corre en el navegador, desde cualquier dispositivo. Sin casco, sin app, sin hardware especial.</p></div></details><details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question"><summary itemprop="name">¿Sirve si tengo alta rotación de personal? <span class="pm">+</span></summary><div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Sí. El gemelo queda disponible 24/7 como estándar único: cada persona que ingresa se capacita igual, sin depender de quién esté para entrenarla.</p></div></details><details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question"><summary itemprop="name">¿Cómo se cobra? <span class="pm">+</span></summary><div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Por espacio o local, o por marca — nunca por usuario. El modelo es setup único (digitalización del espacio) + suscripción mensual en UF.</p></div></details><details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question"><summary itemprop="name">¿De quién es el material que producen? <span class="pm">+</span></summary><div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">La producción visual del setup —escaneos, fotos y video, tours 360°, planos y galería— queda en tu poder: te la entregamos en archivos. El modelo 3D interactivo navegable es parte del servicio Bizual: vive en la plataforma y lo usas mientras tienes tu suscripción activa, no se entrega como archivo descargable.</p></div></details></div>
 </div></section>
 
 <section class="band dark cta-final" id="contacto"><div class="wrap">
   <h2 data-reveal>Entrena a todo tu equipo, sin moverlos de su sede.</h2>
   <p class="lede" data-reveal style="--d:.08s">Agenda una demo de 30 minutos y te mostramos Bizual Training con un espacio real.</p>
-  <div data-reveal style="--d:.14s"><a href="/contacto?producto=bizual-training" class="btn btn-blue">Solicitar demo <span class="arr">&rarr;</span></a></div>
+  <div data-reveal style="--d:.14s"><a href="/contacto?producto=bizual-training#form" class="btn btn-blue">Solicitar demo <span class="arr">&rarr;</span></a></div>
   <p class="legal" data-reveal style="--d:.2s">Al enviar el formulario aceptas el tratamiento de tus datos conforme a la Ley 21.719. Nunca compartimos tu información.</p>
 </div></section>
 <footer><div class="wrap">
@@ -396,7 +400,7 @@ footer{background:#070b14;color:#9aa6c4;padding:64px 0 40px}
     <div><img class="foot-logo" src="/img/logo-bizual-dark.png" alt="Bizual">
       <p>Convertimos espacios físicos en gemelos digitales que generan resultado de negocio. Un producto de Magama SpA.</p></div>
     <div class="foot-col"><h4>Productos</h4><a href="/sales">Bizual Sales</a><a href="/assets">Bizual Assets</a><a href="/training">Bizual Training</a></div>
-    <div class="foot-col"><h4>Contacto</h4><a href="/contacto?producto=bizual-training">contacto&#64;bizual.ai</a><a href="/contacto?producto=bizual-training">Solicitar demo</a><span style="display:block;font-size:.9rem;margin-top:4px;color:#9aa6c4">Santiago, Chile</span></div>
+    <div class="foot-col"><h4>Contacto</h4><a href="/contacto#form">contacto&#64;bizual.ai</a><a href="/contacto#form">Solicitar demo</a><span style="display:block;font-size:.9rem;margin-top:4px;color:#9aa6c4">Santiago, Chile</span></div>
   </div>
   <div class="foot-bottom"><span>&copy; 2026 Magama SpA · Bizual</span><span><a href="/privacidad">Privacidad</a> · <a href="/terminos">Términos</a></span></div>
 </div></footer>
@@ -412,7 +416,7 @@ var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll("[data-count]").forEach(function(el){co.observe(el)});
 </script>
 <script>
-/* §6.3 — override opcional de imágenes vía /media.json (sin tocar HTML) */
+/* §6.3 — override opcional de imágenes vía /media.json */
 fetch('/media.json').then(function(r){return r.json();}).then(function(map){
   document.querySelectorAll('.slot[data-slot]').forEach(function(s){
     var u=map[s.dataset.slot], img=s.querySelector('.slot-img');

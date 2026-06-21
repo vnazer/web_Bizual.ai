@@ -73,20 +73,22 @@ app.get('/health', (req, res) => {
 // --- Map form values to HubSpot dropdown internal values ------------------
 
 function mapProductoToHubspot(producto) {
-  if (!producto) return null;
+  // El dropdown HubSpot `bizual_tipo_plan` hoy solo admite Sales/Assets.
+  // Training y "Aún no estoy seguro" → se OMITE la propiedad (return null) para
+  // no romper el submit con un value inexistente. El producto real igual queda
+  // en la descripción del deal (createDeal lo agrega siempre).
+  // TODO backend: cuando HubSpot agregue el valor "Bizual Training", devolverlo aquí.
+  if (typeof producto !== 'string') return null;
   const p = producto.toLowerCase().trim();
 
   if (p === 'bizual sales') return 'Bizual Sales';
   if (p === 'bizual assets' || p === 'bizual asset') return 'Bizual Assets';
+  if (p.includes('training') || p.includes('capacit')) return null; // pendiente en HubSpot
 
-  if (p.includes('sales') || p.includes('venta') || p.includes('vender')) {
-    return 'Bizual Sales';
-  }
-  if (p.includes('asset') || p.includes('arriendo') || p.includes('gesti') || p.includes('activo')) {
-    return 'Bizual Assets';
-  }
+  if (p.includes('sales') || p.includes('venta') || p.includes('vender')) return 'Bizual Sales';
+  if (p.includes('asset') || p.includes('arriendo') || p.includes('gesti') || p.includes('activo')) return 'Bizual Assets';
 
-  return 'Bizual Sales';
+  return null; // "Aún no estoy seguro" / desconocido → no forzar un value
 }
 
 // --- Map form values to user-facing label for emails ----------------------
